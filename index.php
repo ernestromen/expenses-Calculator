@@ -7,19 +7,20 @@ class DB{
 private $dns;
 private $user;
 private $password;
-
+public $pdo;
 
 
   public function connect(){
 
-    $this->dns = 'mysql:host=localhost;dbname=test';
+    $this->dns = 'mysql:host=localhost;dbname=node4u';
     $this->user='root';
     $this->password='';
-    $this->db = new PDO($this->dns,$this->user,$this->password); 
+    $this->pdo = new PDO($this->dns,$this->user,$this->password); 
+    return $this;
   }
 }
  
-class Validation{
+class Validation extends DB{
 
   public  $errors = [
         'input' => ''
@@ -43,9 +44,21 @@ class Validation{
             else{
             
              $result = $_POST['input'];
-            
-            $sql = "INSERT INTO dailyExpenses VALUES ($result)";
-            
+            //practicing queries;!
+
+            // $sql = "CREATE TABLE salary(
+            //   id int NOT NULL AUTO_INCREMENT,
+            //   amount int NOT NULL,
+            //   created_at datetime,
+            //    PRIMARY KEY (id)
+            // )";
+//             if($this->pdo->query($sql)){
+// echo 'yes';
+
+//             }else{
+//               echo'no';
+//             };
+
             
             }
             
@@ -60,10 +73,11 @@ class Validation{
 
 
 }
-$val = new Validation();
-$val->validate();
 $res = new DB();
-$res->connect();
+$val = new Validation();
+
+$val->connect()->validate();
+
 
 
 
@@ -91,5 +105,4 @@ $res->connect();
 
 </form>
 </body>
-<!-- <script src="script.js"></script> -->
 </html>
