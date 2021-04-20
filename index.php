@@ -18,6 +18,15 @@ public $pdo;
     $this->pdo = new PDO($this->dns,$this->user,$this->password); 
     return $this;
   }
+
+
+
+  public function insert(){
+
+    $sql = "INSERT INTO (amount) VALUES($result)";
+$this->pdo->query($sql);
+
+  }
 }
  
 class Validation extends DB{
@@ -42,9 +51,58 @@ class Validation extends DB{
               $this->errors['input'] = '<br>'.'* the input must be a number';
             }
             else{
-            
+            // $tmp = 'hello';
+            // $tmp = json_encode($tmp);
+
+            // echo json_encode($_POST['input']);
+            // echo json_encode($_GET['input']);
              $result = $_POST['input'];
-            //practicing queries;!
+             $a = 'from php with love';
+            //  var_dump($result);
+             if($result){
+              $a = 'from php with love';
+
+echo '<div id="mytarget" style="display:none">';
+echo $a;
+echo '</div>';
+
+
+echo '<script>
+
+console.log(document.querySelector("#mytarget").textContent);
+</script>';
+// $result = json_encode($result);
+// echo $result;
+//               echo '<script  type="text/javascript"> 
+
+//             var ajax = new XMLHttpRequest();
+// ajax.onreadystatechange = function(){
+
+//   httpRequest.open("POST", "http://localhost/codwares/expensesCalculator/", true);
+//   httpRequest.send();
+
+
+// }
+//                                         </script>';
+
+
+              // // var res = confirm("Hello! I am an alert box!!");
+              // // // if not true
+              // // if(!(res)){
+                
+              // //   alert("suit yourself!!");
+                
+              // // }else{
+              // //   console.log("on else");
+          
+              // // }
+
+             }
+
+
+
+
+            //practicing queries;!  
 
             // $sql = "CREATE TABLE salary(
             //   id int NOT NULL AUTO_INCREMENT,
@@ -73,6 +131,18 @@ class Validation extends DB{
 
 
 }
+
+
+
+
+// class Queries{
+// public function insert($pdo,$result){
+
+// $sql = "INSERT INTO (amount) VALUES($result)";
+// $
+
+// }
+// }
 $res = new DB();
 $val = new Validation();
 
@@ -95,14 +165,19 @@ $val->connect()->validate();
     <title>Document</title>
 </head>
 <body>
-<form method="post" style="text-align: center;">
+<form id="myForm" method="post" style="text-align: center;">
 <input class ="test" type="text" name="input" placeholder="amount" type="text">
-<input   type="submit" name="submit" placeholder="amount" type="text">
+<input id="btnSubmit"  type="submit" name="submit" placeholder="amount" type="text">
 <span style="color:red;">
 <?= $val->errors['input']; ?>
 </span>
 
 
 </form>
+<script type="text/javascript">
+
+
+</script>
 </body>
+
 </html>
