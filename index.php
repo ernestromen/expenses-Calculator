@@ -11,7 +11,6 @@ public $pdo;
 
 
   public function connect(){
-
     $this->dns = 'mysql:host=localhost;dbname=node4u';
     $this->user='root';
     $this->password='';
@@ -21,10 +20,14 @@ public $pdo;
 
 
 
-  public function insert(){
-
-    $sql = "INSERT INTO (amount) VALUES($result)";
-$this->pdo->query($sql);
+  public static function insert(){
+$test = 'inside insert';
+var_dump($test);
+$attmept = new DB();
+die;
+//     $sql = "INSERT INTO (amount) VALUES($res)";
+//  $this->pdo->query($sql);
+// var_dump($final);
 
   }
 }
@@ -60,42 +63,36 @@ class Validation extends DB{
              $a = 'from php with love';
             //  var_dump($result);
              if($result){
-              $a = 'from php with love';
-
-echo '<div id="mytarget" style="display:none">';
-echo $a;
-echo '</div>';
-
-
+              // $a = 'from php with love';
 echo '<script>
 
-console.log(document.querySelector("#mytarget").textContent);
+    var res = confirm("Hello! I am an alert box!!");
+              // if not true
+              if((res)){
+
+document.cookie = "confirm =1;";
+                // alert("income recored");
+                
+              }else{
+
+
+
+              }
 </script>';
-// $result = json_encode($result);
-// echo $result;
-//               echo '<script  type="text/javascript"> 
-
-//             var ajax = new XMLHttpRequest();
-// ajax.onreadystatechange = function(){
-
-//   httpRequest.open("POST", "http://localhost/codwares/expensesCalculator/", true);
-//   httpRequest.send();
-
-
-// }
-//                                         </script>';
+echo '<pre>';
+// var_dump($_COOKIE);
+if($_COOKIE['confirm'] ==1){
+$this->insert();
+}
+// foreach($_COOKIE as $key=>$value)
+// {
+//   echo "key: ".$key.'<br />';
+//   echo "value: ".$value.'<br />';
+// };
 
 
-              // // var res = confirm("Hello! I am an alert box!!");
-              // // // if not true
-              // // if(!(res)){
-                
-              // //   alert("suit yourself!!");
-                
-              // // }else{
-              // //   console.log("on else");
+
           
-              // // }
 
              }
 
@@ -165,6 +162,7 @@ $val->connect()->validate();
     <title>Document</title>
 </head>
 <body>
+<div id="root"></div>
 <form id="myForm" method="post" style="text-align: center;">
 <input class ="test" type="text" name="input" placeholder="amount" type="text">
 <input id="btnSubmit"  type="submit" name="submit" placeholder="amount" type="text">
