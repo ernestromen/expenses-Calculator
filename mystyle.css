@@ -1,0 +1,13 @@
+.container{
+padding:20px;
+background-color: black;
+display: grid;
+grid-template-columns: auto auto auto;
+}
+
+
+.itemgrid{
+padding:10px;
+background-color: red;
+
+}
