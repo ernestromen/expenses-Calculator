@@ -104,8 +104,9 @@ $this->db = $db;
       public function show(){
 
         // $a_date = "2009-11-23";
-         $date =  date("Y-m-d");
-        var_dump(date("Y-m-t", strtotime($date)));
+        //  $date =  date("Y-m-d");
+        // var_dump(date("Y-m-t", strtotime($date)));
+        // $datetime = new DateTime('tomorrow');
 
         // $date =  date("Y-m-d");
   //  var_dump( $date); 
@@ -158,6 +159,17 @@ $crud->show();
 <span style="color:red;">
 <?= $val->errors['input']; ?>
 </span>
+<br>  
+<!-- 
+<label for="select">select PurchaeType</label>
+<select id="select" value="something" name="select">
+
+
+<option value="credit_card">Credit card</option>
+<option value="food">Food</option>
+<option value="going_out">Going out</option>
+<option value="gas">gass</option>
+</select> -->
 
 
 </form>
