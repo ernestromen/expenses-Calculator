@@ -43,7 +43,11 @@ class Validation extends DB{
     
 //when submitted
         if(isset($_POST['submit'])){
-          if(empty($_POST['input']) ){
+          if(empty($_POST['select']) || empty($_POST['input']) ){
+            var_dump('in select');
+
+
+         
           
 
             $this->errors['input'] = '<br>'.'* the input is not valid';
@@ -55,11 +59,11 @@ class Validation extends DB{
             }
             //if the input passes all the validation
             else{
-   
              $result = $_POST['input'];
-            //  var_dump($result);
-             if($result){
-              $this->insert($result);
+             $result2 = $_POST['select'];
+            //  var_dump($result2);
+             if($result && $result2){
+              $this->insert($result,$result2);
               // exit;
 
               
@@ -73,13 +77,13 @@ class Validation extends DB{
             
             
             }
-
+          }
 
       }  
         
 
 
-}
+
 
 
 class CRUD extends Validation{
@@ -87,16 +91,17 @@ class CRUD extends Validation{
 private $db;
 public $result;
 public $result2;
+public $result3;
 public function __construct($db){
 // global $db;
 $this->db = $db;
 // var_dump($this->db);
 }
 
-  public  function insert($res){
+  public  function insert($res,$res2){
 // insert values
-    $sql = "INSERT INTO expenses (amount,date) VALUES ($res,NOW())";
-      ($this->db->pdo->query($sql));
+    $sql = "INSERT INTO expenses (purchasetype,amount,date) VALUES ('$res2','$res',NOW())";
+     ($this->db->pdo->query($sql));
 
 
 
@@ -115,18 +120,26 @@ $this->db = $db;
 //   var_dump($date->format('m'));
 // };
     
-$sql = "SELECT id,purchasetype,SUM(amount) as amount, date FROM expenses GROUP BY DATE_FORMAT(date,'%Y-%m-%d');";
-$this->result =  $this->db->pdo->query($sql)->fetchall();
+$sql = "SELECT id,purchasetype,amount,date FROM expenses WHERE DATE_FORMAT(date,'%m') =MONTH(date);";
+$this->result = $this->db->pdo->query($sql)->fetchall();
+// echo '<pre>';
 return ($this->result);
       }
 
 
 
       public function show2(){
-$sql = "SELECT id,purchasetype,SUM(amount) as amount, DATE_FORMAT(date,'%Y-%m') AS date FROM expenses GROUP BY DATE_FORMAT(date,'%Y-%m');";
+$sql = "
+
+SELECT id,purchasetype,SUM(amount) as amount,(SELECT  DATE_FORMAT(date,'%Y-%m') AS date FROM expenses GROUP BY DATE_FORMAT(date,'%Y-%m')) as date FROM expenses GROUP BY purchasetype";
 $this->result2 =  $this->db->pdo->query($sql)->fetchall();
 return ($this->result2);
 
+      }
+      public function selectTag(){
+        $sql = "SELECT * FROM purchasetypes";
+        $this->result3 =  $this->db->pdo->query($sql)->fetchall();
+return ($this->result3);
       }
 
 }
@@ -146,6 +159,7 @@ $crud->connect()->validate();
 
 $crud->show();
 $crud->show2();
+$crud->selectTag();
 
 
 
@@ -165,23 +179,27 @@ $crud->show2();
 <body>
 <div id="root"></div>
 <form id="myForm" method="post" style="text-align: center;">
+<div class="container2">
+<div class="itemgrid">
 <input class ="test" type="text" name="input" placeholder="amount" type="text">
 <input id="btnSubmit"  type="submit" name="submit" placeholder="add" type="text">
+</div>
+
+
+<div class="itemgrid2">
+<label for="select">select PurchaeType</label>
+<select id="select" value="something" name="select">
+<option  value="">option</option>
+
+<?php foreach($crud->result3 as $row):?>
+<option  value="<?=$row['purchasetype'];?>"><?=$row['purchasetype'];?></option>
+<?php endforeach;?>
+</select> 
+</div>
 <span style="color:red;">
 <?= $crud->errors['input']; ?>
 </span>
-<br>  
-<!-- 
-<label for="select">select PurchaeType</label>
-<select id="select" value="something" name="select">
-
-
-<option value="credit_card">Credit card</option>
-<option value="food">Food</option>
-<option value="going_out">Going out</option>
-<option value="gas">gass</option>
-</select> -->
-
+</div>
 
 </form>
 <h1 style="text-align:center">daily expenses</h1>

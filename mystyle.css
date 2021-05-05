@@ -14,3 +14,22 @@ border: 1px solid black;
 
 
 }
+
+
+/*css for form astetics*/
+
+.container2{
+    padding:20px;
+    display: grid;
+    grid-template-columns: auto auto;
+    justify-content: center;
+    
+    
+    }
+
+.itemgrid2{
+    padding:10px;
+    border: 1px solid black;
+    
+    
+    }
