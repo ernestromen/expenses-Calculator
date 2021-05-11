@@ -1,7 +1,7 @@
 
 
 <?php
-
+echo 'show something!';
 class DB{
 //pdo connection to be inherited
 private $dns;
