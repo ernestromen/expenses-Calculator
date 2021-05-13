@@ -69,8 +69,8 @@ class DB  {
     try {
     $this->pdo = new PDO($this->dns,$this->user,$this->password); 
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    foreach($pdo->query('SELECT title FROM news') as $row) {
-      echo htmlentities($row['title']);
+    foreach($pdo->query('SELECT * FROM example') as $row) {
+      echo htmlentities($row["firstname"]);
   }
   $pdo = null;
 }catch(PDOException $e) {
