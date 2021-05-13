@@ -56,9 +56,9 @@ public $pdo;
 
 
   public function connect(){
-    $this->dns = 'mysql:host='. $cleardb_server .';dbname='.$cleardb_db;
-    $this->user=$cleardb_username;
-    $this->password=$cleardb_password;
+    $this->dns = 'mysql:host='. $this->cleardb_server .';dbname='.$this->cleardb_db;
+    $this->user= $this->cleardb_username;
+    $this->password=$this->cleardb_password;
     $this->pdo = new PDO($this->dns,$this->user,$this->password); 
     return $this;
   }
