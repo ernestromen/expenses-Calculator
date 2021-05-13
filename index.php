@@ -31,18 +31,7 @@ ini_set("display_errors", 1);
 //   echo "id: " . $row["id"]. "<br>". " - Name: " . $row["firstname"]. " " . $row["lastname"]. "<br>" . $row ["email"];
 // }
 
-class HerokuClass{
 
-  public $cleardb_url = parse_url(getenv("CLEARDB_DATABASE_URL"));
-  public $cleardb_server = $cleardb_url["host"];
-  public $cleardb_username = $cleardb_url["user"];
-  public $cleardb_password = $cleardb_url["pass"];
-  public $cleardb_db = substr($cleardb_url["path"],1);
-  public $active_group = 'default';
-  public $query_builder = TRUE;
-
-
-}
 
 
 class DB extends HerokuClass{
@@ -56,9 +45,9 @@ public $pdo;
 
 
   public function connect(){
-    $this->dns = 'mysql:host='. $this->cleardb_server .';dbname='.$this->cleardb_db;
-    $this->user= $this->cleardb_username;
-    $this->password=$this->cleardb_password;
+    $this->dns = 'mysql:host=localhost;dbname=node4u';
+    $this->user='root';
+    $this->password='';
     $this->pdo = new PDO($this->dns,$this->user,$this->password); 
     return $this;
   }
