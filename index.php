@@ -48,7 +48,7 @@ $pdo = new PDO("mysql:host=$cleardb_server; dbname=$cleardb_db;", $cleardb_usern
 $sql = "SELECT * FROM example";
 $result = $pdo->query($sql);
 var_dump($result);
-while($row =$result->fetch_assoc()){
+while($row = $result->fetch()){
 echo $row['firstname'] . $row['lastname'] . $row['email'];
 
 }
