@@ -47,6 +47,7 @@ var_dump($cleardb_url);
 $pdo = new PDO("mysql:host=$cleardb_server; dbname=$cleardb_db;", $cleardb_username, $cleardb_password);
 $sql = "SELECT * FROM example";
 $result = $pdo->query($sql);
+var_dump($result);
 while($row =$result->fetchall()){
 echo $row['firstname'] . $row['lastname'] . $row['email'];
 
