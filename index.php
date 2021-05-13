@@ -30,7 +30,7 @@ ini_set("display_errors", 1);
 // while($row = mysqli_fetch_assoc($result)) {
 //   echo "id: " . $row["id"]. "<br>". " - Name: " . $row["firstname"]. " " . $row["lastname"]. "<br>" . $row ["email"];
 // }
-
+echo $cleardb_url["host"];
 
 
 //heroku shit
