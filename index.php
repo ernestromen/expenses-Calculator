@@ -20,7 +20,8 @@ if (!$conn) {
 }
 echo "Connected successfully";
 
-
+error_reporting(E_ALL);
+ini_set("display_errors", 1);
 $sql = "SELECT * FROM example";
 $result = mysqli_query($conn, $sql);
 while($row = mysqli_fetch_assoc($result)) {
