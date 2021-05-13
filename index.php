@@ -3,38 +3,49 @@
 <?php
 
 
-//Get Heroku ClearDB connection information
-$cleardb_url = parse_url(getenv("CLEARDB_DATABASE_URL"));
-$cleardb_server = $cleardb_url["host"];
-$cleardb_username = $cleardb_url["user"];
-$cleardb_password = $cleardb_url["pass"];
-$cleardb_db = substr($cleardb_url["path"],1);
-$active_group = 'default';
-$query_builder = TRUE;
-// Connect to DB
-$conn = mysqli_connect($cleardb_server, $cleardb_username, $cleardb_password, $cleardb_db);
+// //Get Heroku ClearDB connection information
+// $cleardb_url = parse_url(getenv("CLEARDB_DATABASE_URL"));
+// $cleardb_server = $cleardb_url["host"];
+// $cleardb_username = $cleardb_url["user"];
+// $cleardb_password = $cleardb_url["pass"];
+// $cleardb_db = substr($cleardb_url["path"],1);
+// $active_group = 'default';
+// $query_builder = TRUE;
+// // Connect to DB
+// $conn = mysqli_connect($cleardb_server, $cleardb_username, $cleardb_password, $cleardb_db);
     
 
-if (!$conn) {
-  die("Connection failed: " . mysqli_connect_error());
-}
-echo "Connected successfully";
+// if (!$conn) {
+//   die("Connection failed: " . mysqli_connect_error());
+// }
+// echo "Connected successfully";
 
 error_reporting(E_ALL);
 ini_set("display_errors", 1);
-$sql = "SELECT * FROM example";
-$result = mysqli_query($conn, $sql);
+// $sql = "SELECT * FROM example";
+// $result = mysqli_query($conn, $sql);
 
 
 
-while($row = mysqli_fetch_assoc($result)) {
-  echo "id: " . $row["id"]. "<br>". " - Name: " . $row["firstname"]. " " . $row["lastname"]. "<br>" . $row ["email"];
+// while($row = mysqli_fetch_assoc($result)) {
+//   echo "id: " . $row["id"]. "<br>". " - Name: " . $row["firstname"]. " " . $row["lastname"]. "<br>" . $row ["email"];
+// }
+
+class HerokuClass{
+
+  public $cleardb_url = parse_url(getenv("CLEARDB_DATABASE_URL"));
+  public $cleardb_server = $cleardb_url["host"];
+  public $cleardb_username = $cleardb_url["user"];
+  public $cleardb_password = $cleardb_url["pass"];
+  public $cleardb_db = substr($cleardb_url["path"],1);
+  public $active_group = 'default';
+  public $query_builder = TRUE;
+
+
 }
 
 
-
-
-class DB{
+class DB extends HerokuClass{
 //pdo connection to be inherited
 private $dns;
 private $user;
@@ -43,10 +54,11 @@ public $pdo;
 
 
 
+
   public function connect(){
-    $this->dns = 'mysql:host=localhost;dbname=node4u';
-    $this->user='root';
-    $this->password='';
+    $this->dns = 'mysql:host='. $cleardb_server .';dbname='.$cleardb_db;
+    $this->user=$cleardb_username;
+    $this->password=$cleardb_password;
     $this->pdo = new PDO($this->dns,$this->user,$this->password); 
     return $this;
   }
