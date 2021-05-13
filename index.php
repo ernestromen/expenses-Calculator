@@ -60,9 +60,10 @@ public $pdo;
 
 
   public function connect(){
-    $this->dns = 'mysql:host=localhost;dbname=node4u';
-    $this->user='root';
-    $this->password='';
+                // "mysql:host='.$host.'; dbname='.$dbname.';"
+    $this->dns = "mysql:host='.$cleardb_server.'; dbname='. $cleardb_db.';";
+    $this->user=$cleardb_username;
+    $this->password=$cleardb_password;
     $this->pdo = new PDO($this->dns,$this->user,$this->password); 
     return $this;
   }
