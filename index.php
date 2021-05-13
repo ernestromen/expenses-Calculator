@@ -34,17 +34,13 @@ ini_set("display_errors", 1);
 
 
 //heroku shit
-class HerokuClass{
-  function __construct() {
-  $cleardb_url = parse_url(getenv("CLEARDB_DATABASE_URL"));
-  $cleardb_server = $cleardb_url["host"];
-  $cleardb_username = $cleardb_url["user"];
-  $cleardb_password = $cleardb_url["pass"];
-  $cleardb_db = substr($cleardb_url["path"],1);
-  $active_group = 'default';
-  $query_builder = TRUE;
-  }
-}
+$cleardb_url = parse_url(getenv("CLEARDB_DATABASE_URL"));
+$cleardb_server = $cleardb_url["host"];
+$cleardb_username = $cleardb_url["user"];
+$cleardb_password = $cleardb_url["pass"];
+$cleardb_db = substr($cleardb_url["path"],1);
+$active_group = 'default';
+$query_builder = TRUE;
 
 class DB extends HerokuClass {
 //heroku shit
@@ -202,10 +198,7 @@ return ($this->result3);
 
 
 
-$hc = new HerokuClass()
-$res = new DB($hc);
-// $res = new DB();
-
+$res = new DB();
 $val = new Validation();
 $crud = new CRUD($res);
 
