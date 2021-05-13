@@ -30,7 +30,7 @@ ini_set("display_errors", 1);
 // while($row = mysqli_fetch_assoc($result)) {
 //   echo "id: " . $row["id"]. "<br>". " - Name: " . $row["firstname"]. " " . $row["lastname"]. "<br>" . $row ["email"];
 // }
-var_dump($cleardb_url["host"]);
+
 
 
 //heroku shit
@@ -41,7 +41,7 @@ $cleardb_password = $cleardb_url["pass"];
 $cleardb_db = substr($cleardb_url["path"],1);
 $active_group = 'default';
 $query_builder = TRUE;
-
+var_dump($cleardb_server);
 class DB  {
 //heroku shit
 
