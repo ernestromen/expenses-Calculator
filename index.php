@@ -54,7 +54,10 @@ private $dns;
 private $user;
 private $password;
 public $pdo;
-
+public $cleardb_server = $cleardb_url["host"];
+public $cleardb_username = $cleardb_url["user"];
+public $cleardb_password = $cleardb_url["pass"];
+public $cleardb_db = substr($cleardb_url["path"],1);
 
 
 
