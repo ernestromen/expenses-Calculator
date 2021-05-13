@@ -61,11 +61,11 @@ class DB  {
 
 
 
-  public function connect(){
+  public function __construct($server,$db,$user,$pass){
                 // "mysql:host='.$host.'; dbname='.$dbname.';"
-    $this->dns = "mysql:host= $cleardb_server; dbname= $cleardb_db;";
-    $this->user=$cleardb_username;
-    $this->password=$cleardb_password;
+    $this->dns = "mysql:host= $server; dbname= $db;";
+    $this->user=$user;
+    $this->password=$pass;
     try {
     $this->pdo = new PDO($this->dns,$this->user,$this->password); 
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -82,9 +82,9 @@ class DB  {
   }
 
   
-  function __construct() {
-    $this->connect();
-}
+//   function __construct() {
+//     $this->connect();
+// }
 
 
   
@@ -212,7 +212,7 @@ return ($this->result3);
 
 
 
-$res = new DB();
+$res = new DB($cleardb_server,$cleardb_db,$cleardb_username,$cleardb_password);
 $val = new Validation();
 $crud = new CRUD($res);
 
