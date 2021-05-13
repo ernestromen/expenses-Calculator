@@ -25,7 +25,7 @@ ini_set("display_errors", 1);
 $sql = "SELECT * FROM example";
 $result = mysqli_query($conn, $sql);
 while($row = mysqli_fetch_assoc($result)) {
-  echo "id: " . $row["id"]. "<br>". " - Name: " . $row["firstname"]. " " . $row["lastname"]. "<br>" $row["email"];
+  echo "id: " . $row["id"]. "<br>". " - Name: " . $row["firstname"]. " " . $row["lastname"]. "<br>";
 }
 
 
