@@ -20,9 +20,16 @@ if (!$conn) {
 }
 echo "Connected successfully";
 
-// phpinfo();
 
-echo 'show something!';
+$sql = "SELECT * FROM example";
+$result = mysqli_query($conn, $sql);
+while($row = mysqli_fetch_assoc($result)) {
+  echo "id: " . $row["id"]. " - Name: " . $row["firstname"]. " " . $row["lastname"]. "<br>";
+}
+
+
+
+
 class DB{
 //pdo connection to be inherited
 private $dns;
