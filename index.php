@@ -34,7 +34,7 @@ ini_set("display_errors", 1);
 
 
 
-class DB extends HerokuClass{
+class DB {
 //pdo connection to be inherited
 private $dns;
 private $user;
