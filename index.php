@@ -24,10 +24,12 @@ error_reporting(E_ALL);
 ini_set("display_errors", 1);
 $sql = "SELECT * FROM example";
 $result = mysqli_query($conn, $sql);
-var_dump(mysqli_fetch_assoc($result));
-// while($row = mysqli_fetch_assoc($result)) {
-//   echo "id: " . $row["id"]. "<br>". " - Name: " . $row["firstname"]. " " . $row["lastname"]. "<br>";
-// }
+
+
+
+while($row = mysqli_fetch_assoc($result)) {
+  echo "id: " . $row["id"]. "<br>". " - Name: " . $row["firstname"]. " " . $row["lastname"]. "<br>" . $row ["email"];
+}
 
 
 
