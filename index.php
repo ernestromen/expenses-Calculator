@@ -15,9 +15,12 @@ $query_builder = TRUE;
 $conn = mysqli_connect($cleardb_server, $cleardb_username, $cleardb_password, $cleardb_db);
     
 
+if (!$conn) {
+  die("Connection failed: " . mysqli_connect_error());
+}
+echo "Connected successfully";
 
-
-phpinfo();
+// phpinfo();
 
 echo 'show something!';
 class DB{
@@ -195,7 +198,7 @@ $crud->selectTag();
     <link rel="stylesheet" href="mystyle.css">
 </head>
 <body>
-<h1>php is here</h1>
+
 <div id="root"></div>
 <form id="myForm" method="post" style="text-align: center;">
 <div class="container2">
