@@ -42,3 +42,11 @@ $cleardb_db = substr($cleardb_url["path"],1);
 $active_group = 'default';
 $query_builder = TRUE;
 var_dump($cleardb_url);
+// $conn = mysqli_connect($cleardb_server, $cleardb_username, $cleardb_password, $cleardb_db);
+
+$pdo = new PDO("mysql:host=$cleardb_server; dbname=$cleardb_db;", $cleardb_username, $cleardb_password);
+$sql = "SELECT * FROM example";
+while($row = $pdo->query($sql)){
+echo $row['firstname'] . $row['lastname'] . $row['email'];
+
+}
