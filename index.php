@@ -50,9 +50,9 @@ class DB  {
 
 
 //pdo connection to be inherited
-private $dns;
-private $user;
-private $password;
+public $dns;
+public $user;
+public $password;
 public $pdo;
 public $cleardb_server = $cleardb_url["host"];
 public $cleardb_username = $cleardb_url["user"];
