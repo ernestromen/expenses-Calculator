@@ -34,6 +34,7 @@ ini_set("display_errors", 1);
 
 
 //heroku shit
+class HerokuClass{
  $cleardb_url = parse_url(getenv("CLEARDB_DATABASE_URL"));
  $cleardb_server = $cleardb_url["host"];
  $cleardb_username = $cleardb_url["user"];
@@ -41,9 +42,9 @@ ini_set("display_errors", 1);
  $cleardb_db = substr($cleardb_url["path"],1);
  $active_group = 'default';
  $query_builder = TRUE;
+}
 
-
-class DB {
+class DB extends HerokuClass {
 //heroku shit
 
 
@@ -61,9 +62,9 @@ public $pdo;
 
   public function connect(){
                 // "mysql:host='.$host.'; dbname='.$dbname.';"
-    $this->dns = "mysql:host='.$cleardb_server.'; dbname='. $cleardb_db.';";
-    $this->user=$cleardb_username;
-    $this->password=$cleardb_password;
+    $this->dns = "mysql:host='. $this->cleardb_server.'; dbname='. $this->cleardb_db.';";
+    $this->user=$this->cleardb_username;
+    $this->password=$this->cleardb_password;
     $this->pdo = new PDO($this->dns,$this->user,$this->password); 
     return $this;
   }
