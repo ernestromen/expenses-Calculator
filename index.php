@@ -200,7 +200,7 @@ return ($this->result3);
 
 
 
-
+$hc = new HerokuClass()
 $res = new DB();
 $val = new Validation();
 $crud = new CRUD($res);
