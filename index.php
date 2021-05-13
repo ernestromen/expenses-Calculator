@@ -41,8 +41,8 @@ $cleardb_password = $cleardb_url["pass"];
 $cleardb_db = substr($cleardb_url["path"],1);
 $active_group = 'default';
 $query_builder = TRUE;
-// var_dump($cleardb_url);
-class DB  {
+var_dump($cleardb_url);
+/*class DB  {
 //heroku shit
 
 
