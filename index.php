@@ -69,7 +69,7 @@ public $pdo;
     try {
     $this->pdo = new PDO($this->dns,$this->user,$this->password); 
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    foreach($pdo->query('SELECT * FROM example') as $row) {
+    foreach($pdo->query("SELECT * FROM example") as $row) {
       echo htmlentities($row["firstname"]);
   }
   $pdo = null;
