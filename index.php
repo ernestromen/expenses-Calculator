@@ -57,9 +57,9 @@ private $pdo;
 // public $cleardb_db = substr($cleardb_url["path"],1);
 
 
-function __construct($server,$db,$user,$pass) {
-  $this->connect($server,$db,$user,$pass);
-}
+// function __construct($server,$db,$user,$pass) {
+//   $this->connect($server,$db,$user,$pass);
+// }
 
   public function connect($server,$db,$user,$pass){
     var_dump('here');
@@ -87,7 +87,7 @@ echo '<pre>';
   die();
 }
 
-    return $this->pdo;
+    return $this;
   }
 
   
