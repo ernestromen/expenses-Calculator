@@ -58,7 +58,7 @@ private $pdo;
 
 
 
-  public function __construct($server,$db,$user,$pass){
+  public function connect($server,$db,$user,$pass){
     var_dump('here');
   
                 // "mysql:host='.$host.'; dbname='.$dbname.';"
@@ -88,9 +88,9 @@ echo '<pre>';
   }
 
   
-//   function __construct() {
-//     $this->connect();
-// }
+  function __construct() {
+    $this->connect();
+}
 
 
   
