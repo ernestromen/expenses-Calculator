@@ -58,7 +58,7 @@ private $pdo;
 
 
 function __construct($server,$db,$user,$pass) {
-  $this->connect();
+  $this->connect($server,$db,$user,$pass);
 }
 
   public function connect($server,$db,$user,$pass){
