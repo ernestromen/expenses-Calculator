@@ -225,7 +225,7 @@ $res = new DB($cleardb_server,$cleardb_db,$cleardb_username,$cleardb_password);
 $val = new Validation();
 $crud = new CRUD($res);
 
-$crud->connect()->validate();
+// $crud->connect()->validate();
 
 $crud->show();
 $crud->show2();
