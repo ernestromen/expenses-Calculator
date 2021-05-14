@@ -26,3 +26,7 @@ while($row = $result->fetch()){
 echo $row['firstname'] . $row['lastname'] . $row['email'];
 
 }
+
+
+comment everything except the DB class and try to pass to the class the enviorment variables specifically to the pdo object to make a connection 
+and make a function to check the connection.

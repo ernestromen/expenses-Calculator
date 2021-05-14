@@ -15,10 +15,7 @@
 // $conn = mysqli_connect($cleardb_server, $cleardb_username, $cleardb_password, $cleardb_db);
     
 
-// if (!$conn) {
-//   die("Connection failed: " . mysqli_connect_error());
-// }
-// echo "Connected successfully";
+
 
 error_reporting(E_ALL);
 ini_set("display_errors", 1);
@@ -93,7 +90,7 @@ public $pdo;
 
 }
  
-class Validation extends DB{
+/*class Validation extends DB{
      //validation 
      
   public  $errors = [
@@ -305,3 +302,4 @@ $crud->selectTag();
 </body>
 
 </html>
+*/
