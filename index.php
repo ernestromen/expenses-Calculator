@@ -61,7 +61,7 @@ private $pdo;
 //   $this->connect($server,$db,$user,$pass);
 // }
 
-  public function connect($server,$db,$user,$pass){
+  public function __construct($server,$db,$user,$pass){
     var_dump('here');
   
                 // "mysql:host='.$host.'; dbname='.$dbname.';"
