@@ -87,7 +87,7 @@ echo '<pre>';
   die();
 }
 
-    return $this;
+    return $this->pdo;
   }
 
   
