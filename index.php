@@ -62,7 +62,7 @@ public $pdo;
     var_dump('here');
   
                 // "mysql:host='.$host.'; dbname='.$dbname.';"
-    $this->dns = "mysql:host= $server; dbname= $db;";
+    $this->dns = "mysql:host=". $server."; dbname=" .$db.";";
     $this->user=$user;
     $this->password=$pass;
 echo '<pre>';
