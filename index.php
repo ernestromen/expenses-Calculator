@@ -100,9 +100,9 @@ echo '<pre>';
 }
 
 
-$db = new DB($cleardb_server,$cleardb_db,$cleardb_username,$cleardb_password);
+
  
-/*class Validation extends DB{
+class Validation extends DB{
      //validation 
      
   public  $errors = [
@@ -314,4 +314,3 @@ $crud->selectTag();
 </body>
 
 </html>
-*/
