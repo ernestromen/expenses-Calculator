@@ -74,11 +74,11 @@ echo '<pre>';
     try {
     $this->pdo = new PDO($this->dns,$this->user,$this->password); 
     var_dump( $this->pdo);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    foreach($pdo->query("SELECT * FROM example") as $row) {
+    $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    foreach($this->pdo->query("SELECT * FROM example") as $row) {
       echo htmlentities($row["firstname"]);
   }
-  $pdo = null;
+  $this->pdo = null;
 }catch(PDOException $e) {
   print "Error!: " . $e->getMessage() . "<br/>" . "<br>";
   die();
