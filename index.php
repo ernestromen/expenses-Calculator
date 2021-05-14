@@ -59,6 +59,7 @@ public $pdo;
 
 
   public function __construct($server,$db,$user,$pass){
+    var_dump('here');
                 // "mysql:host='.$host.'; dbname='.$dbname.';"
     $this->dns = "mysql:host= $server; dbname= $db;";
     $this->user=$user;
@@ -89,6 +90,9 @@ public $pdo;
 
 
 }
+
+
+$db = new DB($cleardb_server,$cleardb_db,$cleardb_username,$cleardb_password);
  
 /*class Validation extends DB{
      //validation 
