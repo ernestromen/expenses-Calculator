@@ -221,8 +221,7 @@ return ($this->result3);
 
 
 
-// $res = new DB($cleardb_server,$cleardb_db,$cleardb_username,$cleardb_password);
-$res = new DB();
+$res = new DB($cleardb_server,$cleardb_db,$cleardb_username,$cleardb_password);
 
 $val = new Validation();
 $crud = new CRUD($res);
