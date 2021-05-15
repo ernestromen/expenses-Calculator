@@ -68,11 +68,11 @@ protected $pdo;
     $this->dns = "mysql:host=". $server."; dbname=" .$db.";";
     $this->user=$user;
     $this->password=$pass;
-echo '<pre>';
-    var_dump($this->dns,'dns');
-    var_dump($db,'database');
-    var_dump($this->user,'user');
-    var_dump($this->password,'pass');
+// echo '<pre>';
+//     var_dump($this->dns,'dns');
+//     var_dump($db,'database');
+//     var_dump($this->user,'user');
+//     var_dump($this->password,'pass');
 
     try {
     $this->pdo = new PDO($this->dns,$this->user,$this->password); 
