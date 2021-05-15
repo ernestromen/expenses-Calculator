@@ -157,7 +157,7 @@ protected $pdo;
 
 
 
-class CRUD extends Validation{
+class CRUD{
 //does all the actions
 private $db;
 public $result;
