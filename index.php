@@ -167,6 +167,7 @@ var_dump('inside salary submit');
   //if the input passes all the validation
   else{
    $result = $_POST['salary'];
+   var_dump('passed all the validtaion');
   //  $result2 = $_POST['select'];
   //  var_dump($result2);
    if($result){
