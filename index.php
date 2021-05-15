@@ -160,9 +160,11 @@ class Validation extends DB{
 if(isset($_POST['submitSalary'])){
 
 // var_dump('inside salary submit');
- if(!(is_numeric($_POST['salary'])) ||  empty($_POST['salary']) ){
+ if(!(is_numeric($_POST['salary'])) || empty($_POST['salary']) ){
+   if(empty($_POST['source'])){
 
     $this->errors['salaryInput'] = '<br>'.'* the input must be a number';
+   }
   }
   //if the input passes all the validation
   else{
@@ -209,13 +211,16 @@ $this->db = $db;
   public  function insert($res,$res2){
 if(is_null($res2)){
 
-  var_dump('res2 is null');
+  $sql = "INSERT INTO salary ()"
+}else{
+  $sql = "INSERT INTO expenses (purchasetype,amount,date) VALUES ('$res2','$res',NOW())";
+
 }
-    var_dump($res,'$res');
-    var_dump($res2,'$res2');
+    // var_dump($res,'$res');
+    // var_dump($res2,'$res2');
     // var_dump('in insert');
 // insert values from select and expenses input
-     $sql = "INSERT INTO expenses (purchasetype,amount,date) VALUES ('$res2','$res',NOW())";
+    //  $sql = "INSERT INTO expenses (purchasetype,amount,date) VALUES ('$res2','$res',NOW())";
      ($this->db->pdo->query($sql));
 
 
@@ -329,6 +334,14 @@ $crud->selectTag();
 <input class ="test" type="text" name="salary" placeholder="salary" type="text">
 <input id="btnSubmit"  type="submit" name="submitSalary" placeholder="add" type="text">
 </div>
+
+
+
+<div class="itemgrid">
+<label for="select">write source</label>
+<input class ="test" type="text" name="source" placeholder="source" type="text">
+</div>
+
 </div>
 
 <span style="color:red;">
