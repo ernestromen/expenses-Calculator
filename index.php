@@ -78,7 +78,7 @@ protected $pdo;
     $this->pdo = new PDO($this->dns,$this->user,$this->password); 
     var_dump( $this->pdo);
     $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    var_dump($this->pdo->query("INSERT INTO purchasetypes (purchasetype) VALUES (Gas)"));
+    var_dump($this->pdo->query("INSERT INTO purchasetypes (purchasetype) VALUES ('Gas')"));
     foreach($this->pdo->query("SELECT * FROM expenses") as $row) {
       echo htmlentities($row["firstname"]);
   }
