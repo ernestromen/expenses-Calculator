@@ -102,55 +102,55 @@ protected $pdo;
 
 
  
-class Validation extends DB{
-     //validation 
+// class Validation extends DB{
+//      //validation 
      
-  public  $errors = [
-        'input' => ''
+//   public  $errors = [
+//         'input' => ''
         
-        ];
+//         ];
     
-      public function validate(){
+//       public function validate(){
     
-//when submitted
-        if(isset($_POST['submit'])){
-          if(empty($_POST['select']) || empty($_POST['input']) ){
-            var_dump('in select');
+// //when submitted
+//         if(isset($_POST['submit'])){
+//           if(empty($_POST['select']) || empty($_POST['input']) ){
+//             var_dump('in select');
 
 
          
           
 
-            $this->errors['input'] = '<br>'.'* the input is not valid';
+//             $this->errors['input'] = '<br>'.'* the input is not valid';
             
             
-            }else if(!(is_numeric($_POST['input']))){
+//             }else if(!(is_numeric($_POST['input']))){
 
-              $this->errors['input'] = '<br>'.'* the input must be a number';
-            }
-            //if the input passes all the validation
-            else{
-             $result = $_POST['input'];
-             $result2 = $_POST['select'];
-            //  var_dump($result2);
-             if($result && $result2){
-              $this->insert($result,$result2);
-              // exit;
+//               $this->errors['input'] = '<br>'.'* the input must be a number';
+//             }
+//             //if the input passes all the validation
+//             else{
+//              $result = $_POST['input'];
+//              $result2 = $_POST['select'];
+//             //  var_dump($result2);
+//              if($result && $result2){
+//               $this->insert($result,$result2);
+//               // exit;
 
               
           
 
-             }
+//              }
             
-            }
-            
-            
+//             }
             
             
-            }
-          }
+            
+            
+//             }
+//           }
 
-      }  
+//       }  
         
 
 
