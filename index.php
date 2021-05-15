@@ -207,7 +207,10 @@ $this->db = $db;
 }
 
   public  function insert($res,$res2){
+if(is_null($res2)){
 
+  var_dump('res2 is null');
+}
     var_dump($res,'$res');
     var_dump($res2,'$res2');
     // var_dump('in insert');
