@@ -162,7 +162,7 @@ class Validation extends DB{
 
 
 
-class CRUD{
+class CRUD extends Validation {
 //does all the actions
 private $db;
 public $result;
