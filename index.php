@@ -157,7 +157,7 @@ protected $pdo;
 
 
 
-class CRUD{
+class CRUD extends DB{
 //does all the actions
 private $db;
 public $result;
