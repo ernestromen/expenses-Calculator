@@ -279,9 +279,25 @@ $crud->selectTag();
 <span style="color:red;">
 <?= $crud->errors['input']; ?>
 </span>
+
+
 </div>
 
 </form>
+
+<form action="" method="post">
+<div class="container2">
+<div class="itemgrid">
+<input class ="test" type="text" name="salary" placeholder="salary" type="text">
+<input id="btnSubmit"  type="submit" name="submit" placeholder="add" type="text">
+</div>
+</div>
+
+
+
+</form>
+
+
 <h1 style="text-align:center">daily expenses</h1>
 
 <div class="container ">
