@@ -117,7 +117,7 @@ class Validation extends DB{
     
       public function validate(){
     
-//when submitted
+//when expenses submitted 
         if(isset($_POST['submit'])){
           if(empty($_POST['select']) || empty($_POST['input']) ){
             // var_dump('in select');
@@ -153,6 +153,17 @@ class Validation extends DB{
             
             
             }
+
+
+//when salary is submitted 
+
+if(isset($_POST['submitSalary'])){
+
+var_dump('inside salary submit');
+
+}
+
+
           }
 
       }  
@@ -289,7 +300,7 @@ $crud->selectTag();
 <div class="container2">
 <div class="itemgrid">
 <input class ="test" type="text" name="salary" placeholder="salary" type="text">
-<input id="btnSubmit"  type="submit" name="submit" placeholder="add" type="text">
+<input id="btnSubmit"  type="submit" name="submitSalary" placeholder="add" type="text">
 </div>
 </div>
 
