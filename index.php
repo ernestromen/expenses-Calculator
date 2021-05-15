@@ -78,7 +78,7 @@ echo '<pre>';
     $this->pdo = new PDO($this->dns,$this->user,$this->password); 
     var_dump( $this->pdo);
     $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    foreach($this->pdo->query("SELECT * FROM example") as $row) {
+    foreach($this->pdo->query("SELECT * FROM expenses") as $row) {
       echo htmlentities($row["firstname"]);
   }
   // $this->pdo = null;
