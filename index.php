@@ -62,7 +62,7 @@ protected $pdo;
 // }
 
   public function __construct($server,$db,$user,$pass){
-    var_dump('here');
+    // var_dump('here');
   
                 // "mysql:host='.$host.'; dbname='.$dbname.';"
     $this->dns = "mysql:host=". $server."; dbname=" .$db.";";
@@ -76,7 +76,7 @@ protected $pdo;
 
     try {
     $this->pdo = new PDO($this->dns,$this->user,$this->password); 
-    var_dump( $this->pdo);
+    // var_dump( $this->pdo);
     $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     foreach($this->pdo->query("SELECT * FROM expenses") as $row) {
       echo htmlentities($row["firstname"]);
