@@ -50,7 +50,7 @@ class DB  {
 private $dns;
 private $user;
 private $password;
-private $pdo;
+protected $pdo;
 // public $cleardb_server = $cleardb_url["host"];
 // public $cleardb_username = $cleardb_url["user"];
 // public $cleardb_password = $cleardb_url["pass"];
@@ -222,7 +222,7 @@ return ($this->result3);
 
 
 $res = new DB($cleardb_server,$cleardb_db,$cleardb_username,$cleardb_password);
-
+//$val causes 'too few arguments passed' Error 
 // $val = new Validation();
 $crud = new CRUD($res);
 
