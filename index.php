@@ -212,7 +212,9 @@ $this->db = $db;
     var_dump($res2,'$res2');
     // var_dump('in insert');
 // insert values from select and expenses input
-    is_null($res) var_dump('res2 is null') die;
+    if(is_null($res)){
+      var_dump('res2 is null') die;
+    } 
         $sql = "INSERT INTO expenses (purchasetype,amount,date) VALUES ('$res2','$res',NOW())";
      ($this->db->pdo->query($sql));
 
