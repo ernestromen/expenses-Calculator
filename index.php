@@ -160,6 +160,26 @@ class Validation extends DB{
 if(isset($_POST['submitSalary'])){
 
 var_dump('inside salary submit');
+ if(!(is_numeric($_POST['salary']))){
+
+    $this->errors['input'] = '<br>'.'* the input must be a number';
+  }
+  //if the input passes all the validation
+  else{
+   $result = $_POST['salary'];
+  //  $result2 = $_POST['select'];
+  //  var_dump($result2);
+   if($result){
+    $this->insert($result,null);
+    // exit;
+
+    
+
+
+   }
+  
+  }
+  
 
 }
 
@@ -304,6 +324,9 @@ $crud->selectTag();
 </div>
 </div>
 
+<span style="color:red;">
+<?= $crud->errors['input']; ?>
+</span>
 
 
 </form>
