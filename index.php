@@ -81,7 +81,7 @@ echo '<pre>';
     foreach($this->pdo->query("SELECT * FROM example") as $row) {
       echo htmlentities($row["firstname"]);
   }
-  $this->pdo = null;
+  // $this->pdo = null;
 }catch(PDOException $e) {
   print "Error!: " . $e->getMessage() . "<br/>" . "<br>";
   die();
@@ -192,6 +192,8 @@ $this->db = $db;
 // };
     
 $sql = "SELECT id,purchasetype,amount,date FROM expenses WHERE DATE_FORMAT(date,'%m') =MONTH(date);";
+// var_dump($this->db);
+// var_dump()
 $this->result = $this->db->pdo->query($sql)->fetchall();
 // echo '<pre>';
 return ($this->result);
