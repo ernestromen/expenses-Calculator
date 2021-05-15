@@ -111,8 +111,8 @@ class Validation extends DB{
       }
       
   public  $errors = [
-        'input' => ''
-        
+        'input' => '',
+        'salaryInput' =>'' 
         ];
     
       public function validate(){
@@ -160,9 +160,9 @@ class Validation extends DB{
 if(isset($_POST['submitSalary'])){
 
 var_dump('inside salary submit');
- if(!(is_numeric($_POST['salary']))){
+ if(!(is_numeric($_POST['salary'])) ||  empty($_POST['salary']) ){
 
-    $this->errors['input'] = '<br>'.'* the input must be a number';
+    $this->errors['salaryInput'] = '<br>'.'* the input must be a number';
   }
   //if the input passes all the validation
   else{
@@ -325,7 +325,7 @@ $crud->selectTag();
 </div>
 
 <span style="color:red;">
-<?= $crud->errors['input']; ?>
+<?= $crud->errors['salaryInput']; ?>
 </span>
 
 
