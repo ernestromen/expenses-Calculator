@@ -120,7 +120,7 @@ class Validation extends DB{
 //when submitted
         if(isset($_POST['submit'])){
           if(empty($_POST['select']) || empty($_POST['input']) ){
-            var_dump('in select');
+            // var_dump('in select');
 
 
          
@@ -175,7 +175,7 @@ $this->db = $db;
 }
 
   public  function insert($res,$res2){
-    var_dump('in insert');
+    // var_dump('in insert');
 // insert values
     $sql = "INSERT INTO expenses (purchasetype,amount,date) VALUES ('$res2','$res',NOW())";
      ($this->db->pdo->query($sql));
