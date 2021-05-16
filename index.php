@@ -163,7 +163,7 @@ if(isset($_POST['submitSalary'])){
 // var_dump($_POST['salary']),'salary');
 
 // var_dump('inside salary submit');
- if((empty($_POST['salary']) || empty($_POST['source'])) || (!(is_numeric($_POST['salary'])) || is_numeric($_POST['source'])) ){
+ if(empty($_POST['salary']) || empty($_POST['source']) || !(is_numeric($_POST['salary'])) || is_numeric($_POST['source']) ){
 
    //is numric false   is empty true
     $this->errors['salaryInput'] = '<br>'.'* both of the inputs must be valid';
