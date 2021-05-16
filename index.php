@@ -163,10 +163,10 @@ if(isset($_POST['submitSalary'])){
 // var_dump($_POST['salary']),'salary');
 
 // var_dump('inside salary submit');
- if(!(is_numeric($_POST['salary'])) ||  empty($_POST['salary']) ){
-if(is_numeric($_POST['source']) ||  ($_POST['source']) ==='' ){
+ if((!(is_numeric($_POST['salary'])) ||  empty($_POST['salary'])) && (is_numeric($_POST['source']) || empty($_POST['source']) ) ){
+   //is numric false   is empty true
     $this->errors['salaryInput'] = '<br>'.'* the input must be a number';
-  }
+  
 }
   //if the input passes all the validation
   else{
@@ -220,8 +220,8 @@ if($w === 'amount'){
 $this->db->pdo->query($sql);
 }else if($w === 'submitSalary'){
   echo '<pre>';
-var_dump(is_numeric($_POST['source']),'check if source is numeric');
-var_dump(empty($_POST['source']),'check if source is empty');
+var_dump(is_numeric($_POST['source']),'check if source is numeric');//false
+var_dump(empty($_POST['source']),'check if source is empty');//true
 var_dump('in submitSalarys');
 
 }
