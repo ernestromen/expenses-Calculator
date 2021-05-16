@@ -172,6 +172,9 @@ if(empty($_POST['salary']) || empty($_POST['source']) ){
 
   $this->errors['salaryInput'] = '<br>'.'* the salary input must be a number';
 
+}else if(is_numeric($_POST['source'])){
+  $this->errors['salaryInput'] = '<br>'.'* the source input must not be a number';
+
 }
 
 
