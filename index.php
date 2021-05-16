@@ -172,11 +172,10 @@ if(isset($_POST['submitSalary'])){
 
 
 }else if(is_numeric($_POST['source']){
-  $this->errors['salaryInput'] = '<br>'.'* the input must be text';
+  $this->errors['salaryInput'] = '<br>'.'* the input must be text'
 
-}
-  //if the input passes all the validation
-  else{
+}else{
+      //if the input passes all the validation
    $result = $_POST['salary'];
    $result2= $_POST['source'];
    $where = 'submitSalary';
