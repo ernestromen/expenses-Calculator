@@ -180,7 +180,7 @@ if(empty($_POST['salary']) || empty($_POST['source']) ){
 
   // var_dump('all is valid');
   $result = $_POST['source'];
-  $result = $_POST['salary'];
+  $result2 = $_POST['salary'];
   $where = 'submitSalary';
   $this->insert($result,$result2,$where);
 
