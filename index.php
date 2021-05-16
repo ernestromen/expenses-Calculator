@@ -169,11 +169,12 @@ if(isset($_POST['submitSalary'])){
   else{
    $result = $_POST['salary'];
    $result2= $_POST['source'];
+   $where = 'submitSalary';
   //  var_dump('passed all the validtaion');
   //  $result2 = $_POST['select'];
   //  var_dump($result2);
    if($result){
-    $this->insert($result,$result2);
+    $this->insert($result,$result2,$where);
     // exit;
 
     
@@ -212,10 +213,14 @@ $this->db = $db;
 // insert values from select and expenses input
 if($w === 'amount'){
 
-  var_dump('works!');
+    $sql = "INSERT INTO expenses (purchasetype,amount,date) VALUES ('$res2','$res',NOW())";
+$this->db->pdo->query($sql);
+}else if($w === 'submitSalary'){
+
+var_dump('in submitSalarys');
+
 }
-//   $sql = "INSERT INTO expenses (purchasetype,amount,date) VALUES ('$res2','$res',NOW())";
-// $this->db->pdo->query($sql);
+
 
 
 
