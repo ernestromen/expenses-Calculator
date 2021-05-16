@@ -160,7 +160,7 @@ class Validation extends DB{
 if(isset($_POST['submitSalary'])){
 
 // var_dump('inside salary submit');
- if(!(is_numeric($_POST['salary'])) || empty($_POST['salary']) ){
+ if(!(is_numeric($_POST['salary']))){
 
     $this->errors['salaryInput'] = '<br>'.'* the input must be a number';
   }
