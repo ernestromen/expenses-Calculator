@@ -167,14 +167,16 @@ if(isset($_POST['submitSalary'])){
    //is numric false   is empty true
     $this->errors['salaryInput'] = '<br>'.'* the input is not valid';
   
-}else if(!(is_numeric($_POST['salary']))){
-  $this->errors['salaryInput'] = '<br>'.'* the input must be a number';
+}
+// else if(!(is_numeric($_POST['salary']))){
+//   $this->errors['salaryInput'] = '<br>'.'* the input must be a number';
 
 
-}else if(is_numeric($_POST['source']){
-  $this->errors['salaryInput'] = '<br>'.'* the input must be text'
+// }else if(is_numeric($_POST['source']){
+//   $this->errors['salaryInput'] = '<br>'.'* the input must be text'
 
-}else{
+// }
+else{
       //if the input passes all the validation
    $result = $_POST['salary'];
    $result2= $_POST['source'];
