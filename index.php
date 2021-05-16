@@ -137,9 +137,10 @@ class Validation extends DB{
             else{
              $result = $_POST['input'];
              $result2 = $_POST['select'];
+             $where = 'amount';
             //  var_dump($result2);
              if($result && $result2){
-              $this->insert($result,$result2);
+              $this->insert($result,$result2,$where);
               // exit;
 
               
@@ -167,11 +168,12 @@ if(isset($_POST['submitSalary'])){
   //if the input passes all the validation
   else{
    $result = $_POST['salary'];
+   $result2= $_POST['source'];
   //  var_dump('passed all the validtaion');
   //  $result2 = $_POST['select'];
   //  var_dump($result2);
    if($result){
-    $this->insert($result,null);
+    $this->insert($result,$result2);
     // exit;
 
     
@@ -206,21 +208,14 @@ $this->db = $db;
 // var_dump($this->db);
 }
 
-  public  function insert($res,$res2){
-// if(is_null($res2)){
-
-//   $sql = "INSERT INTO salary ()"
-// }else{
-  var_dump($res2 === 'null','res2 is null');
-  $sql = "INSERT INTO expenses (purchasetype,amount,date) VALUES ('$res2','$res',NOW())";
-
-// }
-    // var_dump($res,'$res');
-    // var_dump($res2,'$res2');
-    // var_dump('in insert');
+  public  function insert($res,$res2,$w){
 // insert values from select and expenses input
-    //  $sql = "INSERT INTO expenses (purchasetype,amount,date) VALUES ('$res2','$res',NOW())";
-     ($this->db->pdo->query($sql));
+if($w === 'amount'){
+
+  var_dump('works!');
+}
+//   $sql = "INSERT INTO expenses (purchasetype,amount,date) VALUES ('$res2','$res',NOW())";
+// $this->db->pdo->query($sql);
 
 
 
