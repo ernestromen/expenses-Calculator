@@ -158,36 +158,6 @@ class Validation extends DB{
 
 //when salary is submitted 
 
-// if(isset($_POST['submitSalary'])){
-
-
-
-//   var_dump($_POST['salary'],'salary');
-//   var_dump($_POST['sourse'],'source');
-// // else{
-// //       //if the input passes all the validation
-// //    $result = $_POST['salary'];
-// //    $result2= $_POST['source'];
-// //    $where = 'submitSalary';
-// //   //  var_dump('passed all the validtaion');
-// //   //  $result2 = $_POST['select'];
-// //   //  var_dump($result2);
-// //    if($result){
-// //     $this->insert($result,$result2,$where);
-// //     // exit;
-
-    
-
-
-// //    }
-  
-// // //   }
-  
-
-// // }
-
-
-//           }
 
       }  
         
