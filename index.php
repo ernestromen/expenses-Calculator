@@ -178,7 +178,9 @@ if(empty($_POST['salary']) || empty($_POST['source']) ){
 }else{
 
 
-  var_dump('all is valid');
+  // var_dump('all is valid');
+  $result = $_POST['source'];
+  $result = $_POST['salary'];
 }
 
 
