@@ -176,16 +176,9 @@ if(empty($_POST['salary']) || empty($_POST['source']) ){
   $this->errors['salaryInput'] = '<br>'.'* the source input must not be a number';
 
 }else{
-  //passes all validation
 
-  $result = $_POST['salary'];
-  $result2 = $_POST['source'];
-  $where = 'submitSalary';
- //  var_dump($result2);
-  if($result && $result2){
-   $this->insert($result,$result2,$where);
-   // exit;
 
+  var_dump('all is valid');
 }
 
 
