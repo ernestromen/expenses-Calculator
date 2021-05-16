@@ -158,6 +158,16 @@ class Validation extends DB{
 
 //when salary is submitted 
 
+if(isset($_POST['submitSalary'])){
+
+  echo '<pre>';
+var_dump($_POST['salary'],'salary');
+var_dump($_POST['source'],'source');
+
+
+}
+
+
 
       }  
         
