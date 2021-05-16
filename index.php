@@ -178,15 +178,15 @@ if(empty($_POST['salary']) || empty($_POST['source']) ){
 }else{
   //passes all validation
 
-  $result = $_POST['salary'];
-  $result2 = $_POST['source'];
-  $where = 'submitSalary';
- //  var_dump($result2);
-  if($result && $result2){
-   $this->insert($result,$result2,$where);
-   // exit;
+//   $result = $_POST['salary'];
+//   $result2 = $_POST['source'];
+//   $where = 'submitSalary';
+//  //  var_dump($result2);
+//   if($result && $result2){
+//    $this->insert($result,$result2,$where);
+//    // exit;
 
-}
+// }
 
 
 }
