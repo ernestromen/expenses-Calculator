@@ -217,10 +217,7 @@ if($w === 'amount'){
     $sql = "INSERT INTO expenses (purchasetype,amount,date) VALUES ('$res2','$res',NOW())";
 $this->db->pdo->query($sql);
 }else if($w === 'submitSalary'){
-  echo '<pre>';
-var_dump(is_numeric($_POST['source']),'check if source is numeric');//false
-var_dump(empty($_POST['source']),'check if source is empty');//true
-var_dump('in submitSalarys');
+ var_dump('inside insert method in crud class in codition submitSalary ');
 
 }
 
