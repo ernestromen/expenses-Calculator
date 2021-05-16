@@ -171,7 +171,7 @@ if(isset($_POST['submitSalary'])){
   $this->errors['salaryInput'] = '<br>'.'* the input must be a number';
 
 
-}else if((is_numeric($_POST['source'])){
+}else if(is_numeric($_POST['source']){
   $this->errors['salaryInput'] = '<br>'.'* the input must be text';
 
 }
