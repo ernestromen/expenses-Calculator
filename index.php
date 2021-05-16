@@ -178,15 +178,15 @@ if(empty($_POST['salary']) || empty($_POST['source']) ){
 }else{
   //passes all validation
 
-//   $result = $_POST['salary'];
-//   $result2 = $_POST['source'];
-//   $where = 'submitSalary';
-//  //  var_dump($result2);
-//   if($result && $result2){
-//    $this->insert($result,$result2,$where);
-//    // exit;
+  $result = $_POST['salary'];
+  $result2 = $_POST['source'];
+  $where = 'submitSalary';
+ //  var_dump($result2);
+  if($result && $result2){
+   $this->insert($result,$result2,$where);
+   // exit;
 
-// }
+}
 
 
 }
@@ -220,7 +220,8 @@ if($w === 'amount'){
 $this->db->pdo->query($sql);
 }else if($w === 'submitSalary'){
   echo '<pre>';
-
+var_dump(is_numeric($_POST['source']),'check if source is numeric');//false
+var_dump(empty($_POST['source']),'check if source is empty');//true
 var_dump('in submitSalarys');
 
 }
