@@ -159,8 +159,8 @@ class Validation extends DB{
 //when salary is submitted 
 
 if(isset($_POST['submitSalary'])){
-var_dump($_POST['source']),'source');
-var_dump($_POST['salary']),'salary');
+// var_dump($_POST['source']),'source');
+// var_dump($_POST['salary']),'salary');
 
 // var_dump('inside salary submit');
  if(!(is_numeric($_POST['salary'])) ||  empty($_POST['salary']) ){
