@@ -213,13 +213,12 @@ $this->db = $db;
   public  function insert($res,$res2,$w){
 // insert values from select and expenses input
 if($w === 'amount'){
-
     $sql = "INSERT INTO expenses (purchasetype,amount,date) VALUES ('$res2','$res',NOW())";
 $this->db->pdo->query($sql);
 }else if($w === 'submitSalary'){
- var_dump('inside insert method in crud class in codition submitSalary ');
+//insert value from salary and source
 $sql = "INSERT INTO salary (source, amount) VALUES ('$res','$res2')";
-var_dump($this->db->pdo->query($sql));
+$this->db->pdo->query($sql);
 }
 
 
