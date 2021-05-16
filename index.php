@@ -218,7 +218,8 @@ if($w === 'amount'){
 $this->db->pdo->query($sql);
 }else if($w === 'submitSalary'){
  var_dump('inside insert method in crud class in codition submitSalary ');
-
+$sql = "INSERT INTO salary (source, amount) VALUES ('$res','$res2')";
+var_dump($this->db->pdo->query($sql));
 }
 
 
