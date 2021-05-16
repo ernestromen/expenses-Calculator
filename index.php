@@ -159,45 +159,32 @@ class Validation extends DB{
 //when salary is submitted 
 
 if(isset($_POST['submitSalary'])){
-// var_dump($_POST['source']),'source');
-// var_dump($_POST['salary']),'salary');
-
-// var_dump('inside salary submit');
- if(empty($_POST['salary']) || empty($_POST['source']) || !(is_numeric($_POST['salary'])) || is_numeric($_POST['source']) ){
-
-   //is numric false   is empty true
-    $this->errors['salaryInput'] = '<br>'.'* both of the inputs must be valid';
-  
-// }else if(!(is_numeric($_POST['salary'])) ){
-// $this->errors['salaryInput'] = '<br>'.'* the salary input must be numeric';
-
-// }else if(is_numeric($_POST['source'])){
-
-//   $this->errors['salaryInput'] = '<br>'.'* the source input must not be numeric';
 
 
-// }
-else{
-      //if the input passes all the validation
-   $result = $_POST['salary'];
-   $result2= $_POST['source'];
-   $where = 'submitSalary';
-  //  var_dump('passed all the validtaion');
-  //  $result2 = $_POST['select'];
-  //  var_dump($result2);
-   if($result){
-    $this->insert($result,$result2,$where);
-    // exit;
+
+  var_dump($_POST['salary'],'salary');
+  var_dump($_POST['sourse'],'source');
+// else{
+//       //if the input passes all the validation
+//    $result = $_POST['salary'];
+//    $result2= $_POST['source'];
+//    $where = 'submitSalary';
+//   //  var_dump('passed all the validtaion');
+//   //  $result2 = $_POST['select'];
+//   //  var_dump($result2);
+//    if($result){
+//     $this->insert($result,$result2,$where);
+//     // exit;
 
     
 
 
-   }
+//    }
   
-//   }
+// //   }
   
 
-}
+// }
 
 
           }
