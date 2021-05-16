@@ -160,9 +160,15 @@ class Validation extends DB{
 
 if(isset($_POST['submitSalary'])){
 
-  echo '<pre>';
-var_dump($_POST['salary'],'salary');
-var_dump($_POST['source'],'source');
+//   echo '<pre>';
+// var_dump($_POST['salary'],'salary');
+// var_dump($_POST['source'],'source');
+
+
+if(empty($_POST['salary']) || empty($_POST['source']) ){
+  $this->errors['input'] = '<br>'.'* the inputs must not be a empty';
+
+}
 
 
 }
