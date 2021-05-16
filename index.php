@@ -211,6 +211,7 @@ $this->db = $db;
 
 //   $sql = "INSERT INTO salary ()"
 // }else{
+  var_dump($res2 === 'null','res2 is null');
   $sql = "INSERT INTO expenses (purchasetype,amount,date) VALUES ('$res2','$res',NOW())";
 
 // }
