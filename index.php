@@ -207,13 +207,13 @@ $this->db = $db;
 }
 
   public  function insert($res,$res2){
-if(is_null($res2)){
+// if(is_null($res2)){
 
-  $sql = "INSERT INTO salary ()"
-}else{
+//   $sql = "INSERT INTO salary ()"
+// }else{
   $sql = "INSERT INTO expenses (purchasetype,amount,date) VALUES ('$res2','$res',NOW())";
 
-}
+// }
     // var_dump($res,'$res');
     // var_dump($res2,'$res2');
     // var_dump('in insert');
