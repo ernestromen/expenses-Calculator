@@ -177,22 +177,22 @@ $this->errors['salaryInput'] = '<br>'.'* the salary input must be numeric';
 
 
 }
-// else{
-//       //if the input passes all the validation
-//    $result = $_POST['salary'];
-//    $result2= $_POST['source'];
-//    $where = 'submitSalary';
-//   //  var_dump('passed all the validtaion');
-//   //  $result2 = $_POST['select'];
-//   //  var_dump($result2);
-//    if($result){
-//     $this->insert($result,$result2,$where);
-//     // exit;
+else{
+      //if the input passes all the validation
+   $result = $_POST['salary'];
+   $result2= $_POST['source'];
+   $where = 'submitSalary';
+  //  var_dump('passed all the validtaion');
+  //  $result2 = $_POST['select'];
+  //  var_dump($result2);
+   if($result){
+    $this->insert($result,$result2,$where);
+    // exit;
 
     
 
 
-//    }
+   }
   
 //   }
   
