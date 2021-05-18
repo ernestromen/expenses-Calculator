@@ -12,8 +12,8 @@ if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
 
 if($ip == '100.96.111.15' || $ip == '141.226.63.15'){
 
-
-  var_dump('this from my phone or my computer');
+echo '<h1 style="text-align:center;>Welcome!</h1>'
+  
 }else{
   header('Location:error.php');
 }
