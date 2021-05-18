@@ -43,6 +43,9 @@ border: 1px solid black;
 
       }
 
+
+      
+
 #mobile1{
 
     padding:20px;
@@ -51,6 +54,18 @@ border: 1px solid black;
     justify-content: center;
     
 }
+
+@media screen and (max-width: 768px){
+
+    #mobile1{
+
+        display: contents;
+    
+        
+    }
+}
+
+
 
 
 #mobile2{
@@ -64,4 +79,14 @@ border: 1px solid black;
      
      
 
-      
+}
+
+@media screen and (max-width: 768px){
+
+    #mobile2{
+
+        display: contents;
+    
+        
+    }
+}  
