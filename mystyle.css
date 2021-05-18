@@ -41,15 +41,19 @@ border: 1px solid black;
         width: 100%;
     }
 
-    .mobile1{
 
-        display:contents;
-    }
 
-.mobile2{
-
-    display:contents;
-}
-   
 
       }
+
+
+     
+
+      .containertop{
+        padding:20px;
+        display: grid;
+        grid-template-columns: 20% 20% 20% 20%;
+        justify-content: center;
+        
+        
+        }
