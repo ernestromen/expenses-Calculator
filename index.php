@@ -317,8 +317,11 @@ $crud->selectTag();
 <body>
 
 <div id="root"></div>
+
+/**first form */
+
 <form id="myForm" method="post" style="text-align: center;">
-<div id="mobile2" class="container2">
+<div id="mobile1">
 <div class="itemgrid">
 <input class ="test" type="text" name="input" placeholder="amount" type="text">
 <input id="btnSubmit"  type="submit" name="submit" placeholder="add" type="text">
@@ -341,11 +344,15 @@ $crud->selectTag();
 
 
 </div>
-
 </form>
+/*end of first form*/
+
+
+
+/**second form */
 
 <form action="" method="post">
-<div id="mobile1" class="container2">
+<div id="mobile2">
 <div class="itemgrid">
 <input class ="test" type="text" name="salary" placeholder="salary" type="text">
 <input id="btnSubmit"  type="submit" name="submitSalary" placeholder="add" type="text">
@@ -365,9 +372,8 @@ $crud->selectTag();
 <?= $crud->errors['salaryInput']; ?>
 </span>
 
-
 </form>
-
+/**end of second form */
 
 <h1 style="text-align:center">daily expenses</h1>
 
