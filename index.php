@@ -345,7 +345,7 @@ $crud->selectTag();
 </form>
 
 <form action="" method="post">
-<div class="container2">
+<div id="mobile1" class="container2">
 <div class="itemgrid">
 <input class ="test" type="text" name="salary" placeholder="salary" type="text">
 <input id="btnSubmit"  type="submit" name="submitSalary" placeholder="add" type="text">

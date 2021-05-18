@@ -33,3 +33,24 @@ border: 1px solid black;
     
     
     }
+
+
+    @media screen and (max-width: 768px) {
+    #btnSubmit{
+
+        width: 100%;
+    }
+
+    .container{
+
+        display:contents;
+    }
+
+
+    input{
+
+        width: 100%;
+
+    }
+
+      }
