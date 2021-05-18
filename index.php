@@ -10,12 +10,12 @@ if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
   $ip = $_SERVER['REMOTE_ADDR'];
 }
 
-if(!($ip == '100.96.111.15') || !($ip == '141.226.63.15')){
+if($ip == '100.96.111.15' || $ip == '141.226.63.15'){
 
-  header('Location:error.php');
-
+return '';
+  
 }else{
-  var_dump('its me');
+  header('Location:error.php');
 }
 // var_dump($ip);
 // //Get Heroku ClearDB connection information
