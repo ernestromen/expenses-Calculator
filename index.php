@@ -9,7 +9,13 @@ if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
 } else {
   $ip = $_SERVER['REMOTE_ADDR'];
 }
-var_dump($ip);
+
+if($ip == '100.96.111.15' || $ip = '141.226.63.15'){
+
+
+  var_dump('this from my phone or my computer');
+}
+// var_dump($ip);
 // //Get Heroku ClearDB connection information
 // $cleardb_url = parse_url(getenv("CLEARDB_DATABASE_URL"));
 // $cleardb_server = $cleardb_url["host"];
