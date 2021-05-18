@@ -10,7 +10,7 @@ if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
   $ip = $_SERVER['REMOTE_ADDR'];
 }
 
-if($ip == '100.96.111.15' || $ip = '141.226.63.15'){
+if($ip == '100.96.111.15' || $ip == '141.226.63.15'){
 
 
   var_dump('this from my phone or my computer');
