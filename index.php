@@ -319,7 +319,7 @@ $crud->selectTag();
 <div id="root"></div>
 
 
-<form id="myForm" method="post" style="text-align: center;">
+<form id="myForm" method="post">
 <div id="mobile1">
 <div class="itemgrid">
 <input class ="test" type="text" name="input" placeholder="amount" type="text">
