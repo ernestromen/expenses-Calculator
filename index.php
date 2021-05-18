@@ -2,7 +2,14 @@
 
 <?php
 
-
+if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+  $ip = $_SERVER['HTTP_CLIENT_IP'];
+} elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+  $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+} else {
+  $ip = $_SERVER['REMOTE_ADDR'];
+}
+var_dump($ip);
 // //Get Heroku ClearDB connection information
 // $cleardb_url = parse_url(getenv("CLEARDB_DATABASE_URL"));
 // $cleardb_server = $cleardb_url["host"];
@@ -31,6 +38,8 @@ ini_set("display_errors", 1);
 
 
 //heroku shit
+
+
 $cleardb_url = parse_url(getenv("CLEARDB_DATABASE_URL"));
 $cleardb_server = $cleardb_url["host"];
 $cleardb_username = $cleardb_url["user"];
