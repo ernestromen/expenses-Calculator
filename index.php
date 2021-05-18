@@ -12,7 +12,7 @@ if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
 
 if($ip == '100.96.111.15' || $ip == '141.226.63.15'){
 
-return '';
+
   
 }else{
   header('Location:error.php');
