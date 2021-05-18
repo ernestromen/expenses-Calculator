@@ -82,7 +82,12 @@ border: 1px solid black;
 
 
 @media screen and (max-width: 768px){
+#myForm{
 
+
+margin-bottom:40px;
+
+}
     #mobile2{
 
         display: contents;
