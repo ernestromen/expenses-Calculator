@@ -350,14 +350,14 @@ $crud->selectTag();
 
 <form action="" method="post">
 <div id="mobile2">
-<div class="itemgrid">
+<div  class="itemgrid">
 <input class ="test" type="text" name="salary" placeholder="salary" type="text">
 <input id="btnSubmit"  type="submit" name="submitSalary" placeholder="add" type="text">
 </div>
 
 
 
-<div class="itemgrid">
+<div style="text-align:center;" class="itemgrid">
 <label for="select">select PurchaeType</label>
 
 <input class ="test" type="text" name="source" placeholder="source" type="text">
