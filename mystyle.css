@@ -41,16 +41,15 @@ border: 1px solid black;
         width: 100%;
     }
 
-    .container{
+    .mobile1{
 
         display:contents;
     }
 
+.mobile2{
 
-    input{
-
-        width: 100%;
-
-    }
+    display:contents;
+}
+   
 
       }
