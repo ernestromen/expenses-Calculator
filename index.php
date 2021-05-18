@@ -318,7 +318,7 @@ $crud->selectTag();
 
 <div id="root"></div>
 
-/**first form */
+<?php/**first form */?>
 
 <form id="myForm" method="post" style="text-align: center;">
 <div id="mobile1">
@@ -345,11 +345,11 @@ $crud->selectTag();
 
 </div>
 </form>
-/*end of first form*/
+<?php/*end of first form*/?>
 
 
 
-/**second form */
+<?php/**second form */?>
 
 <form action="" method="post">
 <div id="mobile2">
@@ -373,7 +373,7 @@ $crud->selectTag();
 </span>
 
 </form>
-/**end of second form */
+<?php//end of second form */?>
 
 <h1 style="text-align:center">daily expenses</h1>
 
