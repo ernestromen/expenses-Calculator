@@ -21,7 +21,8 @@ if($ip == '100.96.111.15' || $ip == '141.226.63.15'){
 
   
 }else{
-  header('Location:error.php');
+  var_dump('in else');
+  // header('Location:error.php');
 }
 // var_dump($ip);
 // //Get Heroku ClearDB connection information
