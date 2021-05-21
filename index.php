@@ -21,7 +21,8 @@ if($ip == '100.96.111.15' || $ip == '141.226.63.15'){
 
   
 }else{
-  var_dump('in else');
+  var_dump($_SERVER['HTTP_CLIENT_IP']);
+  var_dump($_SERVER['HTTP_X_FORWARDED_FOR']);
   // header('Location:error.php');
 }
 // var_dump($ip);
