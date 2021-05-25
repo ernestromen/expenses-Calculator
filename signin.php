@@ -3,12 +3,12 @@ $servername = 'localhost';
 $dBUsername = 'root';
 $dBPassword = '';
 $dBName = 'phpproject01';
+//connect real database on heroku
+// $conn = mysqli_connect($servername,$dBUsername,$dBPassword,$dBName);
+// if(!$conn){
 
-$conn = mysqli_connect($servername,$dBUsername,$dBPassword,$dBName);
-if(!$conn){
-
-    die("connection failed" . mysqli_connect_error());
-}
+//     die("connection failed" . mysqli_connect_error());
+// }
 
 
 
