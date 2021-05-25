@@ -2,28 +2,8 @@
 
 <?php
 
-if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
-  var_dump(`first condition`);
-  $ip = $_SERVER['HTTP_CLIENT_IP'];
-} elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
-  var_dump(`2nd condition`);
-
-  $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
-} else {
-  var_dump(`3rd condition`);
-
-  $ip = $_SERVER['REMOTE_ADDR'];
-}
-
-if($ip == '100.96.111.15' || $ip == '141.226.63.15'){
-  var_dump(`ip is not your pones or computers`);
-
-
-  
-}else{
-  var_dump($_SERVER['HTTP_CLIENT_IP']);
-  var_dump($_SERVER['HTTP_X_FORWARDED_FOR']);
-  // header('Location:error.php');
+if(!$_SERVER['user_id']){
+  header('location:signin.php');
 }
 // var_dump($ip);
 // //Get Heroku ClearDB connection information
