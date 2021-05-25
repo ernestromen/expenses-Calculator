@@ -2,7 +2,7 @@
 
 <?php
 
-if(!$_SERVER['user_id']){
+if(!$_SESSION['user_id']){
   header('location:signin.php');
 }
 // var_dump($ip);
