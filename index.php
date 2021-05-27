@@ -2,16 +2,16 @@
 
 <?php
   session_start();
-function csrf()
-{
+// function csrf()
+// {
 
-  $token = sha1(rand(1, 10000) . '$$' . rand(1, 1000) . 'icar');
-  $_SESSION['csrf_token'] = $token;
-  return $token;
-}
+//   // $token = sha1(rand(1, 10000) . '$$' . rand(1, 1000) . 'icar');
+//   // $_SESSION['csrf_token'] = $token;
+//   return $token;
+// }
 
 if(!$_SESSION['user_id']){
-  csrf();
+  // csrf();
 var_dump($_SESSION['csrf_token']);
  
   // header('location:signin.php');
