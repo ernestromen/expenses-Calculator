@@ -18,6 +18,9 @@ $name = $_POST['name'];
 $password = $_POST['password'];
 var_dump($name);
 var_dump($password);
+var_dump($_POST['csrf_token']);
+var_dump($_SESSION['csrf_token']);
+
 $sql = "SELECT name,password FROM users WHERE name = '$name' AND password='$password'";
 
  $result = mysqli_query($conn, $sql);
