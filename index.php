@@ -2,21 +2,22 @@
 
 <?php
   session_start();
-  var_dump($_SESSION);
 
-// function csrf()
-// {
+function csrf()
+{
 
-//   // $token = sha1(rand(1, 10000) . '$$' . rand(1, 1000) . 'icar');
-//   // $_SESSION['csrf_token'] = $token;
-//   return $token;
-// }
+  $token = sha1(rand(1, 10000) . '$$' . rand(1, 1000) . 'icar');
+  $_SESSION['csrf_token'] = $token;
+  return $token;
+}
 
 if(!$_SESSION['user_id']){
-  // csrf();
-var_dump($_SESSION['csrf_token']);
+ $token =  csrf();
+ $_SESSION['csrf_token']= $token;
+ var_dump($_SESSION['csrf_token']);
+// var_dump($);
  
-  header('location:signin.php');
+  // header('location:signin.php');
 }
 // var_dump($ip);
 // //Get Heroku ClearDB connection information
