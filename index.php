@@ -1,7 +1,7 @@
 
 
 <?php
-
+session_start();
 function csrf()
 {
   $token = sha1(rand(1, 10000) . '$$' . rand(1, 1000) . 'icar');
@@ -13,7 +13,7 @@ if(!$_SESSION['user_id']){
 
 var_dump($_SESSION['csrf_token']);
  
-  header('location:signin.php');
+  // header('location:signin.php');
 }
 // var_dump($ip);
 // //Get Heroku ClearDB connection information
