@@ -4,13 +4,7 @@
 require 'helpers.php';
   session_start();
 
-// function csrf()
-// {
-
-//   $token = sha1(rand(1, 10000) . '$$' . rand(1, 1000) . 'icar');
-//   $_SESSION['csrf_token'] = $token;
-//   return $token;
-// }
+var_dump(csrf());
 
 // if(!$_SESSION['user_id']){
 // //  $token =  csrf();
