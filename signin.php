@@ -29,7 +29,11 @@ var_dump($name);
 var_dump($password);
 
 $sql = "SELECT name,password FROM users WHERE name = '$name' AND password='$password'";
-
+if($result){
+    echo 'result exists';
+}else{
+    echo 'it doesnt';
+}
  $result = mysqli_query($conn, $sql);
 var_dump($result);
  // $this->db->pdo->query($sql);
