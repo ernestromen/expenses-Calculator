@@ -16,7 +16,7 @@ use foobarwhatever\dingdong\DB;
 //     die("connection failed" . mysqli_connect_error());
 // }
 
-class Signin extends DB{
+class Signin {
 
 
     public function process(){
@@ -60,8 +60,8 @@ echo 'no such user';
 
 }
 
-// $res = new DB($cleardb_server,$cleardb_db,$cleardb_username,$cleardb_password);
-$outcome = new Signin();
+$res = new DB($cleardb_server,$cleardb_db,$cleardb_username,$cleardb_password);
+$outcome = new Signin($res);
 $outcome->process();
 ?>
 
