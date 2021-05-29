@@ -1,6 +1,5 @@
 <?php
 // require 'helpers.php';
-require "class.DB.php";
 // var_dump($res);
 
 // $servername = 'localhost';
