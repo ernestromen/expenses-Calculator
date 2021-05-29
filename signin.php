@@ -60,8 +60,8 @@ echo 'no such user';
 
 }
 
-$res = new DB($cleardb_server,$cleardb_db,$cleardb_username,$cleardb_password);
-$outcome = new Signin($res);
+// $res = new DB($cleardb_server,$cleardb_db,$cleardb_username,$cleardb_password);
+$outcome = new Signin();
 ?>
 
 
