@@ -6,10 +6,10 @@
 
 
 
-if(!$_SESSION['user_id']){
+// if(!$_SESSION['user_id']){
 
-  header('location:signin.php');
-}
+//   header('location:signin.php');
+// }
 // var_dump($ip);
 // //Get Heroku ClearDB connection information
 // $cleardb_url = parse_url(getenv("CLEARDB_DATABASE_URL"));
