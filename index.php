@@ -6,8 +6,8 @@ require 'database.php';
 use foobarwhatever\dingdong\DB;
 
 session_start();
-
-
+var_dump('insdide index.php');
+var_dump(DB);
 
 // if(!$_SESSION['user_id']){
 
