@@ -26,7 +26,7 @@ $query_builder = TRUE;
 
 class Signin extends DB {
     public $result;
-    private $db;
+    public $db;
 
     public function __construct($db){
         // global $db;
