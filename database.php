@@ -73,4 +73,3 @@ class DB  {
     }
     
 
-return DB;
