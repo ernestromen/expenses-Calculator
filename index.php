@@ -5,6 +5,7 @@ require 'helpers.php';
   session_start();
 
 var_dump(csrf());
+var_dump($_SESSION);
 
 // if(!$_SESSION['user_id']){
 // //  $token =  csrf();
