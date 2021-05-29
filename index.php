@@ -7,7 +7,7 @@ use foobarwhatever\dingdong\DB;
 
 session_start();
 var_dump('insdide index.php');
-var_dump(DB);
+var_dump(new DB());
 
 // if(!$_SESSION['user_id']){
 
