@@ -227,7 +227,7 @@ return ($this->result3);
 
 
 
-// $res = new DB($cleardb_server,$cleardb_db,$cleardb_username,$cleardb_password);
+$res = new DB($cleardb_server,$cleardb_db,$cleardb_username,$cleardb_password);
 //$val causes 'too few arguments passed' Error 
 $val = new Validation($res);
 $crud = new CRUD($res);

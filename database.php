@@ -73,5 +73,4 @@ class DB  {
     }
     
 
-    $res = new DB($cleardb_server,$cleardb_db,$cleardb_username,$cleardb_password);
-return $res;
+return DB;
