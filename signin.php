@@ -16,7 +16,7 @@ use foobarwhatever\dingdong\DB;
 //     die("connection failed" . mysqli_connect_error());
 // }
 
-class Signin{
+class Signin extends DB{
 
 
     public function process(){
