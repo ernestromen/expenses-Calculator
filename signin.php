@@ -33,8 +33,14 @@ $name = $_POST['name'];
 $password = $_POST['password'];
 $sql = "SELECT name,password FROM users WHERE name = '$name' AND password='$password'";
 // $this->result = $this->db->pdo->query($sql);
-$this->result =  $this->db->pdo->query($sql);
-var_dump($this->result);
+if($this->result =  $this->db->pdo->query($sql)->rowCount() > 0){
+
+
+    var_dump('WORKS');
+}else{
+    var_dump('doesnt work');
+
+}
 // var_dump($name);
 // var_dump($password);
 // var_dump('im here 01');
