@@ -2,6 +2,14 @@
 
 require 'database.php';
 use foobarwhatever\dingdong\DB;
+$cleardb_url = parse_url(getenv("CLEARDB_DATABASE_URL"));
+$cleardb_server = $cleardb_url["host"];
+$cleardb_username = $cleardb_url["user"];
+$cleardb_password = $cleardb_url["pass"];
+$cleardb_db = substr($cleardb_url["path"],1);
+$active_group = 'default';
+$query_builder = TRUE;
+
 // require 'helpers.php';
 // var_dump($res);
 
@@ -28,11 +36,12 @@ class Signin extends DB {
 
     public function process(){
 if(isset($_POST['submit'])){
-//    $rtoken = $_POST['csrf_token'];
 $name = $_POST['name'];
 $password = $_POST['password'];
 $sql = "SELECT name,password FROM users WHERE name = '$name' AND password='$password'";
-// $this->result = $this->db->pdo->query($sql);
+
+
+///line of code make 500 error!! 
 if($this->result =  $this->db->pdo->query($sql)->rowCount() > 0){
 
 
@@ -41,41 +50,12 @@ if($this->result =  $this->db->pdo->query($sql)->rowCount() > 0){
     var_dump('doesnt work');
 
 }
-// var_dump($name);
-// var_dump($password);
-// var_dump('im here 01');
 
-
-// if($result){
-//     echo 'result exists';
-// }else{
-//     echo 'it doesnt';
-// }
-// var_dump($result);
-//  // $this->db->pdo->query($sql);
-
-//  if (mysqli_num_rows($result) > 0) {
-
-
-
-//     header('location:index.php');
-// // echo 'there such a user';
-// }else{
-
-
-// echo 'no such user';
-
-// }
 
 
 
 }
-// else{
 
-// $token = csrf();
-
-// }
-// $token = csrf();
     }
 
 }
