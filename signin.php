@@ -38,26 +38,26 @@ $this->result = $this->db->pdo->query($sql);
 // var_dump('im here 01');
 
 
-if($result){
-    echo 'result exists';
-}else{
-    echo 'it doesnt';
-}
-var_dump($result);
- // $this->db->pdo->query($sql);
+// if($result){
+//     echo 'result exists';
+// }else{
+//     echo 'it doesnt';
+// }
+// var_dump($result);
+//  // $this->db->pdo->query($sql);
 
- if (mysqli_num_rows($result) > 0) {
-
-
-
-    header('location:index.php');
-// echo 'there such a user';
-}else{
+//  if (mysqli_num_rows($result) > 0) {
 
 
-echo 'no such user';
 
-}
+//     header('location:index.php');
+// // echo 'there such a user';
+// }else{
+
+
+// echo 'no such user';
+
+// }
 
 
 
