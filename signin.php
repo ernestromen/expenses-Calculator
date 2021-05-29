@@ -16,6 +16,7 @@ if(isset($_POST['submit'])){
     
 $name = $_POST['name'];
 $password = $_POST['password'];
+
 var_dump($name);
 var_dump($password);
 var_dump($_POST['csrf_token']);
@@ -55,6 +56,8 @@ echo 'no such user';
     <form method="post" action="">
 <input style="margin-bottom:15px;" type="text" name="name" placeholder="name here"><br>
 <input style="margin-bottom:15px;" type="password" name="password" placeholder="password here"><br>
+<input type="hidden" name="csrf_token" value="<?= $token; ?>">
+
 <button name="submit" type="submit">click to submit!</button>
     
     </form>
