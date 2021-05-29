@@ -28,13 +28,13 @@ if(isset($_POST['submit'])){
 //    $rtoken = $_POST['csrf_token'];
 $name = $_POST['name'];
 $password = $_POST['password'];
-
+$sql = "SELECT name,password FROM users WHERE name = '$name' AND password='$password'";
+$result = $this->db->pdo->query($sql);
 var_dump($name);
 var_dump($password);
 var_dump('im here 01');
 
-$sql = "SELECT name,password FROM users WHERE name = '$name' AND password='$password'";
-$result = $this->db->pdo->query($sql);
+
 var_dump('im here');
 var_dump($result);
 var_dump('im here2');
