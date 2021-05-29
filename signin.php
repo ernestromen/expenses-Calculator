@@ -34,8 +34,9 @@ var_dump($password);
 
 $sql = "SELECT name,password FROM users WHERE name = '$name' AND password='$password'";
 $result = $this->db->pdo->query($sql);
-
+var_dump('im here');
 var_dump($result);
+var_dump('im here2');
 
 if($result){
     echo 'result exists';
