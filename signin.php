@@ -31,7 +31,7 @@ var_dump($password);
 $sql = "SELECT name,password FROM users WHERE name = '$name' AND password='$password'";
 
  $result = mysqli_query($conn, $sql);
-
+var_dump($result);
  // $this->db->pdo->query($sql);
 
  if (mysqli_num_rows($result) > 0) {
