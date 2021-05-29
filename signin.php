@@ -33,7 +33,8 @@ var_dump($name);
 var_dump($password);
 
 $sql = "SELECT name,password FROM users WHERE name = '$name' AND password='$password'";
-$result = mysqli_query($conn, $sql);
+$result = $this->db->pdo->query($sql);
+
 
 if($result){
     echo 'result exists';
