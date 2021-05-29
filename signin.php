@@ -42,15 +42,7 @@ $sql = "SELECT name,password FROM users WHERE name = '$name' AND password='$pass
 
 
 ///line of code make 500 error!! 
-if($this->result =  $this->db->pdo->query($sql)->rowCount() > 0){
-
-
-    var_dump('WORKS');
-}else{
-    var_dump('doesnt work');
-
-}
-
+var_dump($this->result =  $this->db->pdo->query());
 
 
 
