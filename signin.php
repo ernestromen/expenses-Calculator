@@ -32,7 +32,7 @@ if(isset($_POST['submit'])){
 $name = $_POST['name'];
 $password = $_POST['password'];
 $sql = "SELECT name,password FROM users WHERE name = '$name' AND password='$password'";
-$this->result = $this->db->pdo->query($sql);
+// $this->result = $this->db->pdo->query($sql);
 // var_dump($name);
 // var_dump($password);
 // var_dump('im here 01');
