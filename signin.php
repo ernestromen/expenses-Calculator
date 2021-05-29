@@ -1,7 +1,7 @@
 <?php
 // require 'helpers.php';
 require 'index.php';
-var_dump($res);
+// var_dump($res);
 
 // $servername = 'localhost';
 // $dBUsername = 'root';
