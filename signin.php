@@ -30,14 +30,10 @@ $name = $_POST['name'];
 $password = $_POST['password'];
 $sql = "SELECT name,password FROM users WHERE name = '$name' AND password='$password'";
 $result = $this->db->pdo->query($sql);
-var_dump($name);
-var_dump($password);
-var_dump('im here 01');
+// var_dump($name);
+// var_dump($password);
+// var_dump('im here 01');
 
-
-var_dump('im here');
-var_dump($result);
-var_dump('im here2');
 
 if($result){
     echo 'result exists';
