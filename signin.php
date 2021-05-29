@@ -31,6 +31,7 @@ $password = $_POST['password'];
 
 var_dump($name);
 var_dump($password);
+var_dump('im here 01');
 
 $sql = "SELECT name,password FROM users WHERE name = '$name' AND password='$password'";
 $result = $this->db->pdo->query($sql);
