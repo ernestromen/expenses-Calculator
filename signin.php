@@ -1,10 +1,12 @@
 <?php
-require 'helpers.php';
+// require 'helpers.php';
+require 'index.php';
+var_dump($res);
 
-$servername = 'localhost';
-$dBUsername = 'root';
-$dBPassword = '';
-$dBName = 'phpproject01';
+// $servername = 'localhost';
+// $dBUsername = 'root';
+// $dBPassword = '';
+// $dBName = 'phpproject01';
 //connect real database on heroku
 // $conn = mysqli_connect($servername,$dBUsername,$dBPassword,$dBName);
 // if(!$conn){
@@ -28,8 +30,11 @@ $sql = "SELECT name,password FROM users WHERE name = '$name' AND password='$pass
 
  $result = mysqli_query($conn, $sql);
  if (mysqli_num_rows($result) > 0) {
- 
-echo 'there such a user';
+
+
+
+    header('location:signin.php');
+// echo 'there such a user';
 }else{
 
 
@@ -39,12 +44,13 @@ echo 'no such user';
 
 
 
-}else{
-
-$token = csrf();
-
 }
-$token = csrf();
+// else{
+
+// $token = csrf();
+
+// }
+// $token = csrf();
 
 
 ?>
@@ -63,7 +69,7 @@ $token = csrf();
     <form method="post" action="">
 <input style="margin-bottom:15px;" type="text" name="name" placeholder="name here"><br>
 <input style="margin-bottom:15px;" type="password" name="password" placeholder="password here"><br>
-<input type="hidden" name="csrf_token" value="<?= $token; ?>">
+<!-- <input type="hidden" name="csrf_token" value="<?= $token; ?>"> -->
 
 <button name="submit" type="submit">click to submit!</button>
     
