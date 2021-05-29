@@ -7,14 +7,10 @@ require 'helpers.php';
 var_dump(csrf());
 var_dump($_SESSION);
 
-// if(!$_SESSION['user_id']){
-// //  $token =  csrf();
-// //  $_SESSION['csrf_token']= $token;
-//  var_dump($_SESSION['csrf_token']);
-// // var_dump($);
- 
-//   // header('location:signin.php');
-// }
+if(!$_SESSION['user_id']){
+
+  header('location:signin.php');
+}
 // var_dump($ip);
 // //Get Heroku ClearDB connection information
 // $cleardb_url = parse_url(getenv("CLEARDB_DATABASE_URL"));

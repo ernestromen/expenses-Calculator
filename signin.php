@@ -1,4 +1,6 @@
 <?php
+require 'helpers.php';
+
 $servername = 'localhost';
 $dBUsername = 'root';
 $dBPassword = '';
@@ -13,13 +15,13 @@ $dBName = 'phpproject01';
 
 
 if(isset($_POST['submit'])){
-    
+   $rtoken = $_POST['csrf_token'];
 $name = $_POST['name'];
 $password = $_POST['password'];
 
 var_dump($name);
 var_dump($password);
-var_dump($_POST['csrf_token']);
+var_dump($rtoken);
 var_dump($_SESSION['csrf_token']);
 
 $sql = "SELECT name,password FROM users WHERE name = '$name' AND password='$password'";
@@ -36,6 +38,10 @@ echo 'no such user';
 }
 
 
+
+}else{
+
+csrf();
 
 }
 
