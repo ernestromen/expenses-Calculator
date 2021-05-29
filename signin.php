@@ -38,11 +38,11 @@ class Signin extends DB {
 if(isset($_POST['submit'])){
 $name = $_POST['name'];
 $password = $_POST['password'];
-$sql = "SELECT name,password FROM users WHERE name = '$name' AND password='$password'";
-
+// $sql = "SELECT name,password FROM users WHERE name = '$name' AND password='$password'";
+$sql = "SELECT * FROM users";
 
 ///line of code make 500 error!! 
-var_dump($this->result =  $this->db->pdo);
+var_dump($this->result =  $this->db->pdo->query($sql));
 
 
 
