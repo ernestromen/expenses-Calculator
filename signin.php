@@ -17,7 +17,11 @@ use foobarwhatever\dingdong\DB;
 // }
 
 class Signin extends DB {
-
+    public function __construct($db){
+        // global $db;
+        $this->db = $db;
+        // var_dump($this->db);
+        }
 
     public function process(){
 if(isset($_POST['submit'])){
