@@ -42,7 +42,7 @@ $sql = "SELECT name,password FROM users WHERE name = '$name' AND password='$pass
 
 
 ///line of code make 500 error!! 
-var_dump($this->result =  $this->db->pdo->query());
+var_dump($this->result =  $this->db->pdo);
 
 
 
