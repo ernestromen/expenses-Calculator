@@ -42,7 +42,7 @@ $password = $_POST['password'];
 $sql = "SELECT * FROM users";
 
 ///line of code make 500 error!! 
-var_dump($this->result =  $this->db->pdo->query($sql)->fetchall());
+var_dump($this->result =  $this->db->pdo->query($sql));
 
 
 
