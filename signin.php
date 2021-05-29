@@ -1,4 +1,7 @@
 <?php
+
+require 'database.php';
+use foobarwhatever\dingdong\DB;
 // require 'helpers.php';
 // var_dump($res);
 
@@ -13,26 +16,29 @@
 //     die("connection failed" . mysqli_connect_error());
 // }
 
+class Signin{
 
 
+    public function process(){
 if(isset($_POST['submit'])){
-   $rtoken = $_POST['csrf_token'];
+//    $rtoken = $_POST['csrf_token'];
 $name = $_POST['name'];
 $password = $_POST['password'];
 
 var_dump($name);
 var_dump($password);
-var_dump($rtoken);
-var_dump($_SESSION['csrf_token']);
 
 $sql = "SELECT name,password FROM users WHERE name = '$name' AND password='$password'";
 
  $result = mysqli_query($conn, $sql);
+
+ // $this->db->pdo->query($sql);
+
  if (mysqli_num_rows($result) > 0) {
 
 
 
-    header('location:signin.php');
+    header('location:index.php');
 // echo 'there such a user';
 }else{
 
@@ -50,8 +56,12 @@ echo 'no such user';
 
 // }
 // $token = csrf();
+    }
 
+}
 
+$res = new DB($cleardb_server,$cleardb_db,$cleardb_username,$cleardb_password);
+$outcome = new Signin($res);
 ?>
 
 
