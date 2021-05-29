@@ -44,6 +44,7 @@ echo 'no such user';
 $token = csrf();
 
 }
+$token = csrf();
 
 
 ?>
