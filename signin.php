@@ -11,19 +11,7 @@ $cleardb_db = substr($cleardb_url["path"],1);
 $active_group = 'default';
 $query_builder = TRUE;
 
-// require 'helpers.php';
-// var_dump($res);
 
-// $servername = 'localhost';
-// $dBUsername = 'root';
-// $dBPassword = '';
-// $dBName = 'phpproject01';
-//connect real database on heroku
-// $conn = mysqli_connect($servername,$dBUsername,$dBPassword,$dBName);
-// if(!$conn){
-
-//     die("connection failed" . mysqli_connect_error());
-// }
 
 class Signin extends DB {
     public $errors =[
@@ -83,11 +71,11 @@ $outcome->process();
 <body>
     <h2>SignUp</h2>
     <form method="post" action="">
-<input style="margin-bottom:15px;" type="text" name="name" placeholder="name here"><br>
-<input style="margin-bottom:15px;" type="password" name="password" placeholder="password here"><br>
+<input  tyle="margin-bottom:15px;width:30%;" type="text" name="name" placeholder="name here"><br>
+<input style="margin-bottom:15px;width:30%;" type="password" name="password" placeholder="password here"><br>
 
 
-<button name="submit" type="submit">click to submit!</button>
+<button style="width:30%;" name="submit" type="submit">click to submit!</button>
    <br><span style="color:red;"><?= $outcome->errors['confirmation'];?></span>
     </form>
 </body>
