@@ -44,7 +44,7 @@ $sql = "SELECT * FROM users";
 
 ///line of code make 500 error!! 
 $this->result =  $this->db->pdo->query($sql);
-var_dump($this->result-fecthall());
+var_dump($this->result->fecthall());
 
 
 
@@ -74,7 +74,7 @@ $outcome->process();
     <form method="post" action="">
 <input style="margin-bottom:15px;" type="text" name="name" placeholder="name here"><br>
 <input style="margin-bottom:15px;" type="password" name="password" placeholder="password here"><br>
-<!-- <input type="hidden" name="csrf_token" value="<?= $token; ?>"> -->
+
 
 <button name="submit" type="submit">click to submit!</button>
     
