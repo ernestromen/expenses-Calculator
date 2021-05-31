@@ -45,6 +45,7 @@ $sql = "SELECT * FROM users";
 // $this->result =  $this->db->pdo->query($sql);
 $this->result =  $this->db->pdo;
 var_dump($this->result);
+var_dump($this->result->query());
 
 
 
