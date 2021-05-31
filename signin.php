@@ -26,6 +26,9 @@ $query_builder = TRUE;
 // }
 
 class Signin extends DB {
+    public $errors =[
+"confirmation" => ''
+    ];
     public $result;
     public $db;
 
@@ -51,9 +54,7 @@ var_dump('number of rows is more than 0');
 
 }else{
 
-    echo '<script>
-    document.querySelector("#mistake").innerHTML  = "WRONG PASS!";
-    </script>';
+    $errors['confirmation'] = 'wrong user or password';
 };
 
 
@@ -87,7 +88,7 @@ $outcome->process();
 
 
 <button name="submit" type="submit">click to submit!</button>
-    <span id="mistake"></span>
+    <span><?= $errors['confirmation'];?></span>
     </form>
 </body>
 </html>
