@@ -69,13 +69,13 @@ $outcome->process();
     <title>Document</title>
 </head>
 <body>
-    <h2>SignUp</h2>
+    <h2 style="text-align:center;">SignUp</h2>
     <form method="post" action="">
-<input  tyle="margin-bottom:15px;width:30%;" type="text" name="name" placeholder="name here"><br>
-<input style="margin-bottom:15px;width:30%;" type="password" name="password" placeholder="password here"><br>
+<input  tyle="margin-bottom:15px;width:30%;text-align:center;" type="text" name="name" placeholder="name here"><br>
+<input style="margin-bottom:15px;width:30%;text-align:center;" type="password" name="password" placeholder="password here"><br>
 
 
-<button style="width:30%;" name="submit" type="submit">click to submit!</button>
+<button style="width:30%;text-align:center;" name="submit" type="submit">click to submit!</button>
    <br><span style="color:red;"><?= $outcome->errors['confirmation'];?></span>
     </form>
 </body>
