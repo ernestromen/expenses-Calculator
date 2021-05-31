@@ -39,8 +39,7 @@ class Signin extends DB {
 if(isset($_POST['submit'])){
 $name = $_POST['name'];
 $password = $_POST['password'];
-// $sql = "SELECT name,password FROM users WHERE name = '$name' AND password='$password'";
-$sql = "SELECT * FROM users";
+$sql = "SELECT name,password FROM users WHERE name = '$name' AND password='$password'";
 
 ///line of code make 500 error!! 
 $this->result =  $this->db->pdo->query($sql)->fetchall();
