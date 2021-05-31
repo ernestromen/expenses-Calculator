@@ -52,7 +52,7 @@ var_dump('number of rows is more than 0');
 }else{
 
     echo '<script>
-    document.querySelector("#mistake").innerHtml = "WRONG PASS!";
+    document.querySelector("#mistake").innerHTML  = "WRONG PASS!";
     </script>';
 };
 
