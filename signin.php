@@ -51,7 +51,9 @@ var_dump('number of rows is more than 0');
 
 }else{
 
-    var_dump('the number of rows is zero');
+    echo '<script>
+    document.querySelector("#mistake").innerHtml = "WRONG PASS!";
+    </script>';
 };
 
 
@@ -85,7 +87,7 @@ $outcome->process();
 
 
 <button name="submit" type="submit">click to submit!</button>
-    
+    <span id="mistake"></span>
     </form>
 </body>
 </html>
