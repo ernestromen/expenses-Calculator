@@ -88,7 +88,7 @@ $outcome->process();
 
 
 <button name="submit" type="submit">click to submit!</button>
-    <span><?= $outcome->errors['confirmation'];?></span>
+   <br><span style="color:red;"><?= $outcome->errors['confirmation'];?></span>
     </form>
 </body>
 </html>
