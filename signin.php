@@ -42,9 +42,9 @@ $password = $_POST['password'];
 $sql = "SELECT name,password FROM users WHERE name = '$name' AND password='$password'";
 
 ///line of code make 500 error!! 
-$this->result =  $this->db->pdo->query($sql)->fetchall();
+$this->result =  $this->db->pdo->query($sql);
 
-var_dump($this->result);
+var_dump($this->result->rowCount());
 
 
 
