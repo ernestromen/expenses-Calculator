@@ -2,6 +2,7 @@
 
 require 'database.php';
 use foobarwhatever\dingdong\DB;
+use PDO;
 $cleardb_url = parse_url(getenv("CLEARDB_DATABASE_URL"));
 $cleardb_server = $cleardb_url["host"];
 $cleardb_username = $cleardb_url["user"];
@@ -42,10 +43,9 @@ $password = $_POST['password'];
 $sql = "SELECT * FROM users";
 
 ///line of code make 500 error!! 
-// $this->result =  $this->db->pdo->query($sql);
-$this->result =  $this->db->pdo;
+$this->result =  $this->db->pdo->query($sql);
 var_dump($this->result);
-var_dump($this->result->query());
+
 
 
 
