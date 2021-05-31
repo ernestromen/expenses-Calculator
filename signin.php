@@ -70,7 +70,7 @@ $outcome->process();
 </head>
 <body>
     <h2 style="text-align:center;">SignUp</h2>
-    <form method="post" action="">
+    <form style="text-align:center;" method="post" action="">
 <input  tyle="margin-bottom:15px;width:30%;text-align:center;" type="text" name="name" placeholder="name here"><br>
 <input style="margin-bottom:15px;width:30%;text-align:center;" type="password" name="password" placeholder="password here"><br>
 
