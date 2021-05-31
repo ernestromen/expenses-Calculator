@@ -54,7 +54,7 @@ var_dump('number of rows is more than 0');
 
 }else{
 
-    $errors['confirmation'] = 'wrong user or password';
+    $this->errors['confirmation'] = 'wrong user or password';
 };
 
 
