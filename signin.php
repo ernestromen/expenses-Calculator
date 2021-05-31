@@ -44,7 +44,7 @@ $sql = "SELECT * FROM users";
 
 ///line of code make 500 error!! 
 $this->result =  $this->db->pdo->query($sql);
-var_dump($this->result);
+var_dump($this->result-fecthall());
 
 
 
