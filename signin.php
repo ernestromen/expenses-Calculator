@@ -36,7 +36,12 @@ $sql = "SELECT name,password FROM users WHERE name = '$name' AND password='$pass
 $this->result =  $this->db->pdo->query($sql);
 
 if($this->result->rowCount() > 0){
-var_dump('number of rows is more than 0');
+// var_dump('number of rows is more than 0');
+// session_start();
+// $_SESSION['userid'] = 
+$sql = "SELECT id FROM users WHERE password='$password'";
+echo '<pre>';
+var_dump($this->db->pdo->query($sql)->fetchall());
 
 
 
