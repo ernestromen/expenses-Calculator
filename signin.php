@@ -39,9 +39,10 @@ if($this->result->rowCount() > 0){
 // var_dump('number of rows is more than 0');
 session_start();
 $sql = "SELECT id,name FROM users WHERE password='$password'";
-// $_SESSION['userid'] = $this->db->pdo->query($sql)->fetch()['id'];
-var_dump($this->db->pdo->query($sql)->fetch());
-
+$_SESSION['userid'] = $this->db->pdo->query($sql)->fetch()['id'];
+$_SESSION['useruid'] = $this->db->pdo->query($sql)->fetch()['name'];
+header("location: ../index.php");
+exit();
 
 }else{
 
