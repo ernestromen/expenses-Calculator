@@ -6,8 +6,8 @@ require 'database.php';
 use foobarwhatever\dingdong\DB;
 
 session_start();
-if(isset(!($_SESSION['userid'])) && !(isset($_SESSION['useruid']))){
-var_dump('not logged');
+if(isset($_SESSION['userid']) && isset($_SESSION['useruid'])){
+var_dump(' logged');
 
 
 }
