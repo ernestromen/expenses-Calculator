@@ -41,7 +41,7 @@ if($this->result->rowCount() > 0){
 // $_SESSION['userid'] = 
 $sql = "SELECT id FROM users WHERE password='$password'";
 echo '<pre>';
-var_dump($this->db->pdo->query($sql)->fetchall());
+var_dump($this->db->pdo->query($sql)->fetch());
 
 
 
