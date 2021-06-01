@@ -7,7 +7,7 @@ use foobarwhatever\dingdong\DB;
 
 session_start();
 if(isset(!($_SESSION['userid'])) && !(isset($_SESSION['useruid']))){
-die('not logged in!');
+var_dump('not logged');
 
 
 }
