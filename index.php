@@ -6,6 +6,11 @@ require 'database.php';
 use foobarwhatever\dingdong\DB;
 
 session_start();
+if(isset(!($_SESSION['userid'])) && !(isset($_SESSION['useruid']))){
+die('not logged in!');
+
+
+}
 // var_dump('insdide index.php');
 
 // if(!$_SESSION['user_id']){
