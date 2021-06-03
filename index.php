@@ -212,9 +212,11 @@ return ($this->result);
 
       public function show2(){
 // $sql = "SELECT id,purchasetype,SUM(amount) as amount,(SELECT  DATE_FORMAT(date,'%Y-%m') AS date FROM expenses GROUP BY DATE_FORMAT(date,'%Y-%m')) as date FROM expenses GROUP BY purchasetype";
-$sql = "SELECT id,purchasetype,SUM(amount) as amount,date FROM expenses GROUP BY purchasetype";
+$sql = "SELECT  DATE_FORMAT(date,'%Y-%m') AS date FROM expenses GROUP BY DATE_FORMAT(date,'%Y-%m')";
  $this->result2 = $this->db->pdo->query($sql)->fetchall();
-return $this->result2;
+ echo '<pre>';
+var_dump($this->result2);
+die();
       }
 
 
