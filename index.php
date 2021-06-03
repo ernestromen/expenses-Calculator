@@ -216,8 +216,8 @@ return ($this->result);
 $sql = "SELECT id,purchasetype,SUM(amount) as amount,date FROM expenses GROUP BY DATE_FORMAT(date,'%Y-%m')";
 echo '<pre>';
 
-var_dump($this->db->pdo->query($sql)->fetchall(PDO::FETCH_ASSOC));
-die();
+$this->result2 =($this->db->pdo->query($sql)->fetchall(PDO::FETCH_ASSOC));
+return $this->result2;
       }
 
 
