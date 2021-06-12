@@ -4,7 +4,7 @@
 
 require 'database.php';
 use foobarwhatever\dingdong\DB;
-
+var_dump('test');
 session_start();
 if(!(isset($_SESSION['userid']) && isset($_SESSION['useruid']))){
 header("location: ../signin.php");
