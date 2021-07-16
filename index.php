@@ -346,7 +346,7 @@ $crud->selectTag();
   <div class="itemgrid">Date</div>
   <?php foreach($crud->result2 as $row):?>
   <div class="itemgrid">  <?=$row['id'];?></div>
-  <div class="itemgrid">  <?=$row['purchasetype'];?></div>
+
   <div class="itemgrid">  <?=$row['amount'];?></div>
   <div class="itemgrid">  <?=$row['date'];?></div>
  
