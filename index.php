@@ -323,7 +323,7 @@ $crud->selectTag();
 
 <div class="container ">
 <div class="itemgrid">ID</div>
-  <!-- <div class="itemgrid">type</div> -->
+  <div class="itemgrid">type</div>
   <div class="itemgrid">Amount</div>
   <div class="itemgrid">Date</div>
   <?php foreach($crud->result as $row):?>
@@ -341,7 +341,7 @@ $crud->selectTag();
 
 <div class="container ">
 <div class="itemgrid">ID</div>
-  <div class="itemgrid">type</div>
+  <!-- <div class="itemgrid">type</div> -->
   <div class="itemgrid">Amount</div>
   <div class="itemgrid">Date</div>
   <?php foreach($crud->result2 as $row):?>
