@@ -197,12 +197,16 @@ $this->db->pdo->query($sql);
 
           }else{
             var_dump($_POST['selectDate']);
-          }
-    //$sql = "SELECT id,purchasetype,amount,date FROM expenses WHERE DATE_FORMAT(date,'%m') =MONTH(NOW());";
-    // $this->result = $this->db->pdo->query($sql)->fetchall();
+$updatedDate = $_POST['selectDate'];
+$sql = "SELECT id,purchasetype,amount,date FROM expenses WHERE date ='$updatedDate';";
+    $this->result = $this->db->pdo->query($sql)->fetchall();
 
-    // return ($this->result);
+    return ($this->result);
           // var_dump('wokrs!');
+
+
+          }
+    
         }else{
           var_dump('nothing is passed');
         }
