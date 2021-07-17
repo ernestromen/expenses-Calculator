@@ -354,7 +354,7 @@ $crud->selectTag();
 <?php foreach($crud->result3 as $row):?>
 <option  value="<?=$row['purchasetype'];?>"><?=$row['purchasetype'];?></option>
 <?php endforeach;?>
-<input id="btnSubmit"  type="submit" name="submitSalary" placeholder="add" type="text">
+<input id="btnSubmit2"  type="submit" name="submitCurrent" placeholder="add" type="text">
 
 </select> 
 </div>
