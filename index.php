@@ -166,6 +166,7 @@ public $result;
 public $result2;
 public $result3;
 public $result4;
+public $result5;
 public function __construct($db){
 $this->db = $db;
 }
@@ -235,6 +236,13 @@ return $this->result2;
         $sql = "SELECT * FROM purchasetypes";
         $this->result3 =  $this->db->pdo->query($sql)->fetchall();
 return ($this->result3);
+      }
+
+      //for showing specific date expense table
+      public function selectTag2(){
+        $sql = "SELECT date FROM expenses";
+        $this->result5 =  $this->db->pdo->query($sql)->fetchall();
+return ($this->result5);
       }
 
 }
