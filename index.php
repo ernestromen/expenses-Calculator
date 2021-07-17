@@ -338,27 +338,28 @@ $crud->selectTag();
 </form>
 
 /**showing only data from a speicif date */
-<form action="" method="post">
-<div id="mobile2">
-<div  class="itemgrid">
-<input class ="test" type="text" name="salary" placeholder="salary" type="text">
-<input id="btnSubmit"  type="submit" name="submitSalary" placeholder="add" type="text">
-</div>
+<form id="myForm" method="post">
+<div id="mobile1">
 
 
-
-<div style="text-align:center;" class="itemgrid">
+ 
+<div class="itemgrid2">
 <label for="select">select PurchaeType</label>
+<select id="select" value="something" name="select">
+<option  value="">option</option>
+<input id="btnSubmit"  type="submit" name="submit" placeholder="add" type="text">
 
-<input class ="test" type="text" name="source" placeholder="source" type="text">
+<?php foreach($crud->result3 as $row):?>
+<option  value="<?=$row['purchasetype'];?>"><?=$row['purchasetype'];?></option>
+<?php endforeach;?>
+</select> 
 </div>
-
-</div>
-
 <span style="color:red;">
-<?= $crud->errors['salaryInput']; ?>
+<?= $crud->errors['input']; ?>
 </span>
 
+
+</div>
 </form>
 
 
