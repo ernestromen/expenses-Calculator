@@ -379,7 +379,7 @@ $crud->selectTag2();
 <label for="select">select date</label>
 <select id="select" value="something" name="selectDate">
 <option  value="">date</option>
-<option value="">current</option>
+<option value="current">current</option>
 <?php foreach($crud->result5 as $row):?>
 <option  value="<?=$row['date'];?>"><?=$row['date'];?></option>
 <?php endforeach;?>
