@@ -251,6 +251,7 @@ $crud->validate();
 
 $crud->show();
 $crud->show2();
+$crud->show3();
 $crud->selectTag();
 
 
