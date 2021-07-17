@@ -192,9 +192,9 @@ $this->db->pdo->query($sql);
       public function show(){
 
 
-    
-$sql = "SELECT id,purchasetype,amount,date FROM expenses WHERE DATE_FORMAT(date,'%m') =5";
-
+// $sql = "SELECT id,purchasetype,amount,date FROM expenses WHERE DATE_FORMAT(date,'%m') =5";
+$sql = "SELECT id,purchasetype,amount,date FROM expenses WHERE Month(Start_Date) = Month(getdate()) AND Month(End_Date) = Month(getdate())
+";
 $this->result = $this->db->pdo->query($sql)->fetchall();
 
 return ($this->result);
