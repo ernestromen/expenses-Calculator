@@ -347,7 +347,6 @@ $crud->selectTag();
 <label for="select">select PurchaeType</label>
 <select id="select" value="something" name="select">
 <option  value="">option</option>
-<input id="btnSubmit"  type="submit" name="submit" placeholder="add" type="text">
 
 <?php foreach($crud->result3 as $row):?>
 <option  value="<?=$row['purchasetype'];?>"><?=$row['purchasetype'];?></option>
