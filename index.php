@@ -61,7 +61,7 @@ ini_set("display_errors", 1);
 
 
 
-
+$chosenDate = null;
  
 class Validation extends DB{
      //validation 
@@ -264,6 +264,7 @@ $crud->show($chosenDate);
 $crud->show2();
 $crud->show3();
 $crud->selectTag();
+$crud->selectTag2();
 
 
 
