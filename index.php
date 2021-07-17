@@ -197,9 +197,13 @@ $this->db->pdo->query($sql);
 
           }else{
 //$sql = "SELECT id,purchasetype,amount,date FROM expenses WHERE DATE_FORMAT(date,'%m') =MONTH(NOW());";
+var_dump($_POST['selectDate']);
+            if($_POST['selectDate'] == 'current'){
 
-            // if($_POST['selectDate'] == 'current')
-            var_dump($_POST['selectDate']);
+              var_dump('here');
+            }
+            
+
 $updatedDate = $_POST['selectDate'];
 $sql = "SELECT id,purchasetype,amount,date FROM expenses WHERE date ='$updatedDate';";
     $this->result = $this->db->pdo->query($sql)->fetchall();
