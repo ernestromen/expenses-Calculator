@@ -193,7 +193,7 @@ $this->db->pdo->query($sql);
 
 
     
-$sql = "SELECT id,purchasetype,amount,date FROM expenses WHERE DATE_FORMAT(date,'%m') =MONTH(date);";
+$sql = "SELECT id,purchasetype,amount,date FROM expenses WHERE DATE_FORMAT(date,'%m') =5";
 
 $this->result = $this->db->pdo->query($sql)->fetchall();
 
