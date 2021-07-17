@@ -356,7 +356,6 @@ $crud->selectTag();
 <?php endforeach;?>
 
 </select> 
-<input id="btnSubmit2"  type="submit" name="submitCurrent" placeholder="add" type="text">
 
 </div>
 <span style="color:red;">
