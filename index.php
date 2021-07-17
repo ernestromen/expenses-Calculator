@@ -191,8 +191,11 @@ $this->db->pdo->query($sql);
       public function show($chosenDate){
         if(isset($_POST['submitCurrent'])){
     //$sql = "SELECT id,purchasetype,amount,date FROM expenses WHERE DATE_FORMAT(date,'%m') =MONTH(NOW());";
+    // $this->result = $this->db->pdo->query($sql)->fetchall();
 
-          var_dump('wokrs!');
+    // return ($this->result);
+    var_dump($_POST['selectDate']);
+          // var_dump('wokrs!');
         }else{
           var_dump('nothing is passed');
         }
@@ -359,8 +362,8 @@ $crud->selectTag2();
 
  
 <div class="itemgrid2">
-<label for="select">select PurchaeType</label>
-<select id="select" value="something" name="select">
+<label for="select">select date</label>
+<select id="select" value="something" name="selectDate">
 <option  value="">date</option>
 
 <?php foreach($crud->result5 as $row):?>
