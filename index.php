@@ -270,7 +270,8 @@ return ($this->result3);
 
       //for showing specific date expense table
       public function selectTag2(){
-        $sql = "SELECT date FROM expenses";
+        // $sql = "SELECT date FROM expenses";
+        $sql = "SELECT DATE_FORMAT(date,'%Y-%m-%d') from expenses;";
         $this->result5 =  $this->db->pdo->query($sql)->fetchall();
 return ($this->result5);
       }
