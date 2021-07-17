@@ -196,6 +196,9 @@ $this->db->pdo->query($sql);
 
 
           }else{
+//$sql = "SELECT id,purchasetype,amount,date FROM expenses WHERE DATE_FORMAT(date,'%m') =MONTH(NOW());";
+
+            // if($_POST['selectDate'] == 'current')
             var_dump($_POST['selectDate']);
 $updatedDate = $_POST['selectDate'];
 $sql = "SELECT id,purchasetype,amount,date FROM expenses WHERE date ='$updatedDate';";
@@ -376,7 +379,7 @@ $crud->selectTag2();
 <label for="select">select date</label>
 <select id="select" value="something" name="selectDate">
 <option  value="">date</option>
-
+<option value="">current</option>
 <?php foreach($crud->result5 as $row):?>
 <option  value="<?=$row['date'];?>"><?=$row['date'];?></option>
 <?php endforeach;?>
