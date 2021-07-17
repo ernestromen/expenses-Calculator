@@ -263,6 +263,17 @@ $crud->selectTag();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="mystyle.css">
+    <style>
+    .container2{
+    padding:20px;
+    display: grid;
+    grid-template-columns: 20% 20% 20% ;
+    justify-content: center;
+    
+    
+    }
+
+    </style>
 </head>
 <body>
 
