@@ -189,10 +189,15 @@ $this->db->pdo->query($sql);
     
       }
 
-      public function show(){
+      public function show($chosenDate){
+if($chosenDate){
+    //$sql = "SELECT id,purchasetype,amount,date FROM expenses WHERE DATE_FORMAT(date,'%m') =MONTH(NOW());";
+var_dump('there a chosen date');
+}else{
+  var_dump('nothing is passed');
+}
 
 
-    
 $sql = "SELECT id,purchasetype,amount,date FROM expenses WHERE DATE_FORMAT(date,'%m') =MONTH(NOW());";
 
 $this->result = $this->db->pdo->query($sql)->fetchall();
