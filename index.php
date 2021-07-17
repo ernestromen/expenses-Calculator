@@ -191,7 +191,7 @@ $this->db->pdo->query($sql);
       public function show($chosenDate){
         
         if(isset($_POST['submitCurrent'])){
-          if(empty($_POST['selectDate']){
+          if(empty($_POST['selectDate'])){
             var_dump('empty');
 
 
