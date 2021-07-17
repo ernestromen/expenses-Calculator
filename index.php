@@ -358,10 +358,10 @@ $crud->selectTag2();
 <div class="itemgrid2">
 <label for="select">select PurchaeType</label>
 <select id="select" value="something" name="select">
-<option  value="">option</option>
+<option  value="">date</option>
 
 <?php foreach($crud->result5 as $row):?>
-<option  value="<?=$row['purchasetype'];?>"><?=$row['purchasetype'];?></option>
+<option  value="<?=$row['date'];?>"><?=$row['date'];?></option>
 <?php endforeach;?>
 </select> 
 <input id="btnSubmit2"  type="submit" name="submitCurrent" placeholder="add" type="text">
