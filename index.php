@@ -165,6 +165,7 @@ private $db;
 public $result;
 public $result2;
 public $result3;
+public $result4;
 public function __construct($db){
 // global $db;
 $this->db = $db;
@@ -199,7 +200,7 @@ $this->result = $this->db->pdo->query($sql)->fetchall();
 return ($this->result);
       }
 
-
+//show mounthly expenses
 
       public function show2(){
 // $sql = "SELECT id,purchasetype,SUM(amount) as amount,(SELECT  DATE_FORMAT(date,'%Y-%m') AS date FROM expenses GROUP BY DATE_FORMAT(date,'%Y-%m')) as date FROM expenses GROUP BY purchasetype";
@@ -213,6 +214,18 @@ $this->result2 =($this->db->pdo->query($sql)->fetchall(PDO::FETCH_ASSOC));
 return $this->result2;
       }
 
+      //show yearly expenses
+      public function show3(){
+        // $sql = "SELECT id,purchasetype,SUM(amount) as amount,(SELECT  DATE_FORMAT(date,'%Y-%m') AS date FROM expenses GROUP BY DATE_FORMAT(date,'%Y-%m')) as date FROM expenses GROUP BY purchasetype";
+        
+        // $sql = "SELECT id,purchasetype,SUM(amount) as amount,(SELECT  DATE_FORMAT(date,'%Y-%m') AS date FROM expenses GROUP BY DATE_FORMAT(date,'%Y-%m')  limit 1) as date  FROM expenses GROUP BY purchasetype";
+        $sql = "SELECT SUM(amount) as amount,DATE_FORMAT(date,'%Y') AS date FROM expenses GROUP by DATE_FORMAT(date,'%Y');";
+        
+        echo '<pre>';
+        
+        $this->result4 =($this->db->pdo->query($sql)->fetchall(PDO::FETCH_ASSOC));
+        return $this->result4;
+              }
 
 
       public function selectTag(){
@@ -347,6 +360,21 @@ $crud->selectTag();
   <div class="itemgrid">Amount</div>
   <div class="itemgrid">Date</div>
   <?php foreach($crud->result2 as $row):?>
+  <div class="itemgrid">  <?=$row['amount'];?></div>
+  <div class="itemgrid">  <?=$row['date'];?></div>
+ 
+  <?php endforeach;?>
+
+</div>
+
+
+
+<h1 style="text-align:center">yearly expenses</h1>
+
+<div class="container2 ">
+  <div class="itemgrid">Amount</div>
+  <div class="itemgrid">Date</div>
+  <?php foreach($crud->result4 as $row):?>
   <div class="itemgrid">  <?=$row['amount'];?></div>
   <div class="itemgrid">  <?=$row['date'];?></div>
  
