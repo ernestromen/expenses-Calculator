@@ -284,7 +284,7 @@ $crud->selectTag();
 
 <div id="root"></div>
 
-
+/**adding expenses overall to every table */
 <form id="myForm" method="post">
 <div id="mobile1">
 <div class="itemgrid">
@@ -292,7 +292,7 @@ $crud->selectTag();
 <input id="btnSubmit"  type="submit" name="submit" placeholder="add" type="text">
 </div>
 
-
+ 
 <div class="itemgrid2">
 <label for="select">select PurchaeType</label>
 <select id="select" value="something" name="select">
@@ -313,7 +313,7 @@ $crud->selectTag();
 
 
 
-
+/**adding the amount of the salary */
 <form action="" method="post">
 <div id="mobile2">
 <div  class="itemgrid">
@@ -336,6 +336,31 @@ $crud->selectTag();
 </span>
 
 </form>
+
+/**showing only data from a speicif date */
+<form action="" method="post">
+<div id="mobile2">
+<div  class="itemgrid">
+<input class ="test" type="text" name="salary" placeholder="salary" type="text">
+<input id="btnSubmit"  type="submit" name="submitSalary" placeholder="add" type="text">
+</div>
+
+
+
+<div style="text-align:center;" class="itemgrid">
+<label for="select">select PurchaeType</label>
+
+<input class ="test" type="text" name="source" placeholder="source" type="text">
+</div>
+
+</div>
+
+<span style="color:red;">
+<?= $crud->errors['salaryInput']; ?>
+</span>
+
+</form>
+
 
 <h1 style="text-align:center">daily expenses</h1>
 
