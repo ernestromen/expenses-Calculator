@@ -150,10 +150,7 @@ if(empty($_POST['salary']) || empty($_POST['source']) ){
 
 }
 
-if(isset($_POST['submitCurrent'])){
 
-  var_dump('wokrs!');
-}
 
       }  
         
@@ -192,12 +189,15 @@ $this->db->pdo->query($sql);
       }
 
       public function show($chosenDate){
-if($chosenDate){
+        if(isset($_POST['submitCurrent'])){
     //$sql = "SELECT id,purchasetype,amount,date FROM expenses WHERE DATE_FORMAT(date,'%m') =MONTH(NOW());";
-var_dump('there a chosen date');
-}else{
-  var_dump('nothing is passed');
-}
+
+          var_dump('wokrs!');
+        }else{
+          var_dump('nothing is passed');
+        }
+
+
 
 
 $sql = "SELECT id,purchasetype,amount,date FROM expenses WHERE DATE_FORMAT(date,'%m') =MONTH(NOW());";
