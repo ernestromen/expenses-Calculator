@@ -360,7 +360,7 @@ $crud->selectTag2();
 <select id="select" value="something" name="select">
 <option  value="">option</option>
 
-<?php foreach($crud->result3 as $row):?>
+<?php foreach($crud->result5 as $row):?>
 <option  value="<?=$row['purchasetype'];?>"><?=$row['purchasetype'];?></option>
 <?php endforeach;?>
 </select> 
