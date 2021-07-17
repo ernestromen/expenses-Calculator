@@ -152,7 +152,7 @@ if(empty($_POST['salary']) || empty($_POST['source']) ){
 
 
 
-      
+      }  
         
     }
 
@@ -354,9 +354,7 @@ $crud->selectTag();
 <?php foreach($crud->result3 as $row):?>
 <option  value="<?=$row['purchasetype'];?>"><?=$row['purchasetype'];?></option>
 <?php endforeach;?>
-
 </select> 
-
 </div>
 <span style="color:red;">
 <?= $crud->errors['input']; ?>
