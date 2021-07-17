@@ -341,7 +341,7 @@ $crud->selectTag();
 
 <h1 style="text-align:center">monthly expenses</h1>
 
-<div class="container ">
+<div class="container2 ">
 <div class="itemgrid">ID</div>
   <div class="itemgrid">Amount</div>
   <div class="itemgrid">Date</div>
