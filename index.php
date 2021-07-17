@@ -4,7 +4,7 @@
 
 require 'database.php';
 use foobarwhatever\dingdong\DB;
-var_dump('test');
+
 session_start();
 if(!(isset($_SESSION['userid']) && isset($_SESSION['useruid']))){
 header("location: ../signin.php");
@@ -188,16 +188,16 @@ $this->db->pdo->query($sql);
     
       }
 
-      public function show($chosenDate){
+      public function show(){
         
         if(isset($_POST['submitCurrent'])){
           if(empty($_POST['selectDate'])){
-            var_dump('empty');
+            var_dump('empty option in select tag');
 
 
           }else{
 //$sql = "SELECT id,purchasetype,amount,date FROM expenses WHERE DATE_FORMAT(date,'%m') =MONTH(NOW());";
-var_dump($_POST['selectDate']);
+// var_dump($_POST['selectDate']);
             if($_POST['selectDate'] == 'current'){
 
               $sql = "SELECT id,purchasetype,amount,date FROM expenses WHERE DATE_FORMAT(date,'%m') =MONTH(NOW());";
@@ -293,7 +293,7 @@ $crud = new CRUD($res);
 
 $crud->validate();
 
-$crud->show($chosenDate);
+$crud->show();
 $crud->show2();
 $crud->show3();
 $crud->selectTag();
