@@ -150,7 +150,10 @@ if(empty($_POST['salary']) || empty($_POST['source']) ){
 
 }
 
+if(isset($_POST['submitCurrent'])){
 
+  var_dump('wokrs!');
+}
 
       }  
         
