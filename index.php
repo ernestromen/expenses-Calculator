@@ -190,12 +190,12 @@ $this->db->pdo->query($sql);
 
       public function show($chosenDate){
         if(isset($_POST['submitCurrent'])){
-          if(!(empty($_POST['selectDate'])){
+          // if(!(empty($_POST['selectDate'])){
             var_dump($_POST['selectDate']);
 
-          }else{
-            var_dump('empty');
-          }
+          // }else{
+          //   var_dump('empty');
+          // }
     //$sql = "SELECT id,purchasetype,amount,date FROM expenses WHERE DATE_FORMAT(date,'%m') =MONTH(NOW());";
     // $this->result = $this->db->pdo->query($sql)->fetchall();
 
