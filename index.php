@@ -190,21 +190,12 @@ $this->db->pdo->query($sql);
 
       public function show(){
 
-//          $date =  date("Y-m-d");
-//         $date = new DateTime($date);
-// if($date->format('d') == '1'){
-//   // var_dump($date->format('m'));
 
-//   $date =  date('Y-m-d', strtotime(date('Y-m')." -1 month"));
-//   $date = new DateTime($date);
-//   var_dump($date->format('m'));
-// };
     
 $sql = "SELECT id,purchasetype,amount,date FROM expenses WHERE DATE_FORMAT(date,'%m') =MONTH(date);";
-// var_dump($this->db);
-// var_dump()
+
 $this->result = $this->db->pdo->query($sql)->fetchall();
-// echo '<pre>';
+
 return ($this->result);
       }
 
@@ -214,7 +205,7 @@ return ($this->result);
 // $sql = "SELECT id,purchasetype,SUM(amount) as amount,(SELECT  DATE_FORMAT(date,'%Y-%m') AS date FROM expenses GROUP BY DATE_FORMAT(date,'%Y-%m')) as date FROM expenses GROUP BY purchasetype";
 
 // $sql = "SELECT id,purchasetype,SUM(amount) as amount,(SELECT  DATE_FORMAT(date,'%Y-%m') AS date FROM expenses GROUP BY DATE_FORMAT(date,'%Y-%m')  limit 1) as date  FROM expenses GROUP BY purchasetype";
-$sql = "SELECT id,amount,date FROM expenses";
+$sql = "SELECT SUM(amount) as amount,DATE_FORMAT(date,'%Y-%m') AS date FROM expenses GROUP by DATE_FORMAT(date,'%Y-%m');";
 
 echo '<pre>';
 
