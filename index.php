@@ -200,7 +200,13 @@ $this->db->pdo->query($sql);
 var_dump($_POST['selectDate']);
             if($_POST['selectDate'] == 'current'){
 
-              var_dump('here');
+              $sql = "SELECT id,purchasetype,amount,date FROM expenses WHERE DATE_FORMAT(date,'%m') =MONTH(NOW());";
+
+              $this->result = $this->db->pdo->query($sql)->fetchall();
+              
+              return ($this->result);
+
+              // var_dump('here');
             }
             
 
