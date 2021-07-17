@@ -150,7 +150,7 @@ if(empty($_POST['salary']) || empty($_POST['source']) ){
 
 }
 
-
+if()
 
       }  
         
@@ -167,9 +167,7 @@ public $result2;
 public $result3;
 public $result4;
 public function __construct($db){
-// global $db;
 $this->db = $db;
-// var_dump($this->db);
 }
 
   public  function insert($res,$res2,$w){
@@ -356,6 +354,8 @@ $crud->selectTag();
 <?php foreach($crud->result3 as $row):?>
 <option  value="<?=$row['purchasetype'];?>"><?=$row['purchasetype'];?></option>
 <?php endforeach;?>
+<input id="btnSubmit"  type="submit" name="submitSalary" placeholder="add" type="text">
+
 </select> 
 </div>
 <span style="color:red;">
