@@ -258,7 +258,7 @@ $crud->selectTag();
     .container2{
     padding:20px;
     display: grid;
-    grid-template-columns: 20% 20% 20% ;
+    grid-template-columns: 20% 20%;
     justify-content: center;
     
     
@@ -344,11 +344,9 @@ $crud->selectTag();
 <h1 style="text-align:center">monthly expenses</h1>
 
 <div class="container2 ">
-<div class="itemgrid">ID</div>
   <div class="itemgrid">Amount</div>
   <div class="itemgrid">Date</div>
   <?php foreach($crud->result2 as $row):?>
-  <div class="itemgrid">  <?=$row['id'];?></div>
   <div class="itemgrid">  <?=$row['amount'];?></div>
   <div class="itemgrid">  <?=$row['date'];?></div>
  
