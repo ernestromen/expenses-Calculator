@@ -254,7 +254,7 @@ $crud = new CRUD($res);
 
 $crud->validate();
 
-$crud->show();
+$crud->show($chosenDate);
 $crud->show2();
 $crud->show3();
 $crud->selectTag();
