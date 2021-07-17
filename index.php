@@ -213,8 +213,9 @@ var_dump($_POST['selectDate']);
 $updatedDate = $_POST['selectDate'];
 $sql = "SELECT id,purchasetype,amount,date FROM expenses WHERE date ='$updatedDate';";
     $this->result = $this->db->pdo->query($sql)->fetchall();
+          var_dump($this->result);
 
-    return ($this->result);
+    // return ($this->result);
           // var_dump('wokrs!');
 
 
