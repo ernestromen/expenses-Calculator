@@ -452,7 +452,10 @@ $crud->selectTag2();
   <div class="itemgrid">  <?=$row['date'];?></div>
  
   <?php endforeach;?>
+<div>
 
+<h1>total amount of money</h1>
+</div>
 </div>
 <script type="text/javascript">
 
