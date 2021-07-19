@@ -399,6 +399,11 @@ $crud->selectTag2();
 </select> 
 <input id="btnSubmit2"  type="submit" name="submitCurrent" placeholder="add" type="text">
 
+<div>
+
+<h1>total amount of money</h1>
+</div>
+
 </div>
 <span style="color:red;">
 <?= $crud->errors['input']; ?>
@@ -452,10 +457,7 @@ $crud->selectTag2();
   <div class="itemgrid">  <?=$row['date'];?></div>
  
   <?php endforeach;?>
-<div>
 
-<h1>total amount of money</h1>
-</div>
 </div>
 <script type="text/javascript">
 
