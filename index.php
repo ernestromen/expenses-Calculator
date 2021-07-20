@@ -167,6 +167,7 @@ public $result2;
 public $result3;
 public $result4;
 public $result5;
+public $total;
 public function __construct($db){
 $this->db = $db;
 }
@@ -278,6 +279,12 @@ return ($this->result3);
 return ($this->result5);
       }
 
+      public function total(){
+$sql = "SELECT total from totalMoney";
+$this->total =  $this->db->pdo->query($sql)->fetchall();
+return $this->total;
+      }
+
 }
 
 
@@ -298,8 +305,8 @@ $crud->show2();
 $crud->show3();
 $crud->selectTag();
 $crud->selectTag2();
-
-
+$crud->total();
+var_dump()
 
 
 
@@ -411,7 +418,9 @@ $crud->selectTag2();
 
 </div>
 </form>
-<h1 style="text-align:center">total amount of money</h1>
+<?php foreach($crud->total as $row)?>
+<h1 style="text-align:center">total amount of money:<?=$row['total']?></h1>
+<?php endforeach;?>
 <br>
 <br>
 
