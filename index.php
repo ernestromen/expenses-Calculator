@@ -121,6 +121,7 @@ public $soFar;
 public $subtract1;
 public $subtract2;
 public $substract3;
+public $arr;
 public function __construct($db){
 $this->db = $db;
 }
@@ -234,7 +235,7 @@ return $this->soFar;
         
       }
       public function SubtractAmount(){
-
+$this->arr = [];
         $sql1 = "SELECT total from totalMoney";
 
         $sql2 = "SELECT SUM(amount) as amount FROM expenses WHERE DATE_FORMAT(date,'%m') =MONTH(NOW());";
@@ -243,9 +244,10 @@ return $this->soFar;
         $this->subtract2 = $this->db->pdo->query($sql2)->fetchall();
         echo '<pre>';
         // var_dump($this->subtract1);
-      return ($this->subtract1,$this->subtract2);
+        $this->arr[]= $this->subtract1,$this->subtract2;
+      // return [$this->subtract1,$this->subtract2];
 // var_dump($this->subtract1-$this->subtract2);
-
+var_dump($this->arr);
       }
 
 
