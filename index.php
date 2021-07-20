@@ -289,7 +289,7 @@ return $this->total;
         $sql = "SELECT SUM(amount) as amount FROM expenses WHERE DATE_FORMAT(date,'%m') =MONTH(NOW());";
 $this->soFar = $this->db->pdo->query($sql)->fetchall();
 echo '<pre>';
-var_dump($this->soFar);
+return $this->soFar;
         
       }
 
@@ -431,7 +431,9 @@ $crud->soFar();
 <h1 style="text-align:center">total amount of money:<?=$row['total']?></h1>
 <?php endforeach;?>
 
-<h1 style="text-align:center">monthly amount of money spent so far:</h1>
+<?php foreach($crud->soFar as $row):?>
+<h1 style="text-align:center">monthly amount of money spent so far:<?=$row['amount']?></h1>
+<?php endforeach;?>
 
 <br>
 <br>
