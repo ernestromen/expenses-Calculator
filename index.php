@@ -289,7 +289,7 @@ return $this->total;
         $sql = "SELECT amount FROM expenses WHERE DATE_FORMAT(date,'%m') =MONTH(NOW());";
 $this->soFar = $this->db->pdo->query($sql)->fetchall();
 echo '<pre>';
-var_dump($this->soFar);
+// var_dump($this->soFar);
         
       }
 
@@ -318,7 +318,6 @@ $crud->selectTag2();
 $crud->total();
 $crud->soFar();
 
-var_dump();
 
 ?>
 
