@@ -244,11 +244,11 @@ $this->arr = [];
         $this->subtract2 = $this->db->pdo->query($sql2)->fetchall();
         echo '<pre>';
         // var_dump($this->subtract1);
-        $this->arr[]= $this->subtract1;
-        $this->arr[] = $this->subtract2;
+        $this->arr[]= $this->subtract1[0]['total'];
+        $this->arr[] = $this->subtract1[0]['amount'];
       // return [$this->subtract1,$this->subtract2];
 // var_dump($this->subtract1-$this->subtract2);
-var_dump($this->subtract1[0]['total']);
+var_dump($this->subtract1[0]['total']-$this->subtract1[0]['amount']);
       }
 
 
