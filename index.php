@@ -306,7 +306,6 @@ $crud->show3();
 $crud->selectTag();
 $crud->selectTag2();
 $crud->total();
-var_dump()
 
 
 
