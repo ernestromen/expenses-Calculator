@@ -288,6 +288,7 @@ return $this->total;
       public function soFar(){
         $sql = "SELECT amount FROM expenses WHERE DATE_FORMAT(date,'%m') =MONTH(NOW());";
 $this->soFar = $this->db->pdo->query($sql)->fetchall();
+echo '<pre>';
 var_dump($this->soFar);
         
       }
