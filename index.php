@@ -272,7 +272,7 @@ $crud->selectTag();
 $crud->selectTag2();
 $crud->total();
 $crud->soFar();
-
+$crud->SubtractAmount();
 
 ?>
 
