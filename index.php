@@ -12,50 +12,12 @@ exit();
 
 
 }
-// var_dump('insdide index.php');
 
-// if(!$_SESSION['user_id']){
-
-//   header('location:signin.php');
-// }
-// var_dump($ip);
-// //Get Heroku ClearDB connection information
-// $cleardb_url = parse_url(getenv("CLEARDB_DATABASE_URL"));
-// $cleardb_server = $cleardb_url["host"];
-// $cleardb_username = $cleardb_url["user"];
-// $cleardb_password = $cleardb_url["pass"];
-// $cleardb_db = substr($cleardb_url["path"],1);
-// $active_group = 'default';
-// $query_builder = TRUE;
-// // Connect to DB
-// $conn = mysqli_connect($cleardb_server, $cleardb_username, $cleardb_password, $cleardb_db);
-    
 
 
 
 error_reporting(E_ALL);
 ini_set("display_errors", 1);
-// $sql = "SELECT * FROM example";
-// $result = mysqli_query($conn, $sql);
-
-
-
-// while($row = mysqli_fetch_assoc($result)) {
-//   echo "id: " . $row["id"]. "<br>". " - Name: " . $row["firstname"]. " " . $row["lastname"]. "<br>" . $row ["email"];
-// }
-
-
-
-//heroku shit
-
-
-// $cleardb_url = parse_url(getenv("CLEARDB_DATABASE_URL"));
-// $cleardb_server = $cleardb_url["host"];
-// $cleardb_username = $cleardb_url["user"];
-// $cleardb_password = $cleardb_url["pass"];
-// $cleardb_db = substr($cleardb_url["path"],1);
-// $active_group = 'default';
-// $query_builder = TRUE;
 
 
 
@@ -66,9 +28,7 @@ $chosenDate = null;
 class Validation extends DB{
      //validation 
      public function __construct($db){
-      // global $db;
       $this->db = $db;
-      // var_dump($this->db);
       }
       
   public  $errors = [
@@ -81,11 +41,6 @@ class Validation extends DB{
 //when expenses submitted 
         if(isset($_POST['submit'])){
           if(empty($_POST['select']) || empty($_POST['input']) ){
-            // var_dump('in select');
-
-
-         
-          
 
             $this->errors['input'] = '<br>'.'* the input is not valid';
             
@@ -99,10 +54,8 @@ class Validation extends DB{
              $result = $_POST['input'];
              $result2 = $_POST['select'];
              $where = 'amount';
-            //  var_dump($result2);
              if($result && $result2){
               $this->insert($result,$result2,$where);
-              // exit;
 
               
           
@@ -121,9 +74,6 @@ class Validation extends DB{
 
 if(isset($_POST['submitSalary'])){
 
-//   echo '<pre>';
-// var_dump($_POST['salary'],'salary');
-// var_dump($_POST['source'],'source');
 
 
 if(empty($_POST['salary']) || empty($_POST['source']) ){
@@ -139,7 +89,6 @@ if(empty($_POST['salary']) || empty($_POST['source']) ){
 }else{
 
 
-  // var_dump('all is valid');
   $result = $_POST['source'];
   $result2 = $_POST['salary'];
   $where = 'submitSalary';
@@ -198,8 +147,7 @@ $this->db->pdo->query($sql);
 
 
           }else{
-//$sql = "SELECT id,purchasetype,amount,date FROM expenses WHERE DATE_FORMAT(date,'%m') =MONTH(NOW());";
-// var_dump($_POST['selectDate']);
+
             if($_POST['selectDate'] == 'current'){
 
               $sql = "SELECT id,purchasetype,amount,date FROM expenses WHERE DATE_FORMAT(date,'%m') =MONTH(NOW());";
@@ -208,17 +156,14 @@ $this->db->pdo->query($sql);
               
               return ($this->result);
 
-              // var_dump('here');
             }
             
 
 $updatedDate = $_POST['selectDate'];
 $sql = "SELECT id,purchasetype,amount,date FROM expenses WHERE DATE_FORMAT(date,'%Y-%m-%d') ='$updatedDate';";
     $this->result = $this->db->pdo->query($sql)->fetchall();
-          // var_dump($this->result);
 
     return ($this->result);
-          // var_dump('wokrs!');
 
 
           }
@@ -240,12 +185,9 @@ return ($this->result);
 //show mounthly expenses
 
       public function show2(){
-// $sql = "SELECT id,purchasetype,SUM(amount) as amount,(SELECT  DATE_FORMAT(date,'%Y-%m') AS date FROM expenses GROUP BY DATE_FORMAT(date,'%Y-%m')) as date FROM expenses GROUP BY purchasetype";
 
-// $sql = "SELECT id,purchasetype,SUM(amount) as amount,(SELECT  DATE_FORMAT(date,'%Y-%m') AS date FROM expenses GROUP BY DATE_FORMAT(date,'%Y-%m')  limit 1) as date  FROM expenses GROUP BY purchasetype";
 $sql = "SELECT SUM(amount) as amount,DATE_FORMAT(date,'%Y-%m') AS date FROM expenses GROUP by DATE_FORMAT(date,'%Y-%m');";
 
-// echo '<pre>';
 
 $this->result2 =($this->db->pdo->query($sql)->fetchall(PDO::FETCH_ASSOC));
 return $this->result2;
@@ -253,9 +195,7 @@ return $this->result2;
 
       //show yearly expenses
       public function show3(){
-        // $sql = "SELECT id,purchasetype,SUM(amount) as amount,(SELECT  DATE_FORMAT(date,'%Y-%m') AS date FROM expenses GROUP BY DATE_FORMAT(date,'%Y-%m')) as date FROM expenses GROUP BY purchasetype";
         
-        // $sql = "SELECT id,purchasetype,SUM(amount) as amount,(SELECT  DATE_FORMAT(date,'%Y-%m') AS date FROM expenses GROUP BY DATE_FORMAT(date,'%Y-%m')  limit 1) as date  FROM expenses GROUP BY purchasetype";
         $sql = "SELECT SUM(amount) as amount,DATE_FORMAT(date,'%Y') AS date FROM expenses GROUP by DATE_FORMAT(date,'%Y');";
         
         // echo '<pre>';
@@ -273,8 +213,6 @@ return ($this->result3);
 
       //for showing specific date expense table
       public function selectTag2(){
-        // $sql = "SELECT date FROM expenses";
-        // $sql = "SELECT DATE_FORMAT(date,'%Y-%m-%d') as date from expenses;";
         $sql = "SELECT DATE_FORMAT(date,'%Y-%m-%d') as date from expenses GROUP by DATE_FORMAT(date,'%Y-%m-%d');";
         $this->result5 =  $this->db->pdo->query($sql)->fetchall();
 return ($this->result5);
