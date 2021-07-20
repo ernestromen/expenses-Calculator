@@ -411,7 +411,7 @@ $crud->selectTag2();
 
 </div>
 </form>
-<h1>total amount of money</h1>
+<h1 style="text-align:center">total amount of money</h1>
 <br>
 <br>
 
