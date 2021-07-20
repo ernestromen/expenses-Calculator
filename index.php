@@ -391,7 +391,7 @@ $crud->SubtractAmount();
 <?php endforeach;?>
 
 
-<h1 style="text-align:center">Expected amount of money to be left after expenses:<?=$expected?></h1>
+<h1 style="text-align:center">Expected amount of money to be left after expenses:<?=$crud->expected?></h1>
 <br>
 <br>
 
