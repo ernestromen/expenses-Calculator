@@ -418,7 +418,7 @@ var_dump()
 
 </div>
 </form>
-<?php foreach($crud->total as $row)?>
+<?php foreach($crud->total as $row):?>
 <h1 style="text-align:center">total amount of money:<?=$row['total']?></h1>
 <?php endforeach;?>
 <br>
