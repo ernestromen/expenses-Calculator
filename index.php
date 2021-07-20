@@ -121,7 +121,7 @@ public $soFar;
 public $subtract1;
 public $subtract2;
 public $substract3;
-public $arr;
+public $expected;
 public function __construct($db){
 $this->db = $db;
 }
@@ -235,7 +235,6 @@ return $this->soFar;
         
       }
       public function SubtractAmount(){
-$this->arr = [];
         $sql1 = "SELECT total from totalMoney";
 
         $sql2 = "SELECT SUM(amount) as amount FROM expenses WHERE DATE_FORMAT(date,'%m') =MONTH(NOW());";
@@ -243,12 +242,10 @@ $this->arr = [];
         $this->subtract1 = $this->db->pdo->query($sql1)->fetchall();
         $this->subtract2 = $this->db->pdo->query($sql2)->fetchall();
         echo '<pre>';
-        // var_dump($this->subtract1);
-        $this->arr[]= $this->subtract1[0]['total'];
-        $this->arr[] = $this->subtract2[0]['amount'];
+
       // return [$this->subtract1,$this->subtract2];
 // var_dump($this->subtract1-$this->subtract2);
-var_dump($this->subtract1[0]['total']-$this->subtract2[0]['amount']);
+$this->expected= $this->subtract1[0]['total']-$this->subtract2[0]['amount'];
       }
 
 
@@ -393,6 +390,8 @@ $crud->SubtractAmount();
 <h1 style="text-align:center">monthly amount of money spent so far:<?=$row['amount']?></h1>
 <?php endforeach;?>
 
+
+<h1 style="text-align:center">Expected amount of money to be left after expenses:<?=$expected?></h1>
 <br>
 <br>
 
