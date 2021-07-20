@@ -248,7 +248,7 @@ $this->arr = [];
         $this->arr[] = $this->subtract2;
       // return [$this->subtract1,$this->subtract2];
 // var_dump($this->subtract1-$this->subtract2);
-var_dump($this->subtract1);
+var_dump($this->subtract1[0]['total']);
       }
 
 
