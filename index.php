@@ -242,8 +242,8 @@ return $this->soFar;
         $this->subtract1 = $this->db->pdo->query($sql1)->fetchall();
         $this->subtract2 = $this->db->pdo->query($sql2)->fetchall();
         echo '<pre>';
-        var_dump($this->subtract1);
-        var_dump($this->subtract2);
+        // var_dump($this->subtract1);
+      return ($this->subtract1,$this->subtract2);
 // var_dump($this->subtract1-$this->subtract2);
 
       }
