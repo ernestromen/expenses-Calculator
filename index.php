@@ -244,7 +244,7 @@ return $this->soFar;
         echo '<pre>';
         var_dump($this->subtract1);
         var_dump($this->subtract2);
-var_dump($this->subtract1-$this->subtract2);
+// var_dump($this->subtract1-$this->subtract2);
 
       }
 
