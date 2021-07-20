@@ -245,10 +245,10 @@ $this->arr = [];
         echo '<pre>';
         // var_dump($this->subtract1);
         $this->arr[]= $this->subtract1[0]['total'];
-        $this->arr[] = $this->subtract1[0]['amount'];
+        $this->arr[] = $this->subtract2[0]['amount'];
       // return [$this->subtract1,$this->subtract2];
 // var_dump($this->subtract1-$this->subtract2);
-var_dump($this->subtract1[0]['total']-$this->subtract1[0]['amount']);
+var_dump($this->subtract1[0]['total']-$this->subtract2[0]['amount']);
       }
 
 
