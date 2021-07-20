@@ -168,6 +168,7 @@ public $result3;
 public $result4;
 public $result5;
 public $total;
+public $soFar;
 public function __construct($db){
 $this->db = $db;
 }
@@ -284,6 +285,14 @@ $sql = "SELECT total from totalMoney";
 $this->total =  $this->db->pdo->query($sql)->fetchall();
 return $this->total;
       }
+      public function soFar(){
+        $sql = "SELECT amount FROM expenses WHERE DATE_FORMAT(date,'%m') =MONTH(NOW());";
+$this->soFar = $this->db->pdo->query($sql)->fetchall();
+var_dump($this->soFar);
+        
+      }
+
+
 
 }
 
@@ -306,8 +315,9 @@ $crud->show3();
 $crud->selectTag();
 $crud->selectTag2();
 $crud->total();
+$crud->soFar();
 
-
+var_dump();
 
 ?>
 
@@ -420,6 +430,9 @@ $crud->total();
 <?php foreach($crud->total as $row):?>
 <h1 style="text-align:center">total amount of money:<?=$row['total']?></h1>
 <?php endforeach;?>
+
+<h1 style="text-align:center">monthly amount of money spent so far:</h1>
+
 <br>
 <br>
 
