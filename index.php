@@ -256,7 +256,7 @@ $this->expected= $this->subtract1[0]['total']-$this->subtract2[0]['amount'];
       public function showSalary(){
 
 $sql = "SELECT amount FROM salary";
-$this->salary = $this->db->pdo->query($sql1)->fetchall();
+$this->salary = $this->db->pdo->query($sql)->fetchall();
       }
 
 
