@@ -405,7 +405,7 @@ $crud->showSalary();
 
 
 <?php foreach($crud->salary as $row):?>
-<h1 style="text-align:center">monthly salary</h1>
+<h1 style="text-align:center">monthly salary: <?=$row['amount']?></h1>
 <?php endforeach;?>
 
 
