@@ -240,19 +240,32 @@ return $this->soFar;
         
       }
       public function SubtractAmount(){
+        //total monney
         $sql1 = "SELECT total from totalMoney";
-
+//total speding in this month
         $sql2 = "SELECT SUM(amount) as amount FROM expenses WHERE DATE_FORMAT(date,'%m') =MONTH(NOW());";
+        //select salary
         $sql3 = "SELECT amount FROM salary";
         $this->subtract1 = $this->db->pdo->query($sql1)->fetchall();
         $this->subtract2 = $this->db->pdo->query($sql2)->fetchall();
         $this->subtract3 = $this->db->pdo->query($sql3)->fetchall();
 
         echo '<pre>';
+//when you get salary
+      if(date('d') == 10){
+        $var = $this->subtract1+$this->subtract3;
+//insert amount of money in the start of the month with paycheck;
+        $sql = "UPDATE salary SET amount = '$var';";
+        $this->db->pdo->query($sql);
 
-      // return [$this->subtract1,$this->subtract2];
-// var_dump($this->subtract1-$this->subtract2);
-$this->expected= $this->subtract1[0]['total']-$this->subtract2[0]['amount']+$this->subtract3[0]['amount'];
+        ///when you pay for expenses
+      }else if(date('d') == 1){
+        //substracts the spendings from totalamount of money in the start of the month
+        $var =$this->subtract1- $this->subtract2;
+        $sql = "UPDATE salary SET amount = '$var2';";
+
+      }
+$this->expected= $this->subtract1[0]['total']-$this->subtract2[0]['amount'];
       }
 
       public function showSalary(){
