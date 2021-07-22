@@ -146,11 +146,7 @@ $this->db->pdo->query($sql);
       }
 
       public function show(){
-        if($this->db->pdo->query("SELECT amount FROM `salary` WHERE id != 5")->rowcount() > 0){
-          var_dump('there is some other income');
-        }else{
-          var_dump('somethings wrong');
-        }
+      
         if(isset($_POST['submitCurrent'])){
           if(empty($_POST['selectDate'])){
             var_dump('empty option in select tag');
@@ -257,8 +253,13 @@ return $this->soFar;
         echo '<pre>';
 //when you get salary
       if(date('d') == 10){
-        
-        $var = $this->subtract1+$this->subtract3;
+        if($this->db->pdo->query("SELECT amount FROM `salary` WHERE id != 5")->rowcount() > 0){
+
+          
+        }else{
+          $var = $this->subtract1+$this->subtract3;
+
+        }
 //insert amount of money in the start of the month with paycheck;
         $sql = "UPDATE salary SET amount = '$var';";
         $this->db->pdo->query($sql);
