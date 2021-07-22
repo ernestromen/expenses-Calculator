@@ -120,7 +120,7 @@ public $total;
 public $soFar;
 public $subtract1;
 public $subtract2;
-public $substract3;
+public $subtract3;
 public $expected;
 public $salary;
 
@@ -243,14 +243,16 @@ return $this->soFar;
         $sql1 = "SELECT total from totalMoney";
 
         $sql2 = "SELECT SUM(amount) as amount FROM expenses WHERE DATE_FORMAT(date,'%m') =MONTH(NOW());";
-
+        $sql3 = "SELECT amount FROM salary";
         $this->subtract1 = $this->db->pdo->query($sql1)->fetchall();
         $this->subtract2 = $this->db->pdo->query($sql2)->fetchall();
+        $this->subtract3 = $this->db->pdo->query($sql3)->fetchall();
+
         echo '<pre>';
 
       // return [$this->subtract1,$this->subtract2];
 // var_dump($this->subtract1-$this->subtract2);
-$this->expected= $this->subtract1[0]['total']-$this->subtract2[0]['amount'];
+$this->expected= $this->subtract1[0]['total']-$this->subtract2[0]['amount']-$this->subtract3[0]['amount'];
       }
 
       public function showSalary(){
