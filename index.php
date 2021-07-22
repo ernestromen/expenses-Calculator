@@ -122,6 +122,8 @@ public $subtract1;
 public $subtract2;
 public $substract3;
 public $expected;
+public $salary;
+
 public function __construct($db){
 $this->db = $db;
 }
@@ -225,6 +227,9 @@ return ($this->result5);
       public function total(){
 $sql = "SELECT total from totalMoney";
 $this->total =  $this->db->pdo->query($sql)->fetchall();
+
+
+
 return $this->total;
       }
       public function soFar(){
@@ -246,6 +251,12 @@ return $this->soFar;
       // return [$this->subtract1,$this->subtract2];
 // var_dump($this->subtract1-$this->subtract2);
 $this->expected= $this->subtract1[0]['total']-$this->subtract2[0]['amount'];
+      }
+
+      public function showSalary(){
+
+$sql = "SELECT amount FROM salary";
+$this->salary = $this->db->pdo->query($sql1)->fetchall();
       }
 
 
@@ -273,6 +284,7 @@ $crud->selectTag2();
 $crud->total();
 $crud->soFar();
 $crud->SubtractAmount();
+$crud->showSalary();
 
 ?>
 
@@ -389,6 +401,14 @@ $crud->SubtractAmount();
 <?php foreach($crud->soFar as $row):?>
 <h1 style="text-align:center">monthly amount of money spent so far:<?=$row['amount']?></h1>
 <?php endforeach;?>
+
+
+
+<?php foreach($crud->showSalary as $row):?>
+<h1 style="text-align:center">monthly salary</h1>
+<?php endforeach;?>
+
+
 
 
 <h1 style="text-align:center">Expected amount of money to be left after expenses:<?=$crud->expected?></h1>
