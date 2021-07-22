@@ -367,7 +367,7 @@ $crud->showSalary();
 
 
 <div style="text-align:center;" class="itemgrid">
-<label for="select">select PurchaeType</label>
+<label for="select">type source of income</label>
 
 <input class ="test" type="text" name="source" placeholder="source" type="text">
 </div>
