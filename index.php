@@ -252,7 +252,7 @@ return $this->soFar;
 
       // return [$this->subtract1,$this->subtract2];
 // var_dump($this->subtract1-$this->subtract2);
-$this->expected= $this->subtract1[0]['total']-$this->subtract2[0]['amount']-$this->subtract3[0]['amount'];
+$this->expected= $this->subtract1[0]['total']-$this->subtract2[0]['amount']+$this->subtract3[0]['amount'];
       }
 
       public function showSalary(){
