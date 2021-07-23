@@ -287,7 +287,7 @@ $this->expected= $this->subtract1[0]['total']-$this->subtract2[0]['amount'];
       public function showSalary(){
 
 $sql = "SELECT amount FROM salary WHERE id = 5";
-$sql2 = "SELECT SUM(amount) FROM salary WHERE id != 5";
+$sql2 = "SELECT SUM(amount) as amount FROM salary WHERE id != 5";
 
 $this->salary = $this->db->pdo->query($sql)->fetchall();
 $this->otherIncome = $this->db->pdo->query($sql2)->fetchall();
