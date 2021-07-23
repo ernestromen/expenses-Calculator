@@ -136,10 +136,10 @@ if($w === 'amount'){
 $this->db->pdo->query($sql);
 }else if($w === 'submitSalary'){
 //insert value from salary and source
-// $sql = "INSERT INTO salary (source, amount) VALUES ('$res','$res2')";
+$sql = "INSERT INTO salary (source, amount) VALUES ('$res','$res2')";
 // $sql = "UPDATE salary SET source ='$res',amount ='$res2' WHERE = 5;"
 
-// $this->db->pdo->query($sql);
+$this->db->pdo->query($sql);
 }
 
 
