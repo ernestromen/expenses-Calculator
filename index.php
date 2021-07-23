@@ -138,7 +138,7 @@ $this->db->pdo->query($sql);
 //insert value from salary and source
 // $sql = "INSERT INTO salary (source, amount) VALUES ('$res','$res2')";
 $sql = "UPDATE `salary` SET `source` ='$res',`amount` ='$res2' WHERE = 5;"
-UPDATE totalmoney SET total = '$var';
+// UPDATE totalmoney SET total = '$var';
 
 $this->db->pdo->query($sql);
 }
