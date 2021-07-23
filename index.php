@@ -137,6 +137,8 @@ $this->db->pdo->query($sql);
 }else if($w === 'submitSalary'){
 //insert value from salary and source
 $sql = "INSERT INTO salary (source, amount) VALUES ('$res','$res2')";
+$sql = "UPDATE salary SET source ='$res' ,SET amount ='$res2' WHERE = 5;"
+
 $this->db->pdo->query($sql);
 }
 
@@ -382,7 +384,7 @@ $crud->showSalary();
 <div style="text-align:center;" class="itemgrid">
 <label for="select">type source of income</label>
 
-<input class ="test" type="text" name="source" placeholder="source" type="text">
+<input class ="test" type="text" name="source" placeholder="source" type="text">update</input>
 </div>
 
 </div>
