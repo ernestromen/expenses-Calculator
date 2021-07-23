@@ -123,6 +123,7 @@ public $subtract2;
 public $subtract3;
 public $expected;
 public $salary;
+public $included;
 
 public function __construct($db){
 $this->db = $db;
@@ -254,22 +255,28 @@ return $this->soFar;
 //when you get salary
       if(date('d') == 10){
         if($this->db->pdo->query("SELECT amount FROM `salary` WHERE id != 5")->rowcount() > 0){
-
+          $var;
           
+          $sql = "SELECT SUM(amount) as amount FROM salary";
+          $var = $this->db->pdo->query($sql)->fetchall();
+         $var+= $this->subtract1;
+         $var+=$this->subtract3;
+          $this->db->pdo->query("UPDATE totalmoney SET total = '$var';");
+          $this->db->pdo->query("DELETE FROM salary  WHERE id != 5");
         }else{
           $var = $this->subtract1+$this->subtract3;
+          $this->db->pdo->query("UPDATE totalmoney SET total = '$var';");
 
         }
 //insert amount of money in the start of the month with paycheck;
-        $sql = "UPDATE salary SET amount = '$var';";
-        $this->db->pdo->query($sql);
+       
 
         ///when you pay for expenses
       }else if(date('d') == 1){
         //substracts the spendings from totalamount of money in the start of the month
         $var =$this->subtract1- $this->subtract2;
-        $sql = "UPDATE salary SET amount = '$var2';";
-
+        $sql = "UPDATE totalmoney SET total = '$var';";
+        $this->db->pdo->query($sql);
       }
 $this->expected= $this->subtract1[0]['total']-$this->subtract2[0]['amount'];
       }
