@@ -124,7 +124,7 @@ public $subtract3;
 public $expected;
 public $salary;
 public $included;
-
+public $otherIncome;
 public function __construct($db){
 $this->db = $db;
 }
@@ -287,7 +287,10 @@ $this->expected= $this->subtract1[0]['total']-$this->subtract2[0]['amount'];
       public function showSalary(){
 
 $sql = "SELECT amount FROM salary WHERE id = 5";
+$sql2 = "SELECT SUM(amount) FROM salary WHERE id != 5";
+
 $this->salary = $this->db->pdo->query($sql)->fetchall();
+$this->otherIncome = $this->db->pdo->query($sql2)->fetchall();
       }
 
 
@@ -437,6 +440,11 @@ $crud->showSalary();
 
 <?php foreach($crud->salary as $row):?>
 <h1 style="text-align:center">monthly salary: <?=$row['amount']?></h1>
+<?php endforeach;?>
+
+
+<?php foreach($crud->otherIncome as $row):?>
+<h1 style="text-align:center">income other than monthly salary: <?=$row['amount']?></h1>
 <?php endforeach;?>
 
 
