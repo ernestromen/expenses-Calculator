@@ -141,6 +141,8 @@ $sql = "UPDATE salary SET source ='$res',amount ='$res2';";
 // UPDATE totalmoney SET total = '$var';
 
 $this->db->pdo->query($sql);
+}else if($w === 'submitOtherIncome'){
+  
 }
 
 
