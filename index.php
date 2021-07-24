@@ -512,9 +512,14 @@ $crud->showSalary();
 <h1 style="text-align:center">total amount of money:<?=$row['total']?></h1>
 <?php endforeach;?>
 
+<?php if(isset($crud->soFar)):?>
 <?php foreach($crud->soFar as $row):?>
 <h1 style="text-align:center">monthly amount of money spent so far:<?=$row['amount']?></h1>
 <?php endforeach;?>
+<?php else:?>
+  <h1 style="text-align:center">monthly amount of money spent so far:0?></h1>
+
+  <?php endif;?>
 
 
 
