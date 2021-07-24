@@ -328,6 +328,7 @@ $this->expected= $this->subtract1[0]['total']-$this->subtract2[0]['amount'];
 
 $sql = "SELECT amount FROM salary WHERE id = 5";
 $sql2 = "SELECT SUM(amount) as amount,source FROM salary WHERE id != 5";
+//   ("SELECT SUM(amount) as amount FROM expenses WHERE DATE_FORMAT(date,'%m') =MONTH(NOW() - INTERVAL 1 MONTH);");
 
 $this->salary = $this->db->pdo->query($sql)->fetchall();
 $this->otherIncome = $this->db->pdo->query($sql2)->fetchall();
