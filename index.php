@@ -532,7 +532,7 @@ $crud->showSalary();
 <h1 style="text-align:center">income other than monthly salary previous month: <?=$row['amount']?></h1>
 <?php endforeach;?>
 <?php else:?>
-  <?= 'its not betwneen 1 and 10';?>
+  <h1 style="text-align:center">income other than monthly salary previous month: 0</h1>
 <?php endif;?>
 
 
