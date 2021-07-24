@@ -99,6 +99,35 @@ if(empty($_POST['salary']) || empty($_POST['source']) ){
 
 }
 
+////validation for additinal income
+
+if(isset($_POST['submitIncome'])){
+
+
+
+  if(empty($_POST['income']) || empty($_POST['source2']) ){
+    $this->errors['salaryInput'] = '<br>'.'* the inputs must not be a empty';
+  
+  }else if(!(is_numeric($_POST['salary']))){
+  
+    $this->errors['salaryInput'] = '<br>'.'* the salary input must be a number';
+  
+  }else if(is_numeric($_POST['source'])){
+    $this->errors['salaryInput'] = '<br>'.'* the source input must not be a number';
+  
+  }else{
+  
+  
+    $result = $_POST['source2'];
+    $result2 = $_POST['income'];
+    $where = 'submitIncome';
+    $this->insert($result,$result2,$where);
+  
+  }
+  
+  
+  }
+
 
 
       }  
@@ -141,8 +170,8 @@ $sql = "UPDATE salary SET source ='$res',amount ='$res2';";
 // UPDATE totalmoney SET total = '$var';
 
 $this->db->pdo->query($sql);
-}else if($w === 'submitOtherIncome'){
-
+}else if($w === 'submitIncome'){
+var_dump('here');
 }
 
 
@@ -406,8 +435,8 @@ $crud->showSalary();
 <form action="" method="post">
 <div id="mobile2">
 <div  class="itemgrid">
-<input class ="test" type="text" name="salary" placeholder="salary" type="text">
-<input id="btnSubmit"  type="submit" name="submitSalary" placeholder="add" type="text">
+<input class ="test" type="text" name="income" placeholder="salary" type="text">
+<input id="btnSubmit"  type="submit" name="submitIncome" placeholder="add" type="text">
 </div>
 
 
@@ -415,7 +444,7 @@ $crud->showSalary();
 <div style="text-align:center;" class="itemgrid">
 <label for="select">type source of income</label>
 
-<input class ="test" type="text" name="source" placeholder="source" type="text">update</input>
+<input class ="test" type="text" name="source2" placeholder="source" type="text">
 </div>
 
 </div>
