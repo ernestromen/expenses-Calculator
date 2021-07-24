@@ -156,6 +156,7 @@ public $expected;
 public $salary;
 public $included;
 public $otherIncome;
+public $lastMonthIncome;
 public function __construct($db){
 $this->db = $db;
 }
@@ -327,11 +328,16 @@ $this->expected= $this->subtract1[0]['total']-$this->subtract2[0]['amount'];
       public function showSalary(){
 
 $sql = "SELECT amount FROM salary WHERE id = 5";
-$sql2 = "SELECT SUM(amount) as amount,source FROM salary WHERE id != 5";
+$sql2 = "SELECT SUM(amount) as amount,source FROM salary WHERE id != 5 WHERE DATE_FORMAT(date,'%m') =MONTH(NOW())";
 //   ("SELECT SUM(amount) as amount FROM expenses WHERE DATE_FORMAT(date,'%m') =MONTH(NOW() - INTERVAL 1 MONTH);");
 
 $this->salary = $this->db->pdo->query($sql)->fetchall();
 $this->otherIncome = $this->db->pdo->query($sql2)->fetchall();
+if(date('d') 0> && date('d') < 10){
+  $sql3 = "SELECT SUM(amount) as amount,source FROM salary WHERE id != 5 AND DATE_FORMAT(created_at,'%m') =MONTH(NOW() - INTERVAL 1 MONTH);";
+  $this->lastMonthIncome = $this->db->pdo->query($sql3)->fetchall();
+
+}
       }
 
 
@@ -508,15 +514,19 @@ $crud->showSalary();
 
 
 <?php foreach($crud->salary as $row):?>
-<h1 style="text-align:center">monthly salary: <?=$row['amount']?></h1>
+<h1 style="text-align:center">monthly salary from this month: <?=$row['amount']?></h1>
 <?php endforeach;?>
 
 
 <?php foreach($crud->otherIncome as $row):?>
-<h1 style="text-align:center">income other than monthly salary: <?=$row['amount']?></h1>
+<h1 style="text-align:center">income other than monthly salary current month: <?=$row['amount']?></h1>
 <?php endforeach;?>
 
-
+<?php if(isset($crud->lastMonthIncome)):?>
+<?php foreach($crud->lastMonthIncome as $row):?>
+<h1 style="text-align:center">income other than monthly salary current month: <?=$row['amount']?></h1>
+<?php endforeach;?>
+<?php endif;?>
 
 
 <h1 style="text-align:center">Expected amount of money to be left after expenses:<?=$crud->expected?></h1>
