@@ -333,7 +333,7 @@ $sql2 = "SELECT SUM(amount) as amount,source FROM salary WHERE id != 5 WHERE DAT
 
 $this->salary = $this->db->pdo->query($sql)->fetchall();
 $this->otherIncome = $this->db->pdo->query($sql2)->fetchall();
-if(date('d') 0> && date('d') < 10){
+if(date('d') > 0 && date('d') < 10){
   $sql3 = "SELECT SUM(amount) as amount,source FROM salary WHERE id != 5 AND DATE_FORMAT(created_at,'%m') =MONTH(NOW() - INTERVAL 1 MONTH);";
   $this->lastMonthIncome = $this->db->pdo->query($sql3)->fetchall();
 
