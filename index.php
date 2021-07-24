@@ -175,10 +175,10 @@ $this->db->pdo->query($sql);
 
 $this->db->pdo->query($sql);
 }else if($w === 'submitIncome'){
+$sql = "INSERT INTO salary (source, amount) VALUES ('$res','$res2')";
 
-  var_dump($res);
-  var_dump($res2);
-  // $this->db->pdo->query($sql);
+
+  $this->db->pdo->query($sql);
 
 
 }
