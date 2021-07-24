@@ -142,7 +142,7 @@ $sql = "UPDATE salary SET source ='$res',amount ='$res2';";
 
 $this->db->pdo->query($sql);
 }else if($w === 'submitOtherIncome'){
-  
+
 }
 
 
@@ -377,7 +377,7 @@ $crud->showSalary();
 
 
 
-/**adding the amount of the salary */
+/**updating the amount of the salary */
 <form action="" method="post">
 <div id="mobile2">
 <div  class="itemgrid">
@@ -400,6 +400,34 @@ $crud->showSalary();
 </span>
 
 </form>
+
+
+/**inserting another income additionally to the constant salary */
+<form action="" method="post">
+<div id="mobile2">
+<div  class="itemgrid">
+<input class ="test" type="text" name="salary" placeholder="salary" type="text">
+<input id="btnSubmit"  type="submit" name="submitSalary" placeholder="add" type="text">
+</div>
+
+
+
+<div style="text-align:center;" class="itemgrid">
+<label for="select">type source of income</label>
+
+<input class ="test" type="text" name="source" placeholder="source" type="text">update</input>
+</div>
+
+</div>
+
+<span style="color:red;">
+<?= $crud->errors['salaryInput']; ?>
+</span>
+
+</form>
+
+
+
 
 /**showing only data from a speicif date */
 <form id="myForm" method="post">
