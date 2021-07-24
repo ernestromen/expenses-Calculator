@@ -290,7 +290,7 @@ return $this->soFar;
 //total speding in this month
         $sql2 = "SELECT SUM(amount) as amount FROM expenses WHERE DATE_FORMAT(date,'%m') =MONTH(NOW());";
         //select salary
-        $sql3 = "SELECT amount FROM salary WHERE id =5";
+        $sql3 = "SELECT amount FROM salary WHERE id =5 ";
         $this->subtract1 = $this->db->pdo->query($sql1)->fetchall();
         $this->subtract2 = $this->db->pdo->query($sql2)->fetchall();
         $this->subtract3 = $this->db->pdo->query($sql3)->fetchall();
@@ -298,14 +298,14 @@ return $this->soFar;
         echo '<pre>';
 //when you get salary
       if(date('d') == 10){
-        if($this->db->pdo->query("SELECT amount FROM `salary` WHERE id != 5")->rowcount() > 0){
+        if($this->db->pdo->query("SELECT amount FROM `salary` WHERE id != 5 AND DATE_FORMAT(created_at,'%m') =MONTH(NOW() - INTERVAL 1 MONTH);")->rowcount() > 0){
           $var;
           
-          $sql = "SELECT SUM(amount) as amount FROM salary";
+          $sql = "SELECT SUM(amount) as amount FROM salary AND DATE_FORMAT(created_at,'%m') =MONTH(NOW() - INTERVAL 1 MONTH);";
           $var = $this->db->pdo->query($sql)->fetchall();
          $var+= $this->subtract1;
           $this->db->pdo->query("UPDATE totalmoney SET total = '$var';");
-          $this->db->pdo->query("DELETE FROM salary  WHERE id != 5");
+          // $this->db->pdo->query("DELETE FROM salary  WHERE id != 5");
         }else{
           $var = $this->subtract1+$this->subtract3;
           $this->db->pdo->query("UPDATE totalmoney SET total = '$var';");
@@ -322,6 +322,7 @@ return $this->soFar;
         $sql = "UPDATE totalmoney SET total = '$var';";
         $this->db->pdo->query($sql);
       }
+      var_dump($this->otherIncome);
 $this->expected= $this->subtract1[0]['total']-$this->subtract2[0]['amount'];
       }
 
