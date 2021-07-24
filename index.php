@@ -524,7 +524,7 @@ $crud->showSalary();
 
 <?php if(isset($crud->lastMonthIncome)):?>
 <?php foreach($crud->lastMonthIncome as $row):?>
-<h1 style="text-align:center">income other than monthly salary current month: <?=$row['amount']?></h1>
+<h1 style="text-align:center">income other than monthly salary previous month: <?=$row['amount']?></h1>
 <?php endforeach;?>
 <?php endif;?>
 
