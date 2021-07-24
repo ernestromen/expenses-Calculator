@@ -512,7 +512,6 @@ $crud->showSalary();
 
 
 <?php foreach($crud->otherIncome as $row):?>
-<h1 style="text-align:center">income other than monthly salary: <?=$row['source']?></h1>
 <h1 style="text-align:center">income other than monthly salary: <?=$row['amount']?></h1>
 <?php endforeach;?>
 
