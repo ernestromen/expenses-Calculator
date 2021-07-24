@@ -522,17 +522,22 @@ $crud->showSalary();
 <h1 style="text-align:center">monthly salary from this month: <?=$row['amount']?></h1>
 <?php endforeach;?>
 
-
+<?php if(isset($crud->otherIncome)):?>
 <?php foreach($crud->otherIncome as $row):?>
 <h1 style="text-align:center">income other than monthly salary current month: <?=$row['amount']?></h1>
 <?php endforeach;?>
+<?php else:?>
+  <h1 style="text-align:center">income other than monthly salary current month: 0</h1>
+
+<?php endif;?>
+
 
 <?php if(isset($crud->lastMonthIncome)):?>
 <?php foreach($crud->lastMonthIncome as $row):?>
 <h1 style="text-align:center">income other than monthly salary previous month: <?=$row['amount']?></h1>
 <?php endforeach;?>
 <?php else:?>
-  <h1 style="text-align:center">income other than monthly salary previous month: 0</h1>
+  <?= 'its not betwneen 1 and 10';?>
 <?php endif;?>
 
 
