@@ -296,7 +296,7 @@ return $this->soFar;
         $this->subtract1 = $this->db->pdo->query($sql1)->fetchall();
         $this->subtract2 = $this->db->pdo->query($sql2)->fetchall();
         $this->subtract3 = $this->db->pdo->query($sql3)->fetchall();
-        $this->otherIncome = $this->db->pdo->query($sql4)->fetchall();
+        // $this->otherIncome = $this->db->pdo->query($sql4)->fetchall();
 
 
         echo '<pre>';
@@ -326,7 +326,7 @@ return $this->soFar;
         $sql = "UPDATE totalmoney SET total = '$var';";
         $this->db->pdo->query($sql);
       }
-      var_dump($this->otherIncome);
+
 $this->expected= $this->subtract1[0]['total']-$this->subtract2[0]['amount'];
       }
 
