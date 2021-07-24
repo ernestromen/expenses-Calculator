@@ -291,7 +291,7 @@ return $this->soFar;
         $sql2 = "SELECT SUM(amount) as amount FROM expenses WHERE DATE_FORMAT(date,'%m') =MONTH(NOW());";
         //select salary
         $sql3 = "SELECT amount FROM salary WHERE id =5 ";
-        $sql4 = "SELECT SUM(amount) as amount,source FROM salary WHERE id != 5 AND DATE_FORMAT(created_at,'%m') =MONTH(NOW())";
+        // $sql4 = "SELECT SUM(amount) as amount,source FROM salary WHERE id != 5 AND DATE_FORMAT(created_at,'%m') =MONTH(NOW())";
 
         $this->subtract1 = $this->db->pdo->query($sql1)->fetchall();
         $this->subtract2 = $this->db->pdo->query($sql2)->fetchall();
