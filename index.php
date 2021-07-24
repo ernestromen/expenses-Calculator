@@ -176,7 +176,7 @@ $this->db->pdo->query($sql);
 
 $this->db->pdo->query($sql);
 }else if($w === 'submitIncome'){
-$sql = "INSERT INTO salary (source, amount) VALUES ('$res','$res2')";
+$sql = "INSERT INTO salary (source, amount,created_at) VALUES ('$res','$res2',NOW())";
 
 
   $this->db->pdo->query($sql);
