@@ -169,11 +169,18 @@ $this->db->pdo->query($sql);
 //insert value from salary and source
 // $sql = "INSERT INTO salary (source, amount) VALUES ('$res','$res2')";
 $sql = "UPDATE salary SET source ='$res',amount ='$res2';";
+$this->db->pdo->query($sql);
+
 // UPDATE totalmoney SET total = '$var';
 
 $this->db->pdo->query($sql);
 }else if($w === 'submitIncome'){
-var_dump('here');
+
+  var_dump($res);
+  var_dump($res2);
+  // $this->db->pdo->query($sql);
+
+
 }
 
 
