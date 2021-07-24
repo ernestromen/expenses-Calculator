@@ -33,7 +33,9 @@ class Validation extends DB{
       
   public  $errors = [
         'input' => '',
-        'salaryInput' =>'' 
+        'salaryInput' =>'',
+        'incomeInput'=>''
+
         ];
     
       public function validate(){
@@ -106,14 +108,14 @@ if(isset($_POST['submitIncome'])){
 
 
   if(empty($_POST['income']) || empty($_POST['source2']) ){
-    $this->errors['salaryInput'] = '<br>'.'* the inputs must not be a empty';
+    $this->errors['incomeInput'] = '<br>'.'* the inputs must not be a empty';
   
   }else if(!(is_numeric($_POST['income']))){
   
-    $this->errors['salaryInput'] = '<br>'.'* the salary input must be a number';
+    $this->errors['incomeInput'] = '<br>'.'* the salary input must be a number';
   
   }else if(is_numeric($_POST['source2'])){
-    $this->errors['salaryInput'] = '<br>'.'* the source input must not be a number';
+    $this->errors['incomeInput'] = '<br>'.'* the source input must not be a number';
   
   }else{
   
@@ -450,7 +452,7 @@ $crud->showSalary();
 </div>
 
 <span style="color:red;">
-<?= $crud->errors['salaryInput']; ?>
+<?= $crud->errors['incomeInput']; ?>
 </span>
 
 </form>
