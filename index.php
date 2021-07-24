@@ -524,7 +524,7 @@ $crud->showSalary();
 
 
 <?php foreach($crud->salary as $row):?>
-<h1 style="text-align:center">monthly salary from this month: <?=$row['amount']?></h1>
+<h1 style="text-align:center">constant monthly salary from this month: <?=$row['amount']?></h1>
 <?php endforeach;?>
 
 <?php if(isset($crud->otherIncome)):?>
