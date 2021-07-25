@@ -400,10 +400,8 @@ $crud->showSalary();
 
 <form id="myForm" method="post">
 <div id="mobile1">
-<div class="itemgrid">
 <input class ="test" type="text" name="input" placeholder="amount" type="text">
 <input id="btnSubmit"  type="submit" name="submit" placeholder="add" type="text">
-</div>
 
  
 <div class="itemgrid2">
