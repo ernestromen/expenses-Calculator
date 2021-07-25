@@ -404,7 +404,6 @@ $crud->showSalary();
 <input id="btnSubmit"  type="submit" name="submit" placeholder="add" type="text">
 
  
-<div class="itemgrid2">
 <label for="select">select PurchaeType</label>
 <select id="select" value="something" name="select">
 <option  value="">option</option>
@@ -419,7 +418,6 @@ $crud->showSalary();
 </span>
 
 
-</div>
 </form>
 
 
