@@ -219,8 +219,6 @@ $sql = "SELECT id,purchasetype,amount,date FROM expenses WHERE DATE_FORMAT(date,
 
           }
     
-        }else{
-          var_dump('nothing is passed');
         }
 
 
