@@ -398,7 +398,7 @@ $crud->showSalary();
 
 <div>
 
-<form id="myForm" method="post">
+<form method="post">
 <input class ="test" type="text" name="input" placeholder="amount" type="text">
 <input id="btnSubmit"  type="submit" name="submit" placeholder="add" type="text">
 
