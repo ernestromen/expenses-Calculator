@@ -396,7 +396,7 @@ $crud->showSalary();
 </head>
 <body>
 
-<div  class="containRow">
+<div>
 
 <form id="myForm" method="post">
 <div id="mobile1">
