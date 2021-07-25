@@ -474,7 +474,6 @@ $crud->showSalary();
 
 
 
-/**showing only data from a speicif date */
 <form id="myForm" method="post">
 <div id="mobile1">
 
