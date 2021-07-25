@@ -396,7 +396,7 @@ $crud->showSalary();
 </head>
 <body>
 
-<div>
+<div style="display: grid; grid-template-columns: auto auto auto auto;">
 <div>
 <form method="post">
 <input class ="test" type="text" name="input" placeholder="amount" type="text"> 
@@ -461,7 +461,6 @@ $crud->showSalary();
 
 
  
-<label for="select">select date</label>
 <select id="select" value="something" name="selectDate">
 <option  value="">date</option>
 <option value="current">current</option>
