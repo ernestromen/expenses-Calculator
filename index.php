@@ -436,7 +436,6 @@ $crud->showSalary();
 
 <div style="text-align:center;">
 <form action="" method="post">
-<div id="mobile2">
 <input class ="test" type="text" name="income" placeholder="salary" type="text">
 <input class ="test" type="text" name="source2" placeholder="source" type="text">
 <input id="btnSubmit"  type="submit" name="submitIncome" placeholder="add" type="text">
@@ -444,7 +443,6 @@ $crud->showSalary();
 
 
 
-</div>
 
 <span style="color:red;">
 <?= $crud->errors['incomeInput']; ?>
