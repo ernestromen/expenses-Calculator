@@ -397,7 +397,7 @@ $crud->showSalary();
 <body>
 
 <div>
-
+<div>
 <form method="post">
 <input class ="test" type="text" name="input" placeholder="amount" type="text"> 
 <select id="select" value="something" name="select">
@@ -414,9 +414,9 @@ $crud->showSalary();
 
 
 </form>
+</div>
 
-
-
+<div>
 <form action="" method="post">
 <div id="mobile2">
 <input class ="test" type="text" name="salary" placeholder="salary" type="text">
@@ -433,8 +433,10 @@ $crud->showSalary();
 </span>
 
 </form>
+</div>
 
 
+<div>
 <form action="" method="post">
 <div id="mobile2">
 <input class ="test" type="text" name="income" placeholder="salary" type="text">
@@ -451,10 +453,10 @@ $crud->showSalary();
 </span>
 
 </form>
+</div>
 
 
-
-
+<div>
 <form method="post">
 
 
@@ -469,7 +471,6 @@ $crud->showSalary();
 </select> 
 <input id="btnSubmit2"  type="submit" name="submitCurrent" placeholder="add" type="text">
 
-<div>
 
 
 <span style="color:red;">
@@ -477,11 +478,10 @@ $crud->showSalary();
 </span>
 
 
-</div>
 </form>
 
 </div>
-
+</div>
 <?php foreach($crud->total as $row):?>
 <h1 style="text-align:center">total amount of money:<?=$row['total']?></h1>
 <?php endforeach;?>
