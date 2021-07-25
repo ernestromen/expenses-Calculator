@@ -458,7 +458,7 @@ $crud->showSalary();
 
 
 
-<form id="myForm" method="post">
+<form method="post">
 
 
  
