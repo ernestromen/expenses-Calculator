@@ -396,8 +396,7 @@ $crud->showSalary();
 </head>
 <body>
 
-<div id="root"></div>
-
+<div>
 /**adding expenses overall to every table */
 <form id="myForm" method="post">
 <div id="mobile1">
@@ -508,6 +507,9 @@ $crud->showSalary();
 
 </div>
 </form>
+
+</div>
+
 <?php foreach($crud->total as $row):?>
 <h1 style="text-align:center">total amount of money:<?=$row['total']?></h1>
 <?php endforeach;?>
