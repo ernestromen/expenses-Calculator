@@ -400,7 +400,6 @@ $crud->showSalary();
 
 <form method="post">
 <input class ="test" type="text" name="input" placeholder="amount" type="text"> 
-<label for="select">select PurchaeType</label>
 <select id="select" value="something" name="select">
 <option  value="">option</option>
 
