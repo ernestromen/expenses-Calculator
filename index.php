@@ -429,7 +429,7 @@ $crud->showSalary();
 <form action="" method="post">
 <div id="mobile2">
 <input class ="test" type="text" name="salary" placeholder="salary" type="text">
-<input class ="test" type="text" name="source" placeholder="source" type="text">update</input>
+<input class ="test" type="text" name="source" placeholder="source" type="text">
 <input id="btnSubmit"  type="submit" name="submitSalary" placeholder="add" type="text">
 
 
