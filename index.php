@@ -399,7 +399,6 @@ $crud->showSalary();
 <div>
 
 <form id="myForm" method="post">
-<div id="mobile1">
 <input class ="test" type="text" name="input" placeholder="amount" type="text">
 <input id="btnSubmit"  type="submit" name="submit" placeholder="add" type="text">
 
@@ -412,7 +411,6 @@ $crud->showSalary();
 <option  value="<?=$row['purchasetype'];?>"><?=$row['purchasetype'];?></option>
 <?php endforeach;?>
 </select> 
-</div>
 <span style="color:red;">
 <?= $crud->errors['input']; ?>
 </span>
