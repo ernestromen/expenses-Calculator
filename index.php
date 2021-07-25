@@ -397,7 +397,7 @@ $crud->showSalary();
 <body>
 
 <div style="display: grid; grid-template-columns: auto auto auto auto;">
-<div>
+<div style="text-align:center;">
 <form method="post">
 <input class ="test" type="text" name="input" placeholder="amount" type="text"> 
 <select id="select" value="something" name="select">
@@ -416,9 +416,8 @@ $crud->showSalary();
 </form>
 </div>
 
-<div>
+<div style="text-align:center;">
 <form action="" method="post">
-<div id="mobile2">
 <input class ="test" type="text" name="salary" placeholder="salary" type="text">
 <input class ="test" type="text" name="source" placeholder="source" type="text">
 <input id="btnSubmit"  type="submit" name="submitSalary" placeholder="add" type="text">
@@ -426,7 +425,6 @@ $crud->showSalary();
 
 
 
-</div>
 
 <span style="color:red;">
 <?= $crud->errors['salaryInput']; ?>
@@ -436,7 +434,7 @@ $crud->showSalary();
 </div>
 
 
-<div>
+<div style="text-align:center;">
 <form action="" method="post">
 <div id="mobile2">
 <input class ="test" type="text" name="income" placeholder="salary" type="text">
@@ -456,7 +454,7 @@ $crud->showSalary();
 </div>
 
 
-<div>
+<div style="text-align:center;">
 <form method="post">
 
 
