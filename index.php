@@ -397,7 +397,6 @@ $crud->showSalary();
 <body>
 
 <div  class="containRow">
-/**adding expenses overall to every table */
 
 <form id="myForm" method="post">
 <div id="mobile1">
@@ -449,7 +448,6 @@ $crud->showSalary();
 </form>
 
 
-/**inserting another income additionally to the constant salary */
 <form action="" method="post">
 <div id="mobile2">
 <div  class="itemgrid">
