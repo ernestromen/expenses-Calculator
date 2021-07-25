@@ -65,23 +65,23 @@ border: 1px solid black;
 
       
 
-#mobile1{
+/* #mobile1{
 
     padding:20px;
     display: grid;
     grid-template-columns: auto auto;
     justify-content: center;
     
-}
+} */
 
 @media screen and (max-width: 768px){
 
-    #mobile1{
+    /* #mobile1{
 
         display: contents;
     
         
-    }
+    } */
 }
 
 
@@ -111,12 +111,12 @@ text-align: center;
 margin-bottom:40px;
 
 }
-    #mobile2{
+    /* #mobile2{
 
         display: contents;
     
         
-    }
+    } */
 
     .test{
         width:100%;
