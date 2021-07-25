@@ -434,10 +434,6 @@ $crud->showSalary();
 
 
 
-<div style="text-align:center;" class="itemgrid">
-<label for="select">type source of income</label>
-
-</div>
 
 </div>
 
@@ -452,16 +448,12 @@ $crud->showSalary();
 <div id="mobile2">
 <div  class="itemgrid">
 <input class ="test" type="text" name="income" placeholder="salary" type="text">
+<input class ="test" type="text" name="source2" placeholder="source" type="text">
 <input id="btnSubmit"  type="submit" name="submitIncome" placeholder="add" type="text">
 </div>
 
 
 
-<div style="text-align:center;" class="itemgrid">
-<label for="select">type source of income</label>
-
-<input class ="test" type="text" name="source2" placeholder="source" type="text">
-</div>
 
 </div>
 
