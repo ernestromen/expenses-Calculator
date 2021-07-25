@@ -461,7 +461,6 @@ $crud->showSalary();
 
 
 <form id="myForm" method="post">
-<div id="mobile1">
 
 
  
@@ -477,7 +476,6 @@ $crud->showSalary();
 
 <div>
 
-</div>
 
 <span style="color:red;">
 <?= $crud->errors['input']; ?>
