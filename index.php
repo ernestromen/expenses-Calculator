@@ -398,7 +398,7 @@ $crud->showSalary();
 
 <div  class="containRow">
 /**adding expenses overall to every table */
-<div class="rowItem">
+
 <form id="myForm" method="post">
 <div id="mobile1">
 <div class="itemgrid">
@@ -424,12 +424,10 @@ $crud->showSalary();
 
 </div>
 </form>
-</div>
+
 
 
 /**updating the amount of the salary */
-<div class="rowItem">
-
 <form action="" method="post">
 <div id="mobile2">
 <div  class="itemgrid">
@@ -452,11 +450,9 @@ $crud->showSalary();
 </span>
 
 </form>
-<div>
+
 
 /**inserting another income additionally to the constant salary */
-<div class="rowItem">
-
 <form action="" method="post">
 <div id="mobile2">
 <div  class="itemgrid">
@@ -479,13 +475,11 @@ $crud->showSalary();
 </span>
 
 </form>
-</div>
+
 
 
 
 /**showing only data from a speicif date */
-<div class="rowItem">
-
 <form id="myForm" method="post">
 <div id="mobile1">
 
@@ -514,7 +508,7 @@ $crud->showSalary();
 
 </div>
 </form>
-<div>
+
 </div>
 
 <?php foreach($crud->total as $row):?>
