@@ -446,11 +446,9 @@ $crud->showSalary();
 
 <form action="" method="post">
 <div id="mobile2">
-<div  class="itemgrid">
 <input class ="test" type="text" name="income" placeholder="salary" type="text">
 <input class ="test" type="text" name="source2" placeholder="source" type="text">
 <input id="btnSubmit"  type="submit" name="submitIncome" placeholder="add" type="text">
-</div>
 
 
 
@@ -471,7 +469,6 @@ $crud->showSalary();
 
 
  
-<div class="itemgrid2">
 <label for="select">select date</label>
 <select id="select" value="something" name="selectDate">
 <option  value="">date</option>
@@ -486,7 +483,6 @@ $crud->showSalary();
 
 </div>
 
-</div>
 <span style="color:red;">
 <?= $crud->errors['input']; ?>
 </span>
