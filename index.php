@@ -303,7 +303,7 @@ return $this->soFar;
         if($this->db->pdo->query("SELECT amount FROM `salary` WHERE id != 5 AND DATE_FORMAT(created_at,'%m') =MONTH(NOW() - INTERVAL 1 MONTH);")->rowcount() > 0){
           $var;
           
-          $sql = "SELECT SUM(amount) as amount FROM salary AND DATE_FORMAT(created_at,'%m') =MONTH(NOW() - INTERVAL 1 MONTH);";
+          $sql = "SELECT SUM(amount) as amount FROM salary WHERE DATE_FORMAT(created_at,'%m') =MONTH(NOW() - INTERVAL 1 MONTH);";
           $var = $this->db->pdo->query($sql)->fetchall();
          $var+= $this->subtract1;
           $this->db->pdo->query("UPDATE totalmoney SET total = '$var';");
