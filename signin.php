@@ -23,7 +23,6 @@ class Signin extends DB {
     public function __construct($db){
         // global $db;
         $this->db = $db;
-        // var_dump($this->db);
         }
 
     public function process(){
