@@ -7,19 +7,9 @@ use foobarwhatever\dingdong\DB;
 // if(!(isset($_SESSION['userid']) && isset($_SESSION['useruid']))){
 // header("location: ../signin.php");
 // exit();
-
-
 // }
-
-
 error_reporting(E_ALL);
 ini_set("display_errors", 1);
-
-
-
-
-
-$chosenDate = null;
 class Validation extends DB
 {
   //validation 
@@ -34,90 +24,22 @@ class Validation extends DB
 
   public function validate()
   {
-
     //when expenses submitted 
     if (isset($_POST['submit'])) {
       if (empty($_POST['purchasetype']) || empty($_POST['amount'])) {
-
         $this->errors['purchasetype'] = '<br>' . '* the input is not valid';
-
-
       } else if (!(is_numeric($_POST['amount']))) {
 
         $this->errors['amount'] = '<br>' . '* the amount must be a number';
       }
-
       //if the input passes all the validation
       else {
 
         $purchaseType = $_POST['purchasetype'];
         $amount = $_POST['amount'];
         $this->insert($purchaseType, $amount);
-
       }
     }
-
-
-    //when salary is submitted 
-
-    if (isset($_POST['submitSalary'])) {
-
-
-
-      if (empty($_POST['salary']) || empty($_POST['source'])) {
-        $this->errors['salaryInput'] = '<br>' . '* the inputs must not be a empty';
-
-      } else if (!(is_numeric($_POST['salary']))) {
-
-        $this->errors['salaryInput'] = '<br>' . '* the salary input must be a number';
-
-      } else if (is_numeric($_POST['source'])) {
-        $this->errors['salaryInput'] = '<br>' . '* the source input must not be a number';
-
-      } else {
-
-
-        $result = $_POST['source'];
-        $result2 = $_POST['salary'];
-        $where = 'submitSalary';
-        $this->insert($result, $result2, $where);
-
-      }
-
-
-    }
-
-    ////validation for additinal income
-
-    if (isset($_POST['submitIncome'])) {
-
-
-
-      if (empty($_POST['income']) || empty($_POST['source2'])) {
-        $this->errors['incomeInput'] = '<br>' . '* the inputs must not be a empty';
-
-      } else if (!(is_numeric($_POST['income']))) {
-
-        $this->errors['incomeInput'] = '<br>' . '* the salary input must be a number';
-
-      } else if (is_numeric($_POST['source2'])) {
-        $this->errors['incomeInput'] = '<br>' . '* the source input must not be a number';
-
-      } else {
-
-
-        $result = $_POST['source2'];
-        $result2 = $_POST['income'];
-        $where = 'submitIncome';
-        $this->insert($result, $result2, $where);
-
-      }
-
-
-    }
-
-
-
   }
 
 }
@@ -145,14 +67,12 @@ class CRUD extends Validation
   {
     $sql = "INSERT INTO expenses (purchasetype,amount,created_at) VALUES ('$purchaseType','$amount',NOW())";
     $this->db->pdo->query($sql);
-
   }
 }
 
 
 // $res = new DB($cleardb_server,$cleardb_db,$cleardb_username,$cleardb_password);
 $res = new DB('localhost', 'db0123', 'root', '');
-//$val causes 'too few arguments passed' Error 
 $val = new Validation($res);
 $crud = new CRUD($res);
 $crud->validate();
@@ -171,23 +91,11 @@ $crud->show();
   <link rel="stylesheet" href="mystyle.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
     integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-  <style>
-    .container2 {
-      padding: 20px;
-      display: grid;
-      grid-template-columns: 20% 20%;
-      justify-content: center;
-
-
-    }
-  </style>
 </head>
 
 <body>
-
   <div class="mt-3" style="display: grid; grid-template-columns: auto 20% auto auto;">
     <div style="text-align:center;">
-
       <form method="post">
         <select class="custom-select" name="purchasetype">
           <option value="">Choose Timeline</option>
