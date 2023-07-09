@@ -1,7 +1,9 @@
 <?php
 
 namespace foobarwhatever\dingdong;
+
 use PDO;
+
 // $cleardb_url = parse_url(getenv("CLEARDB_DATABASE_URL"));
 // $cleardb_server = $cleardb_url["host"];
 // $cleardb_username = $cleardb_url["user"];
@@ -15,25 +17,25 @@ $cleardb_username = 'root';
 $cleardb_password = '';
 $cleardb_db = 'db0123';
 
-class DB  {
+class DB
+{
   //pdo connection to be inherited
-    private $dns;
-    private $user;
-    private $password;
-    protected $pdo;
+  private $dns;
+  private $user;
+  private $password;
+  protected $pdo;
 
-      public function __construct($server,$db,$user,$pass){
-        $this->dns = "mysql:host=". $server."; dbname=" .$db.";";
-        $this->user=$user;
-        $this->password=$pass;
-        try {
-        $this->pdo = new PDO($this->dns,$this->user,$this->password); 
-        $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        }catch(PDOException $e) {
-          print "Error!: " . $e->getMessage() . "<br/>" . "<br>";
-          die();
-        }
-    
-        return $this;
-      }
+  public function __construct($server, $db, $user, $pass)
+  {
+    $this->dns = "mysql:host=" . $server . "; dbname=" . $db . ";";
+    $this->user = $user;
+    $this->password = $pass;
+    try {
+      $this->pdo = new PDO($this->dns, $this->user, $this->password);
+      $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    } catch (PDOException $e) {
+      print "Error!: " . $e->getMessage() . "<br/>" . "<br>";
+      die();
     }
+  }
+}

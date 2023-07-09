@@ -3,11 +3,6 @@
 require 'database.php';
 use foobarwhatever\dingdong\DB;
 
-// session_start();
-// if(!(isset($_SESSION['userid']) && isset($_SESSION['useruid']))){
-// header("location: ../signin.php");
-// exit();
-// }
 error_reporting(E_ALL);
 ini_set("display_errors", 1);
 class Validation extends DB
@@ -61,7 +56,7 @@ class CRUD extends Validation
     // --  WHERE DATE_FORMAT(created_at,'%m') =MONTH(NOW());";
     $this->result = $this->db->pdo->query($sql)->fetchall();
 
-    return ($this->result);
+    return $this->result;
   }
   public function insert($purchaseType, $amount)
   {
@@ -94,14 +89,20 @@ $crud->show();
 </head>
 
 <body>
-  <div class="mt-3" style="display: grid; grid-template-columns: auto 20% auto auto;">
-    <div style="text-align:center;">
+  <div class="mt-3" style="display: grid; grid-template-columns: auto 20% auto auto;gap: 20px;">
+    <div class="w-75" style="text-align:center;">
       <form method="post">
         <select class="custom-select" name="purchasetype">
           <option value="">Choose Timeline</option>
           <option value="Today">Today</option>
           <option value="Mounthly">Mounthly</option>
           <option value="Yearly">Yearly</option>
+        </select>
+        <select class="custom-select" name="purchasetype">
+          <option value="">Choose purchasetype</option>
+          <option value="Utilities">Utilities</option>
+          <option value="Recreational">Recreational</option>
+          <option value="Food">Food</option>
         </select>
       </form>
     </div>
@@ -132,44 +133,82 @@ $crud->show();
         </div>
       </form>
     </div>
-
-
-    <div style="text-align:center;">
-
-    </div>
-
-
-    <div style="text-align:center;">
-    </div>
   </div>
   <br>
   <br>
 
-  <h1 style="text-align:center">daily expenses</h1>
-
-  <div class="container ">
-    <div class="itemgrid">type</div>
-    <div class="itemgrid">Amount</div>
-    <div class="itemgrid">Created at</div>
-    <?php foreach ($crud->result as $row): ?>
-      <div class="itemgrid">
-        <?= $row['purchasetype']; ?>
-      </div>
-      <div class="itemgrid">
-        <?= $row['amount']; ?>
-      </div>
-      <div id="date" class="itemgrid">
-        <?= $row['created_at']; ?>
-      </div>
-    <?php endforeach; ?>
+  <h1 class="mb-5" style="text-align:center">daily expenses</h1>
+  <div id="app">
+    <div v-if="expenses.length === 0" class="loader-container">
+      <div class="loader"></div>
+    </div>
+    <table v-else class="table w-50 text-center m-auto">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Type</th>
+          <th scope="col">Amount</th>
+          <th scope="col">Created at</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="(expense, index) in expenses" :key="index">
+          <th scope="row">{{ index }}</th>
+          <td>{{ expense.purchasetype }}</td>
+          <td>{{ expense.amount }}</td>
+          <td>{{ expense.created_at }}</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
+  <button class="btn btn-primary" @click="getExpenseByPurchaseType">Click me</button>
+  </div>
+
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
     integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
     crossorigin="anonymous"></script>
-  <!-- <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script> -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
     integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
     crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios@0.21.1/dist/axios.min.js"></script>
+  <script>
+    new Vue({
+      el: '#app',
+      data: function () {
+        return {
+          expenses: [],
+        }
+      },
+      mounted() {
+        this.getAllExpenses();
+      },
+      methods: {
+        getAllExpenses: function () {
+          axios.get('index2.php')
+            .then(response => {
+              this.expenses = response.data['expenses'];
+              console.log(this.expenses);
+            })
+            .catch(error => {
+              console.error(error);
+            });
+        },
+        getExpenseByPurchaseType: function (purchaseType) {
+          axios.get(`index2.php?type=${purchaseType}`)
+            .then(response => {
+              const expense = response.data['expense'];
+              console.log(expense); // Handle the response as needed
+            })
+            .catch(error => {
+              console.error(error);
+            });
+        }
+
+      }
+    });
+
+  </script>
 </body>
 
 </html>
