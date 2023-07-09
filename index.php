@@ -160,8 +160,9 @@ $crud->show();
         </tr>
       </tbody>
     </table>
+    <button class="btn btn-primary" @click="getExpenseByPurchaseType">Click me</button>
+
   </div>
-  <button class="btn btn-primary" @click="getExpenseByPurchaseType">Click me</button>
   </div>
 
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
@@ -194,11 +195,11 @@ $crud->show();
               console.error(error);
             });
         },
-        getExpenseByPurchaseType: function (purchaseType) {
-          axios.get(`index2.php?type=${purchaseType}`)
+        getExpenseByPurchaseType: function () {
+          axios.get(`index2.php?type=food`)
             .then(response => {
               const expense = response.data['expense'];
-              console.log(expense); // Handle the response as needed
+              console.log(expense,'expense'); // Handle the response as needed
             })
             .catch(error => {
               console.error(error);

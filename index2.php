@@ -16,7 +16,7 @@ class CRUD extends DB
 
     public function show()
     {
-
+        
         $sql = "SELECT purchasetype,amount,created_at FROM expenses";
         // --  WHERE DATE_FORMAT(created_at,'%m') =MONTH(NOW());";
         $this->result = $this->db->pdo->query($sql)->fetchall();
@@ -26,9 +26,9 @@ class CRUD extends DB
 
     public function getByPurchaseType($searchVariable)
     {
-        var_dump($searchVariable);
-        die;
-        $sql = "SELECT purchasetype,amount,created_at FROM expenses WHERE purchasetype = '$searchVariable'";
+       
+        // $sql = "SELECT purchasetype,amount,created_at FROM expenses WHERE purchasetype = 'Food'";
+        $sql = "select * from expenses where purchasetype = 'food'";
         // --  WHERE DATE_FORMAT(created_at,'%m') =MONTH(NOW());";
         $this->result = $this->db->pdo->query($sql)->fetchall();
 
@@ -43,7 +43,7 @@ $crud = new CRUD($res);
 
 if (isset($_GET['type'])) {
     $purchaseType = $_GET['type'];
-    $data = $crud->getByPurchaseType($purchaseType);
+    $data = $crud->getByPurchaseType($purchaseType);    
 } else {
     $data = $crud->show();
 }
