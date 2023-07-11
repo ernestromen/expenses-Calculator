@@ -100,9 +100,7 @@ export default {
       axios
         .get("https://localhost/expenses-calculator/index2.php")
         .then((response) => {
-          // console.log(response);
           this.expenses = JSON.parse(JSON.stringify(response.data.expenses));
-          // console.log(this.expenses);
         })
         .catch((error) => {
           console.error(error);
@@ -112,8 +110,7 @@ export default {
       axios
         .get(`https://localhost/expenses-calculator/index2.php?type=food`)
         .then((response) => {
-          this.expense = response.data["expenses"];
-          console.log(this.expenses, "expense"); // Handle the response as needed
+          this.expenses = JSON.parse(JSON.stringify(response.data.expenses));
         })
         .catch((error) => {
           console.error(error);
