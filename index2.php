@@ -2,8 +2,10 @@
 namespace foobarwhatever\dingdong;
 
 require 'database.php';
-
-
+header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Headers: *");
+header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
+header("Access-Control-Allow-Headers: Content-Type, Authorization");
 class CRUD extends DB
 {
     public function __construct($db)
@@ -16,19 +18,15 @@ class CRUD extends DB
 
     public function show()
     {
-        
         $sql = "SELECT purchasetype,amount,created_at FROM expenses";
-        // --  WHERE DATE_FORMAT(created_at,'%m') =MONTH(NOW());";
         $this->result = $this->db->pdo->query($sql)->fetchall();
 
         return $this->result;
     }
 
-    public function getByPurchaseType($searchVariable)
+    public function getByPurchaseType()
     {
-       
-        // $sql = "SELECT purchasetype,amount,created_at FROM expenses WHERE purchasetype = 'Food'";
-        $sql = "select * from expenses where purchasetype = 'food'";
+        $sql = "select purchasetype,amount,created_at from expenses where purchasetype = 'food'";
         // --  WHERE DATE_FORMAT(created_at,'%m') =MONTH(NOW());";
         $this->result = $this->db->pdo->query($sql)->fetchall();
 
@@ -36,17 +34,17 @@ class CRUD extends DB
     }
 
 }
+
+
 $res = new DB('localhost', 'db0123', 'root', '');
 
 $crud = new CRUD($res);
-// $data = $crud->show();
 
 if (isset($_GET['type'])) {
-    $purchaseType = $_GET['type'];
-    $data = $crud->getByPurchaseType($purchaseType);    
+    // The 'type' query parameter exists
+$data = $crud->getByPurchaseType();
+echo json_encode(['expenses' => $data]);
 } else {
     $data = $crud->show();
+    echo json_encode(['expenses' => $data]);
 }
-
-
-echo json_encode(['expenses' => $data]);
