@@ -10,7 +10,7 @@
       <div class="w-75" style="text-align: center">
         <form method="post">
           <select class="custom-select" name="purchasetype">
-            <option value="">Choose Timeline</option>
+            <option :value="null">Choose Timeline</option>
             <option value="Today">Today</option>
             <option value="Mounthly">Mounthly</option>
             <option value="Yearly">Yearly</option>
@@ -29,13 +29,16 @@
         </form>
       </div>
       <div>
-        <form method="post" action="https://localhost/expenses-calculator/index2.php">
+        <form
+          method="post"
+          action="https://localhost/expenses-calculator/index.php"
+        >
           <select
             v-model="selectedOptionAddingExpense"
             class="custom-select"
             name="purchasetype"
           >
-            <option :value="null">Choose purchasetype</option>
+            <option disabled :value="null">Choose purchasetype</option>
             <option value="Utilities">Utilities</option>
             <option value="Recreational">Recreational</option>
             <option value="Food">Food</option>
@@ -72,18 +75,41 @@
       <table class="table w-50 text-center m-auto">
         <thead>
           <tr>
-            <th scope="col">#</th>
+            <th scope="col">
+              <input
+                type="checkbox"
+                @change="getAllCheckboxId"
+                v-model="isMasterChecked"
+              />
+            </th>
+            <th scope="col">key</th>
             <th scope="col">Type</th>
             <th scope="col">Amount</th>
             <th scope="col">Created at</th>
+            <th scope="col"></th>
           </tr>
         </thead>
         <tbody>
           <tr v-for="(expense, index) in expenses" :key="index">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              @change="checkCheckedIds(expense.id)"
+              :checked="isMasterChecked ? true : false"
+              :data-row-id="expense.id"
+            />
             <th scope="row">{{ index }}</th>
             <td>{{ expense.purchasetype }}</td>
             <td>{{ expense.amount }}</td>
             <td>{{ expense.created_at }}</td>
+            <td>
+              <input
+                class="btn btn-danger fs-1 text"
+                type="submit"
+                value="Delete row"
+                @click="deleteExpense(expense.id)"
+              />
+            </td>
           </tr>
         </tbody>
       </table>
@@ -101,15 +127,41 @@ export default {
   data: function () {
     return {
       expenses: [],
+      checkedIds: [],
       selectedOptionSearch: null,
       selectedOptionAddingExpense: null,
       typedAmount: null,
+      isMasterChecked: false,
+      allTheExpensesId: [],
     };
   },
   methods: {
+    getAllCheckboxId: function () {
+      // console.log(JSON.parse(JSON.stringify(this.expenses)));
+      if (this.isMasterChecked) {
+        this.allTheExpensesId = JSON.parse(JSON.stringify(this.expenses)).map(
+          (e) => {
+            return e[0];
+          }
+        );
+      } else {
+        this.allTheExpensesId = [];
+      }
+
+      console.log(this.allTheExpensesId);
+    },
+    checkCheckedIds: function (id) {
+      let filteredId = this.expenses.filter((e) => e.id == id);
+      filteredId = JSON.parse(JSON.stringify(filteredId[0]))[0];
+      this.checkedIds = [...this.checkedIds, filteredId];
+      console.log(
+        "these are the checked ids:",
+        JSON.parse(JSON.stringify(this.checkedIds))
+      );
+    },
     getAllExpenses: function () {
       axios
-        .get("https://localhost/expenses-calculator/index2.php")
+        .get("https://localhost/expenses-calculator/index.php")
         .then((response) => {
           this.expenses = JSON.parse(JSON.stringify(response.data.expenses));
         })
@@ -119,14 +171,30 @@ export default {
     },
     addExpense: function (e) {
       e.preventDefault();
-      console.log(this.selectedOptionAddingExpense);
-      console.log(this.typedAmount);
       let selectedOptionAddingExpense = this.selectedOptionAddingExpense;
       let typedAmount = this.typedAmount;
       axios
-        .post("https://localhost/expenses-calculator/index2.php",{selectedOptionAddingExpense,typedAmount})
+        .post(
+          "https://localhost/expenses-calculator/index.php",
+          { selectedOptionAddingExpense, typedAmount },
+          { headers: { "content-type": "application/x-www-form-urlencoded" } }
+        )
         .then((response) => {
-          console.log(response);
+          this.expenses = JSON.parse(JSON.stringify(response.data.expenses));
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    },
+    deleteExpense: function (id) {
+      axios
+        .delete(
+          `https://localhost/expenses-calculator/index.php/${id}`,
+          {},
+          { headers: { "content-type": "application/json" } }
+        )
+        .then((response) => {
+          this.expenses = JSON.parse(JSON.stringify(response.data.expenses));
         })
         .catch((error) => {
           console.error(error);
@@ -136,7 +204,7 @@ export default {
       e.preventDefault();
       axios
         .get(
-          `https://localhost/expenses-calculator/index2.php?type=${this.selectedOptionSearch}`
+          `https://localhost/expenses-calculator/index.php?type=${this.selectedOptionSearch}`
         )
         .then((response) => {
           this.expenses = JSON.parse(JSON.stringify(response.data.expenses));
