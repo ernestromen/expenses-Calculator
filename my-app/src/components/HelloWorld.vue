@@ -15,8 +15,13 @@
             <option value="Mounthly">Mounthly</option>
             <option value="Yearly">Yearly</option>
           </select>
-          <select class="custom-select" name="purchasetype">
-            <option value="">Choose purchasetype</option>
+          <select
+            v-model="selectedOptionSearch"
+            @change="searchExpenses"
+            class="custom-select"
+            name="purchasetype"
+          >
+            <option disabled :value="null">Choose purchasetype</option>
             <option value="Utilities">Utilities</option>
             <option value="Recreational">Recreational</option>
             <option value="Food">Food</option>
@@ -24,9 +29,13 @@
         </form>
       </div>
       <div>
-        <form method="post">
-          <select class="custom-select" name="purchasetype">
-            <option value="">Choose purchasetype</option>
+        <form method="post" action="https://localhost/expenses-calculator/index2.php">
+          <select
+            v-model="selectedOptionAddingExpense"
+            class="custom-select"
+            name="purchasetype"
+          >
+            <option :value="null">Choose purchasetype</option>
             <option value="Utilities">Utilities</option>
             <option value="Recreational">Recreational</option>
             <option value="Food">Food</option>
@@ -37,6 +46,7 @@
               class="form-control"
               type="number"
               placeholder="amount"
+              v-model="typedAmount"
             />
           </div>
           <div class="form-group">
@@ -44,7 +54,8 @@
               class="btn btn-primary w-100"
               name="submit"
               type="submit"
-              value="click"
+              value="Add expense"
+              @click="addExpense"
             />
           </div>
         </form>
@@ -53,7 +64,7 @@
     <br />
     <br />
 
-    <h1 class="mb-5" style="text-align: center">daily expenses</h1>
+    <h1 class="mb-5 text-center">daily expenses</h1>
     <div id="app">
       <div class="loader-container">
         <div class="loader"></div>
@@ -76,9 +87,6 @@
           </tr>
         </tbody>
       </table>
-      <button class="btn btn-primary" @click="getExpenseByPurchaseType">
-        Click me
-      </button>
     </div>
   </div>
 </template>
@@ -93,6 +101,9 @@ export default {
   data: function () {
     return {
       expenses: [],
+      selectedOptionSearch: null,
+      selectedOptionAddingExpense: null,
+      typedAmount: null,
     };
   },
   methods: {
@@ -106,9 +117,27 @@ export default {
           console.error(error);
         });
     },
-    getExpenseByPurchaseType: function () {
+    addExpense: function (e) {
+      e.preventDefault();
+      console.log(this.selectedOptionAddingExpense);
+      console.log(this.typedAmount);
+      let selectedOptionAddingExpense = this.selectedOptionAddingExpense;
+      let typedAmount = this.typedAmount;
       axios
-        .get(`https://localhost/expenses-calculator/index2.php?type=food`)
+        .post("https://localhost/expenses-calculator/index2.php",{selectedOptionAddingExpense,typedAmount})
+        .then((response) => {
+          console.log(response);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    },
+    searchExpenses: function (e) {
+      e.preventDefault();
+      axios
+        .get(
+          `https://localhost/expenses-calculator/index2.php?type=${this.selectedOptionSearch}`
+        )
         .then((response) => {
           this.expenses = JSON.parse(JSON.stringify(response.data.expenses));
         })
