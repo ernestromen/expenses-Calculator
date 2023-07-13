@@ -7,7 +7,7 @@
         gap: 20px;
       "
     >
-      <div class="w-75" style="text-align: center">
+      <div class="w-75 text-center">
         <form method="post">
           <select class="custom-select" name="purchasetype">
             <option :value="null">Choose Timeline</option>
@@ -29,6 +29,20 @@
         </form>
       </div>
       <div>
+        <div
+          class="alert alert-success"
+          role="alert"
+          :style="{ display: responseAddingSucceeded ? 'block' : 'none' }"
+        >
+          Successfully added an expense
+        </div>
+        <div
+          class="alert alert-danger"
+          role="alert"
+          :style="{ display: responseAddingFailed ? 'block' : 'none' }"
+        >
+          Failed to add an expense
+        </div>
         <form
           method="post"
           action="https://localhost/expenses-calculator/index.php"
@@ -72,6 +86,20 @@
       <div class="loader-container">
         <div class="loader"></div>
       </div>
+      <div
+        class="alert alert-success w-50 m-auto"
+        role="alert"
+        :style="{ display: responseDeleteSucceeded ? 'block' : 'none' }"
+      >
+        Successfully deleted an expense
+      </div>
+      <div
+        class="alert alert-success w-50 m-auto"
+        role="alert"
+        :style="{ display: responseDeleteFailed ? 'block' : 'none' }"
+      >
+        Successfully deleted an expense
+      </div>
       <table class="table w-50 text-center m-auto">
         <thead>
           <tr>
@@ -82,7 +110,6 @@
                 v-model="isMasterChecked"
               />
             </th>
-            <th scope="col">key</th>
             <th scope="col">Type</th>
             <th scope="col">Amount</th>
             <th scope="col">Created at</th>
@@ -92,13 +119,13 @@
         <tbody>
           <tr v-for="(expense, index) in expenses" :key="index">
             <input
+              :id="expense.id"
               class="form-check-input"
               type="checkbox"
               @change="checkCheckedIds(expense.id)"
               :checked="isMasterChecked ? true : false"
               :data-row-id="expense.id"
             />
-            <th scope="row">{{ index }}</th>
             <td>{{ expense.purchasetype }}</td>
             <td>{{ expense.amount }}</td>
             <td>{{ expense.created_at }}</td>
@@ -119,6 +146,8 @@
 
 <script>
 import axios from "axios";
+import moment from "moment";
+
 export default {
   name: "HelloWorld",
   props: {
@@ -133,11 +162,15 @@ export default {
       typedAmount: null,
       isMasterChecked: false,
       allTheExpensesId: [],
+      currentDateTime: "",
+      responseAddingSucceeded: false,
+      responseAddingFailed: false,
+      responseDeleteSucceeded: false,
+      responseDeleteFailed: false,
     };
   },
   methods: {
     getAllCheckboxId: function () {
-      // console.log(JSON.parse(JSON.stringify(this.expenses)));
       if (this.isMasterChecked) {
         this.allTheExpensesId = JSON.parse(JSON.stringify(this.expenses)).map(
           (e) => {
@@ -163,7 +196,7 @@ export default {
       axios
         .get("https://localhost/expenses-calculator/index.php")
         .then((response) => {
-          this.expenses = JSON.parse(JSON.stringify(response.data.expenses));
+          this.expenses = response.data.expenses;
         })
         .catch((error) => {
           console.error(error);
@@ -173,14 +206,32 @@ export default {
       e.preventDefault();
       let selectedOptionAddingExpense = this.selectedOptionAddingExpense;
       let typedAmount = this.typedAmount;
+      let currentDateTime = this.currentDateTime;
+
       axios
         .post(
           "https://localhost/expenses-calculator/index.php",
-          { selectedOptionAddingExpense, typedAmount },
+          { selectedOptionAddingExpense, typedAmount, currentDateTime },
           { headers: { "content-type": "application/x-www-form-urlencoded" } }
         )
         .then((response) => {
-          this.expenses = JSON.parse(JSON.stringify(response.data.expenses));
+          if (response.status == "200") {
+            this.responseAddingSucceeded = true;
+          } else {
+            this.responseAddingFailed = true;
+          }
+          setTimeout(() => {
+            this.responseAddingSucceeded = false;
+            this.responseAddingFailed = false;
+          }, 2500);
+
+          let newExpense = {
+            id: response.data.lastInsertedId,
+            purchasetype: selectedOptionAddingExpense,
+            amount: typedAmount,
+            created_at: currentDateTime,
+          };
+          this.expenses = [...this.expenses, newExpense];
         })
         .catch((error) => {
           console.error(error);
@@ -194,7 +245,18 @@ export default {
           { headers: { "content-type": "application/json" } }
         )
         .then((response) => {
-          this.expenses = JSON.parse(JSON.stringify(response.data.expenses));
+          console.log(response);
+          let fillteredExpenses = this.expenses.filter((e) => e.id !== id);
+          this.expenses = fillteredExpenses;
+          if (response.status == "200") {
+            this.responseDeleteSucceeded = true;
+          } else {
+            this.responseDeleteFailed = true;
+          }
+          setTimeout(() => {
+            this.responseDeleteSucceeded = false;
+            this.responseDeleteFailed = false;
+          }, 2500);
         })
         .catch((error) => {
           console.error(error);
@@ -216,6 +278,7 @@ export default {
   },
   mounted() {
     this.getAllExpenses();
+    this.currentDateTime = moment().format("YYYY-MM-DD HH:mm:ss");
   },
 };
 </script>
