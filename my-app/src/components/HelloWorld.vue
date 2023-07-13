@@ -80,7 +80,13 @@
     </div>
     <br />
     <br />
-
+    <div
+      class="alert alert-danger w-50 m-auto"
+      role="alert"
+      :style="{ display: responseNetworkError ? 'block' : 'none' }"
+    >
+      Network error
+    </div>
     <h1 class="mb-5 text-center">daily expenses</h1>
     <div id="app">
       <div class="loader-container">
@@ -167,6 +173,7 @@ export default {
       responseAddingFailed: false,
       responseDeleteSucceeded: false,
       responseDeleteFailed: false,
+      responseNetworkError: false,
     };
   },
   methods: {
@@ -180,8 +187,6 @@ export default {
       } else {
         this.allTheExpensesId = [];
       }
-
-      console.log(this.allTheExpensesId);
     },
     checkCheckedIds: function (id) {
       let filteredId = this.expenses.filter((e) => e.id == id);
@@ -196,10 +201,14 @@ export default {
       axios
         .get("https://localhost/expenses-calculator/index.php")
         .then((response) => {
+          this.responseNetworkError = false;
+          console.log(response);
+
           this.expenses = response.data.expenses;
         })
         .catch((error) => {
-          console.error(error);
+          console.error("this is the error", error["message"]);
+          this.responseNetworkError = true;
         });
     },
     addExpense: function (e) {
@@ -215,11 +224,10 @@ export default {
           { headers: { "content-type": "application/x-www-form-urlencoded" } }
         )
         .then((response) => {
-          if (response.status == "200") {
-            this.responseAddingSucceeded = true;
-          } else {
-            this.responseAddingFailed = true;
-          }
+          response.status == "200"
+            ? (this.responseAddingSucceeded = true)
+            : (this.responseAddingFailed = true);
+
           setTimeout(() => {
             this.responseAddingSucceeded = false;
             this.responseAddingFailed = false;
@@ -245,14 +253,11 @@ export default {
           { headers: { "content-type": "application/json" } }
         )
         .then((response) => {
-          console.log(response);
           let fillteredExpenses = this.expenses.filter((e) => e.id !== id);
           this.expenses = fillteredExpenses;
-          if (response.status == "200") {
-            this.responseDeleteSucceeded = true;
-          } else {
-            this.responseDeleteFailed = true;
-          }
+          response.status == "200"
+            ? (this.responseDeleteSucceeded = true)
+            : (this.responseDeleteFailed = true);
           setTimeout(() => {
             this.responseDeleteSucceeded = false;
             this.responseDeleteFailed = false;

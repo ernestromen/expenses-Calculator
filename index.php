@@ -1,8 +1,7 @@
 <?php
 namespace foobarwhatever\dingdong;
 
-header("Access-Control-Allow-Origin: *");
-header("Access-Control-Allow-Headers: *");
+header("Access-Control-Allow-Origin: http://localhost:8080");
 header("Access-Control-Allow-Methods: GET, POST,DELETE");
 header("Access-Control-Allow-Headers: Content-Type");
 require 'database.php';
@@ -20,32 +19,28 @@ class CRUD extends DB
 
     public function show()
     {
-        $sql = "SELECT id,purchasetype,amount,created_at FROM expenses";
-        $this->result = $this->db->pdo->query($sql)->fetchall();
+        $this->result = $this->db->pdo->query("SELECT id,purchasetype,amount,created_at FROM expenses")->fetchall();
 
         return $this->result;
     }
 
     public function getByPurchaseType($searchVariable)
     {
-        $sql = "SELECT id,purchasetype,amount,created_at FROM expenses WHERE purchasetype = '$searchVariable'";
         // --  WHERE DATE_FORMAT(created_at,'%m') =MONTH(NOW());";
-        $this->result = $this->db->pdo->query($sql)->fetchall();
+        $this->result = $this->db->pdo->query("SELECT id,purchasetype,amount,created_at FROM expenses WHERE purchasetype = '$searchVariable'")->fetchall();
 
         return $this->result;
     }
     public function insertExpense($amount, $purchaseType, $currentDateTime)
     {
-        $sql = "INSERT INTO expenses (purchasetype,amount,created_at) VALUES(?,?,?)";
-        $stmt = $this->db->pdo->prepare($sql);
-        $stmt->execute([$purchaseType,$amount, $currentDateTime]);
+        $stmt = $this->db->pdo->prepare("INSERT INTO expenses (purchasetype,amount,created_at) VALUES(?,?,?)");
+        $stmt->execute([$purchaseType, $amount, $currentDateTime]);
         return $this->lastInsertedId = $this->db->pdo->lastInsertId();
     }
 
     public function deleteExpense($id)
     {
-        $sql = "DELETE FROM expenses WHERE id = '$id'";
-        $this->result = $this->db->pdo->query($sql);
+        $this->result = $this->db->pdo->query("DELETE FROM expenses WHERE id = '$id'");
     }
 }
 
@@ -55,7 +50,7 @@ $type = isset($_GET['type']);
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['type'])) {
     $data = $crud->getByPurchaseType($_GET['type']);
-    echo json_encode(['expenses' => $data]);
+    echo json_encode(['expenses' => $crud->getByPurchaseType($_GET['type'])]);
 } else if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     $data = $crud->show();
     echo json_encode(['expenses' => $data]);
@@ -67,9 +62,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['type'])) {
     $lastInsertedIdValue = $crud->insertExpense($typedAmount, $selectedOptionAddingExpense, $currentDateTime);
     echo json_encode(['lastInsertedId' => $lastInsertedIdValue]);
 } else if ($_SERVER['REQUEST_METHOD'] === 'DELETE') {
-    $data = isset($_DELETE) ? $_DELETE : json_decode(file_get_contents("php://input"), true);
-    $url = $_SERVER['REQUEST_URI'];
-    $url = explode('/', $url);
+    $url = explode('/', $_SERVER['REQUEST_URI']);
     $urlLength = count($url);
     $id = $url[$urlLength - 1];
     $crud->deleteExpense($id);
