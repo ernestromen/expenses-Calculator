@@ -19,7 +19,6 @@ $cleardb_db = 'db0123';
 
 class DB
 {
-  //pdo connection to be inherited
   private $dns;
   private $user;
   private $password;

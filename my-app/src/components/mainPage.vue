@@ -1,13 +1,7 @@
 <template>
   <div class="app">
-    <div
-      style="
-        display: grid;
-        grid-template-columns: auto 20% auto auto;
-        gap: 20px;
-      "
-    >
-      <div class="w-75 text-center">
+    <div class="row justify-content-center mx-5">
+      <div class="col-4 text-center">
         <form method="post">
           <select class="custom-select" name="purchasetype">
             <option :value="null">Choose Timeline</option>
@@ -28,7 +22,7 @@
           </select>
         </form>
       </div>
-      <div>
+      <div class="col-4">
         <div
           class="alert alert-success"
           role="alert"
@@ -41,7 +35,7 @@
           role="alert"
           :style="{ display: responseAddingFailed ? 'block' : 'none' }"
         >
-          Failed to add an expense
+          {{ responseAddingFailedMessage }}
         </div>
         <form
           method="post"
@@ -85,10 +79,10 @@
       role="alert"
       :style="{ display: responseNetworkError ? 'block' : 'none' }"
     >
-      Network error
+      {{ responseNetworkErrorMessage }}
     </div>
-    <h1 class="mb-5 text-center">daily expenses</h1>
-    <div id="app">
+    <div :style="{ display: expenses.length === 0 ? 'none' : 'block' }">
+      <h1 class="mb-5 text-center">Expenses</h1>
       <div class="loader-container">
         <div class="loader"></div>
       </div>
@@ -106,7 +100,7 @@
       >
         Successfully deleted an expense
       </div>
-      <table class="table w-50 text-center m-auto">
+      <table class="table w-50 text-center m-auto border">
         <thead>
           <tr>
             <th scope="col">
@@ -123,7 +117,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="(expense, index) in expenses" :key="index">
+          <tr class="border" v-for="(expense, index) in expenses" :key="index">
             <input
               :id="expense.id"
               class="form-check-input"
@@ -144,6 +138,12 @@
               />
             </td>
           </tr>
+          <tr class=" border border-info ">
+            <td class="text-left">Total expenses</td>
+            <td></td>
+            <td>{{ totalSumOfExpenses["totalSum"] }}</td>
+            <td></td>
+          </tr>
         </tbody>
       </table>
     </div>
@@ -155,13 +155,11 @@ import axios from "axios";
 import moment from "moment";
 
 export default {
-  name: "HelloWorld",
-  props: {
-    msg: String,
-  },
+  name: "mainPage",
   data: function () {
     return {
       expenses: [],
+      totalSumOfExpenses: "",
       checkedIds: [],
       selectedOptionSearch: null,
       selectedOptionAddingExpense: null,
@@ -171,9 +169,11 @@ export default {
       currentDateTime: "",
       responseAddingSucceeded: false,
       responseAddingFailed: false,
+      responseAddingFailedMessage: "",
       responseDeleteSucceeded: false,
       responseDeleteFailed: false,
       responseNetworkError: false,
+      responseNetworkErrorMessage: "",
     };
   },
   methods: {
@@ -202,13 +202,24 @@ export default {
         .get("https://localhost/expenses-calculator/index.php")
         .then((response) => {
           this.responseNetworkError = false;
-          console.log(response);
-
           this.expenses = response.data.expenses;
         })
         .catch((error) => {
-          console.error("this is the error", error["message"]);
           this.responseNetworkError = true;
+          this.responseNetworkErrorMessage = this.showFailedApiMessage(error);
+        });
+    },
+    getTotalSum : function () {
+         axios
+        .get("https://localhost/expenses-calculator/index.php")
+        .then((response) => {
+          console.log(response);
+          this.responseNetworkError = false;
+          this.totalSumOfExpenses = response.data.totalSum[0];
+        })
+        .catch((error) => {
+          this.responseNetworkError = true;
+          this.responseNetworkErrorMessage = this.showFailedApiMessage(error);
         });
     },
     addExpense: function (e) {
@@ -242,7 +253,12 @@ export default {
           this.expenses = [...this.expenses, newExpense];
         })
         .catch((error) => {
-          console.error(error);
+          this.responseAddingFailed = true;
+          this.responseAddingFailedMessage = this.showFailedApiMessage(error);
+          setTimeout(() => {
+            this.responseAddingSucceeded = false;
+            this.responseAddingFailed = false;
+          }, 2500);
         });
     },
     deleteExpense: function (id) {
@@ -264,7 +280,9 @@ export default {
           }, 2500);
         })
         .catch((error) => {
-          console.error(error);
+           setTimeout(() => {
+            this.responseDeleteFailed = this.showFailedApiMessage(error);
+          }, 2500);
         });
     },
     searchExpenses: function (e) {
@@ -274,15 +292,20 @@ export default {
           `https://localhost/expenses-calculator/index.php?type=${this.selectedOptionSearch}`
         )
         .then((response) => {
-          this.expenses = JSON.parse(JSON.stringify(response.data.expenses));
+          this.expenses = response.data.expenses;
+          this.totalSumOfExpenses = response.data.totalSum[0];
         })
         .catch((error) => {
           console.error(error);
         });
     },
+    showFailedApiMessage: function (error) {
+      return `${error["message"]} : ${error["name"]} `;
+    },
   },
   mounted() {
     this.getAllExpenses();
+    this.getTotalSum();
     this.currentDateTime = moment().format("YYYY-MM-DD HH:mm:ss");
   },
 };
