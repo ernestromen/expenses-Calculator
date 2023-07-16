@@ -2,6 +2,13 @@
   <div class="app">
     <div class="row justify-content-center mx-5">
       <div class="col-4 text-center">
+        <div
+          class="alert alert-danger"
+          role="alert"
+          :style="{ display: searchFailed ? 'block' : 'none' }"
+        >
+          {{ searchFailedMessage }}
+        </div>
         <form method="post">
           <select class="custom-select" name="purchasetype">
             <option :value="null">Choose Timeline</option>
@@ -15,7 +22,8 @@
             class="custom-select"
             name="purchasetype"
           >
-            <option disabled :value="null">Choose purchasetype</option>
+            <option disabled >Choose purchasetype</option>
+            <option value="All">All</option>
             <option value="Utilities">Utilities</option>
             <option value="Recreational">Recreational</option>
             <option value="Food">Food</option>
@@ -113,7 +121,7 @@
             <th scope="col">Type</th>
             <th scope="col">Amount</th>
             <th scope="col">Created at</th>
-            <th scope="col"></th>
+            <th scope="col"><button class="btn btn-danger rounded-circle" title="delete all checked expenses"><i class="fa fa-trash" aria-hidden="true"></i></button></th>
           </tr>
         </thead>
         <tbody>
@@ -130,15 +138,14 @@
             <td>{{ expense.amount }}</td>
             <td>{{ expense.created_at }}</td>
             <td>
-              <input
-                class="btn btn-danger fs-1 text"
+              <button
+                class="btn btn-danger fs-1 text rounded-circle"
                 type="submit"
-                value="Delete row"
                 @click="deleteExpense(expense.id)"
-              />
+              ><i class="fa fa-trash" aria-hidden="true"></i></button>
             </td>
           </tr>
-          <tr class=" border border-info ">
+          <tr class="border border-info">
             <td class="text-left">Total expenses</td>
             <td></td>
             <td>{{ totalSumOfExpenses["totalSum"] }}</td>
@@ -153,6 +160,7 @@
 <script>
 import axios from "axios";
 import moment from "moment";
+import 'font-awesome/css/font-awesome.css';
 
 export default {
   name: "mainPage",
@@ -174,12 +182,14 @@ export default {
       responseDeleteFailed: false,
       responseNetworkError: false,
       responseNetworkErrorMessage: "",
+      searchFailed:false,
+      searchFailedMessage:""
     };
   },
   methods: {
     getAllCheckboxId: function () {
       if (this.isMasterChecked) {
-        this.allTheExpensesId = JSON.parse(JSON.stringify(this.expenses)).map(
+        this.allTheExpensesId = this.expenses.map(
           (e) => {
             return e[0];
           }
@@ -209,11 +219,10 @@ export default {
           this.responseNetworkErrorMessage = this.showFailedApiMessage(error);
         });
     },
-    getTotalSum : function () {
-         axios
+    getTotalSum: function () {
+      axios
         .get("https://localhost/expenses-calculator/index.php")
         .then((response) => {
-          console.log(response);
           this.responseNetworkError = false;
           this.totalSumOfExpenses = response.data.totalSum[0];
         })
@@ -235,6 +244,7 @@ export default {
           { headers: { "content-type": "application/x-www-form-urlencoded" } }
         )
         .then((response) => {
+          this.totalSumOfExpenses = response.data.totalSum[0];
           response.status == "200"
             ? (this.responseAddingSucceeded = true)
             : (this.responseAddingFailed = true);
@@ -271,6 +281,7 @@ export default {
         .then((response) => {
           let fillteredExpenses = this.expenses.filter((e) => e.id !== id);
           this.expenses = fillteredExpenses;
+          this.totalSumOfExpenses = response.data.totalSum[0];
           response.status == "200"
             ? (this.responseDeleteSucceeded = true)
             : (this.responseDeleteFailed = true);
@@ -280,8 +291,9 @@ export default {
           }, 2500);
         })
         .catch((error) => {
-           setTimeout(() => {
-            this.responseDeleteFailed = this.showFailedApiMessage(error);
+          this.responseDeleteFailed = this.showFailedApiMessage(error);
+          setTimeout(() => {
+            this.responseDeleteFailed = '';
           }, 2500);
         });
     },
@@ -296,7 +308,11 @@ export default {
           this.totalSumOfExpenses = response.data.totalSum[0];
         })
         .catch((error) => {
-          console.error(error);
+          this.searchFailed = true;
+          this.searchFailedMessage = this.showFailedApiMessage(error);
+           setTimeout(() => {
+          this.searchFailed = false;
+          }, 2500);
         });
     },
     showFailedApiMessage: function (error) {
