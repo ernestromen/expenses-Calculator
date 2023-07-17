@@ -1,9 +1,4 @@
 <?php
-
-namespace foobarwhatever\dingdong;
-
-use PDO;
-
 // $cleardb_url = parse_url(getenv("CLEARDB_DATABASE_URL"));
 // $cleardb_server = $cleardb_url["host"];
 // $cleardb_username = $cleardb_url["user"];
@@ -11,11 +6,10 @@ use PDO;
 // $cleardb_db = substr($cleardb_url["path"],1);
 // $active_group = 'default';
 // $query_builder = TRUE;
-
-$cleardb_server = 'localhost';
-$cleardb_username = 'root';
-$cleardb_password = '';
-$cleardb_db = 'db0123';
+// $cleardb_server = 'localhost';
+// $cleardb_username = 'root';
+// $cleardb_password = '';
+// $cleardb_db = 'db0123';
 
 class DB
 {

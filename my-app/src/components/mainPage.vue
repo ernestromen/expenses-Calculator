@@ -10,19 +10,25 @@
           {{ searchFailedMessage }}
         </div>
         <form method="post">
-          <select class="custom-select" name="purchasetype">
-            <option :value="null">Choose Timeline</option>
+          <select
+            @change="searchExpenses"
+            class="custom-select"
+            name="purchasetype"
+            v-model="selectedTimeOptionSearch"
+          >
+            <option diabled selected value="">Choose Timeline</option>
             <option value="Today">Today</option>
             <option value="Mounthly">Mounthly</option>
             <option value="Yearly">Yearly</option>
           </select>
+
           <select
-            v-model="selectedOptionSearch"
             @change="searchExpenses"
-            class="custom-select"
             name="purchasetype"
+            class="custom-select"
+            v-model="selectedTypeOptionSearch"
           >
-            <option disabled >Choose purchasetype</option>
+            <option disabled selected value="">Choose purchasetype</option>
             <option value="All">All</option>
             <option value="Utilities">Utilities</option>
             <option value="Recreational">Recreational</option>
@@ -114,14 +120,22 @@
             <th scope="col">
               <input
                 type="checkbox"
-                @change="getAllCheckboxId"
+                @change="checkCheckedIds(null)"
                 v-model="isMasterChecked"
               />
             </th>
             <th scope="col">Type</th>
             <th scope="col">Amount</th>
             <th scope="col">Created at</th>
-            <th scope="col"><button class="btn btn-danger rounded-circle" title="delete all checked expenses"><i class="fa fa-trash" aria-hidden="true"></i></button></th>
+            <th scope="col">
+              <button
+                class="btn btn-danger rounded-circle"
+                title="delete all checked expenses"
+                @click="deleteSelectedCheckboxes"
+              >
+                <i class="fa fa-trash" aria-hidden="true"></i>
+              </button>
+            </th>
           </tr>
         </thead>
         <tbody>
@@ -131,8 +145,7 @@
               class="form-check-input"
               type="checkbox"
               @change="checkCheckedIds(expense.id)"
-              :checked="isMasterChecked ? true : false"
-              :data-row-id="expense.id"
+              ref="myCheckbox"
             />
             <td>{{ expense.purchasetype }}</td>
             <td>{{ expense.amount }}</td>
@@ -142,7 +155,9 @@
                 class="btn btn-danger fs-1 text rounded-circle"
                 type="submit"
                 @click="deleteExpense(expense.id)"
-              ><i class="fa fa-trash" aria-hidden="true"></i></button>
+              >
+                <i class="fa fa-trash" aria-hidden="true"></i>
+              </button>
             </td>
           </tr>
           <tr class="border border-info">
@@ -160,7 +175,7 @@
 <script>
 import axios from "axios";
 import moment from "moment";
-import 'font-awesome/css/font-awesome.css';
+import "font-awesome/css/font-awesome.css";
 
 export default {
   name: "mainPage",
@@ -169,12 +184,14 @@ export default {
       expenses: [],
       totalSumOfExpenses: "",
       checkedIds: [],
-      selectedOptionSearch: null,
+      selectedTypeOptionSearch: "",
+      selectedTimeOptionSearch: "",
       selectedOptionAddingExpense: null,
       typedAmount: null,
       isMasterChecked: false,
       allTheExpensesId: [],
       currentDateTime: "",
+      //shortern
       responseAddingSucceeded: false,
       responseAddingFailed: false,
       responseAddingFailedMessage: "",
@@ -182,30 +199,28 @@ export default {
       responseDeleteFailed: false,
       responseNetworkError: false,
       responseNetworkErrorMessage: "",
-      searchFailed:false,
-      searchFailedMessage:""
+      searchFailed: false,
+      searchFailedMessage: "",
     };
   },
   methods: {
-    getAllCheckboxId: function () {
-      if (this.isMasterChecked) {
-        this.allTheExpensesId = this.expenses.map(
-          (e) => {
-            return e[0];
-          }
-        );
-      } else {
-        this.allTheExpensesId = [];
-      }
-    },
     checkCheckedIds: function (id) {
-      let filteredId = this.expenses.filter((e) => e.id == id);
-      filteredId = JSON.parse(JSON.stringify(filteredId[0]))[0];
-      this.checkedIds = [...this.checkedIds, filteredId];
-      console.log(
-        "these are the checked ids:",
-        JSON.parse(JSON.stringify(this.checkedIds))
-      );
+      if (id !== null) {
+        this.checkedIds = this.checkedIds.includes(id)
+          ? this.checkedIds.filter((e) => e !== id)
+          : [...this.checkedIds, ...[id]];
+      } else {
+        this.isMasterChecked
+          ? this.$refs.myCheckbox.map((e) => {
+              e.checked = true;
+            })
+          : this.$refs.myCheckbox.map((e) => {
+              e.checked = false;
+            });
+        this.checkedIds = this.isMasterChecked
+          ? this.expenses.map((e) => e.id)
+          : [];
+      }
     },
     getAllExpenses: function () {
       axios
@@ -236,6 +251,10 @@ export default {
       let selectedOptionAddingExpense = this.selectedOptionAddingExpense;
       let typedAmount = this.typedAmount;
       let currentDateTime = this.currentDateTime;
+
+      // this.$refs.myCheckbox.map((e) => {
+      //   [...this.checkedIds, [e.id]];
+      // });
 
       axios
         .post(
@@ -271,11 +290,12 @@ export default {
           }, 2500);
         });
     },
+
     deleteExpense: function (id) {
       axios
         .delete(
           `https://localhost/expenses-calculator/index.php/${id}`,
-          {},
+          { data: id },
           { headers: { "content-type": "application/json" } }
         )
         .then((response) => {
@@ -293,15 +313,16 @@ export default {
         .catch((error) => {
           this.responseDeleteFailed = this.showFailedApiMessage(error);
           setTimeout(() => {
-            this.responseDeleteFailed = '';
+            this.responseDeleteFailed = "";
           }, 2500);
         });
     },
     searchExpenses: function (e) {
       e.preventDefault();
+      this.selectedTimeOptionSearch ? this.selectedTimeOptionSearch : 'no-time-chosen'
       axios
         .get(
-          `https://localhost/expenses-calculator/index.php?type=${this.selectedOptionSearch}`
+          `https://localhost/expenses-calculator/index.php?type=${this.selectedTypeOptionSearch}&time=${this.selectedTimeOptionSearch}`
         )
         .then((response) => {
           this.expenses = response.data.expenses;
@@ -310,13 +331,31 @@ export default {
         .catch((error) => {
           this.searchFailed = true;
           this.searchFailedMessage = this.showFailedApiMessage(error);
-           setTimeout(() => {
-          this.searchFailed = false;
+          setTimeout(() => {
+            this.searchFailed = false;
           }, 2500);
         });
     },
     showFailedApiMessage: function (error) {
       return `${error["message"]} : ${error["name"]} `;
+    },
+    deleteSelectedCheckboxes: function () {
+      if (this.checkedIds.length > 0) {
+        axios
+          .delete(
+            `https://localhost/expenses-calculator/index.php/delete-all-check-ids`,
+            { data: this.checkedIds },
+            { headers: { "content-type": "application/json" } }
+          )
+          .then((response) => {
+            this.expenses = this.expenses.filter(
+              (e) => !this.checkedIds.includes(e.id)
+            );
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      }
     },
   },
   mounted() {
