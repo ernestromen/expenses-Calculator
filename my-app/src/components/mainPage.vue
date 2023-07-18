@@ -295,6 +295,7 @@ export default {
           { headers: { "content-type": "application/json" } }
         )
         .then((response) => {
+          console.log(response);
           let fillteredExpenses = this.expenses.filter((e) => e.id !== id);
           this.expenses = fillteredExpenses;
           this.totalSumOfExpenses = response.data.totalSum[0];
@@ -345,6 +346,7 @@ export default {
             { headers: { "content-type": "application/json" } }
           )
           .then((response) => {
+            console.log(response);
             this.expenses = this.expenses.filter(
               (e) => !this.checkedIds.includes(e.id)
             );

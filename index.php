@@ -24,45 +24,27 @@ class CRUD extends DB
 
     public function searchPurchases($searchTypeVariable, $searchTimeVariable)
     {
-        if ($searchTimeVariable && $searchTypeVariable) {
+        $query = "SELECT id, purchasetype, amount, created_at FROM expenses WHERE 1";
+    
+        if ($searchTimeVariable) {
             if ($searchTimeVariable == 'Today') {
-                if ($searchTypeVariable == 'All') {
-                    $this->result = $this->db->pdo->query("SELECT id,purchasetype,amount,created_at FROM expenses WHERE DATE_FORMAT(created_at,'%d') =DAY(NOW())")->fetchall(PDO::FETCH_ASSOC);
-                } else {
-                    $this->result = $this->db->pdo->query("SELECT id,purchasetype,amount,created_at FROM expenses WHERE DATE_FORMAT(created_at,'%d') =DAY(NOW()) AND purchasetype = '$searchTypeVariable';")->fetchall(PDO::FETCH_ASSOC);
-                }
-            } else if ($searchTimeVariable == 'Mounthly') {
-                if ($searchTypeVariable == 'All') {
-                    $this->result = $this->db->pdo->query("SELECT id,purchasetype,amount,created_at FROM expenses WHERE DATE_FORMAT(created_at,'%m') =MONTH(NOW())")->fetchall(PDO::FETCH_ASSOC);
-                } else {
-                    $this->result = $this->db->pdo->query("SELECT id,purchasetype,amount,created_at FROM expenses WHERE DATE_FORMAT(created_at,'%m') =MONTH(NOW()) AND purchasetype = '$searchTypeVariable';")->fetchall(PDO::FETCH_ASSOC);
-                }
-
+                $query .= " AND DATE_FORMAT(created_at, '%d') = DAY(NOW())";
+            } else if ($searchTimeVariable == 'Monthly') {
+                $query .= " AND DATE_FORMAT(created_at, '%m') = MONTH(NOW())";
             } else if ($searchTimeVariable == 'Yearly') {
-                if ($searchTypeVariable == 'All') {
-                    $this->result = $this->db->pdo->query("SELECT id,purchasetype,amount,created_at FROM expenses WHERE DATE_FORMAT(created_at,'%Y')")->fetchall(PDO::FETCH_ASSOC);
-                } else {
-                    $this->result = $this->db->pdo->query("SELECT id,purchasetype,amount,created_at FROM expenses WHERE DATE_FORMAT(created_at,'%Y') =YEAR(NOW()) AND purchasetype = '$searchTypeVariable';")->fetchall(PDO::FETCH_ASSOC);
-                }
-            }
-        } else if ($searchTimeVariable) {
-            if ($searchTimeVariable == 'Today') {
-                $this->result = $this->db->pdo->query("SELECT id,purchasetype,amount,created_at FROM expenses WHERE DATE_FORMAT(created_at,'%d') =DAY(NOW());")->fetchall(PDO::FETCH_ASSOC);
-            } else if ($searchTimeVariable == 'Mounthly') {
-                $this->result = $this->db->pdo->query("SELECT id,purchasetype,amount,created_at FROM expenses WHERE DATE_FORMAT(created_at,'%m') =MONTH(NOW());")->fetchall(PDO::FETCH_ASSOC);
-
-            } else if ($searchTimeVariable == 'Yearly') {
-                $this->result = $this->db->pdo->query("SELECT id,purchasetype,amount,created_at FROM expenses WHERE DATE_FORMAT(created_at,'%Y') =YEAR(NOW());")->fetchall(PDO::FETCH_ASSOC);
-            }
-        } else if ($searchTypeVariable) {
-            if ($searchTypeVariable == 'All') {
-                $this->result = $this->db->pdo->query("SELECT id,purchasetype,amount,created_at FROM expenses")->fetchall(PDO::FETCH_ASSOC);
-            } else {
-                $this->result = $this->db->pdo->query("SELECT id,purchasetype,amount,created_at FROM expenses WHERE purchasetype = '$searchTypeVariable'")->fetchall(PDO::FETCH_ASSOC);
+                $query .= " AND DATE_FORMAT(created_at, '%Y') = YEAR(NOW())";
             }
         }
+    
+        if ($searchTypeVariable && $searchTypeVariable != 'All') {
+            $query .= " AND purchasetype = '$searchTypeVariable'";
+        }
+    
+        $this->result = $this->db->pdo->query($query)->fetchAll(PDO::FETCH_ASSOC);
+    
         return $this->result;
     }
+    
     public function insertExpense($amount, $purchaseType, $currentDateTime)
     {
         $stmt = $this->db->pdo->prepare("INSERT INTO expenses (purchasetype,amount,created_at) VALUES(?,?,?)");
@@ -72,7 +54,7 @@ class CRUD extends DB
 
     public function deleteExpense($id = null, $checkedIds = null)
     {
-        $sasitizedIds = implode(',', $checkedIds);
+       !is_null($checkedIds) ?  $sasitizedIds = implode(',', $checkedIds) : '';
         !is_null($checkedIds) && count($checkedIds) > 0 ? $this->result = $this->db->pdo->query("DELETE FROM expenses WHERE id IN ($sasitizedIds)") :
             $this->result = $this->db->pdo->query("DELETE FROM expenses WHERE id = '$id'");
     }
@@ -100,6 +82,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && count($_GET) > 0) {
     $url = explode('/', $_SERVER['REQUEST_URI']);
     $urlLength = count($url);
     $ids = json_decode(file_get_contents('php://input'), true);
-    $url[$urlLength - 1] === 'delete-all-check-ids' ? $crud->deleteExpense(null, $ids) : $crud->deleteExpense($ids);
+    $url[$urlLength - 1] == 'delete-all-check-ids' ? $crud->deleteExpense(null, $ids) : $crud->deleteExpense($ids);
     echo json_encode(['totalSum' => $crud->getTotalSum()]);
 }
