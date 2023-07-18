@@ -252,10 +252,6 @@ export default {
       let typedAmount = this.typedAmount;
       let currentDateTime = this.currentDateTime;
 
-      // this.$refs.myCheckbox.map((e) => {
-      //   [...this.checkedIds, [e.id]];
-      // });
-
       axios
         .post(
           "https://localhost/expenses-calculator/index.php",
@@ -319,7 +315,7 @@ export default {
     },
     searchExpenses: function (e) {
       e.preventDefault();
-      this.selectedTimeOptionSearch ? this.selectedTimeOptionSearch : 'no-time-chosen'
+      this.selectedTypeOptionSearch ? this.selectedTypeOptionSearch : "";
       axios
         .get(
           `https://localhost/expenses-calculator/index.php?type=${this.selectedTypeOptionSearch}&time=${this.selectedTimeOptionSearch}`
@@ -341,6 +337,7 @@ export default {
     },
     deleteSelectedCheckboxes: function () {
       if (this.checkedIds.length > 0) {
+        this.isMasterChecked = false;
         axios
           .delete(
             `https://localhost/expenses-calculator/index.php/delete-all-check-ids`,
