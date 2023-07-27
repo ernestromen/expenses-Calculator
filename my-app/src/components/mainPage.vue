@@ -285,6 +285,7 @@ export default {
             this.responseAddingFailed = false;
           }, 2500);
         });
+          this.typedAmount = '';
     },
 
     deleteExpense: function (id) {
