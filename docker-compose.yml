@@ -1,0 +1,32 @@
+version: '3'
+services:
+  backend:
+    volumes:
+      - ./backend:/var/www/html
+    build:
+      context: ./backend
+    ports:
+      - "8000:80" # Map port 8000 on the host to port 80 on the container
+    depends_on:
+      - db
+
+  frontend:
+    volumes:
+      - ./frontend:/var/www/html
+    build:
+      context: ./frontend
+    ports:
+      - "8080:8080" # Map port 8080 on the host to port 8080 on the container
+    depends_on:
+      - backend # Add any other services your frontend depends on
+
+  db:
+    image: mysql # Use the official MySQL 5.7 image as the base image
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_DATABASE: db0123
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "8101:3306"
+

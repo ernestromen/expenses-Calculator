@@ -53,7 +53,7 @@
         </div>
         <form
           method="post"
-          action="https://localhost/expenses-calculator/index.php"
+          action="http://localhost:8000/"
         >
           <select
             v-model="selectedOptionAddingExpense"
@@ -173,6 +173,7 @@
 </template>
 
 <script>
+alert('asd');
 import axios from "axios";
 import moment from "moment";
 import "font-awesome/css/font-awesome.css";
@@ -224,7 +225,7 @@ export default {
     },
     getAllExpenses: function () {
       axios
-        .get("https://localhost/expenses-calculator/index.php")
+        .get("http://localhost:8000/")
         .then((response) => {
           this.responseNetworkError = false;
           this.expenses = response.data.expenses;
@@ -236,7 +237,7 @@ export default {
     },
     getTotalSum: function () {
       axios
-        .get("https://localhost/expenses-calculator/index.php")
+        .get("http://localhost:8000/")
         .then((response) => {
           this.responseNetworkError = false;
           this.totalSumOfExpenses = response.data.totalSum[0];
@@ -251,10 +252,19 @@ export default {
       let selectedOptionAddingExpense = this.selectedOptionAddingExpense;
       let typedAmount = this.typedAmount;
       let currentDateTime = this.currentDateTime;
-
+      
+      if (!typedAmount && !isNaN(typedAmount)) {
+        this.responseAddingFailed = true;
+        this.responseAddingFailedMessage = "*input must be a number";
+        setTimeout(() => {
+          this.responseAddingSucceeded = false;
+          this.responseAddingFailed = false;
+        }, 2500);
+        return false;
+      }
       axios
         .post(
-          "https://localhost/expenses-calculator/index.php",
+          "http://localhost:8000/",
           { selectedOptionAddingExpense, typedAmount, currentDateTime },
           { headers: { "content-type": "application/x-www-form-urlencoded" } }
         )
@@ -285,18 +295,17 @@ export default {
             this.responseAddingFailed = false;
           }, 2500);
         });
-          this.typedAmount = '';
+      this.typedAmount = "";
     },
 
     deleteExpense: function (id) {
       axios
         .delete(
-          `https://localhost/expenses-calculator/index.php/${id}`,
+          `http://localhost:8000/${id}`,
           { data: id },
           { headers: { "content-type": "application/json" } }
         )
         .then((response) => {
-          console.log(response);
           let fillteredExpenses = this.expenses.filter((e) => e.id !== id);
           this.expenses = fillteredExpenses;
           this.totalSumOfExpenses = response.data.totalSum[0];
@@ -320,7 +329,7 @@ export default {
       this.selectedTypeOptionSearch ? this.selectedTypeOptionSearch : "";
       axios
         .get(
-          `https://localhost/expenses-calculator/index.php?type=${this.selectedTypeOptionSearch}&time=${this.selectedTimeOptionSearch}`
+          `http://localhost:8000/?type=${this.selectedTypeOptionSearch}&time=${this.selectedTimeOptionSearch}`
         )
         .then((response) => {
           this.expenses = response.data.expenses;
@@ -342,7 +351,7 @@ export default {
         this.isMasterChecked = false;
         axios
           .delete(
-            `https://localhost/expenses-calculator/index.php/delete-all-check-ids`,
+            `http://localhost:8000/delete-all-check-ids`,
             { data: this.checkedIds },
             { headers: { "content-type": "application/json" } }
           )

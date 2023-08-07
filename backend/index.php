@@ -1,6 +1,6 @@
 <?php
 
-header("Access-Control-Allow-Origin: http://localhost:8080");
+header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Methods: GET, POST,DELETE");
 header("Access-Control-Allow-Headers: Content-Type");
 require 'database.php';
@@ -66,7 +66,7 @@ class CRUD extends DB
     }
 }
 
-$res = new DB('localhost', 'db0123', 'root', '');
+$res = new DB('db', 'db0123', 'root', 'root');
 $crud = new CRUD($res);
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET' && count($_GET) > 0) {
