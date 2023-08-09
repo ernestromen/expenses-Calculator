@@ -108,11 +108,11 @@
         Successfully deleted an expense
       </div>
       <div
-        class="alert alert-success w-50 m-auto"
+        class="alert alert-danger w-50 m-auto"
         role="alert"
         :style="{ display: responseDeleteFailed ? 'block' : 'none' }"
       >
-        Successfully deleted an expense
+        Failed to delete an expense
       </div>
       <table class="table w-50 text-center m-auto border">
         <thead>
@@ -173,7 +173,6 @@
 </template>
 
 <script>
-alert('asd');
 import axios from "axios";
 import moment from "moment";
 import "font-awesome/css/font-awesome.css";
@@ -301,7 +300,7 @@ export default {
     deleteExpense: function (id) {
       axios
         .delete(
-          `http://localhost:8000/${id}`,
+          `http://localhost:8000/?id=${id}`,
           { data: id },
           { headers: { "content-type": "application/json" } }
         )
@@ -347,13 +346,13 @@ export default {
       return `${error["message"]} : ${error["name"]} `;
     },
     deleteSelectedCheckboxes: function () {
+
       if (this.checkedIds.length > 0) {
         this.isMasterChecked = false;
         axios
           .delete(
-            `http://localhost:8000/delete-all-check-ids`,
-            { data: this.checkedIds },
-            { headers: { "content-type": "application/json" } }
+            `http://localhost:8000/?action=delete-all-check-ids`,
+            { data: this.checkedIds ,headers: { "content-type": "application/json" } }
           )
           .then((response) => {
             console.log(response);

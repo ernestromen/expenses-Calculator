@@ -12,7 +12,7 @@ services:
 
   frontend:
     volumes:
-      - ./frontend:/var/www/html
+      - ./frontend:/app
     build:
       context: ./frontend
     ports:
